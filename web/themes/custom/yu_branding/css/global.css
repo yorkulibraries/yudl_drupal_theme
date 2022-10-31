@@ -11,3 +11,9 @@ body {
     margin-left: 40px;
     margin-right: 40px;
 }
+
+.yorku_logo {
+    width: 30px;
+    background-color: white;
+    padding: 2px;
+}
