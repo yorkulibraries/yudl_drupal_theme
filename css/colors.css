@@ -18,11 +18,11 @@
 }
 
 #navbar-top {
-  background-color: #e31837;
+  background-color: #FFF;
 }
 
 #navbar-main {
-  /* background-color: #1d84c3; */
+  background-color: #E31837;
 }
 
 a,
@@ -44,7 +44,12 @@ a:active,
 
 .page-item.active .page-link {
   background-color: #E31837;
-  border-color: #E31837;
+  border-color: #FFF;
+}
+
+.nav-link,
+.nav-link:hover {
+  color: #FFF;
 }
 
 .page-link,
@@ -68,7 +73,7 @@ a:active,
 }
 
 .site-footer {
-  background: #FFF;
+  background: #E31837;
 }
 
 .region-header,
