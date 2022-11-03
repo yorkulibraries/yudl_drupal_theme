@@ -1,0 +1,22 @@
+uuid: 1880b2f9-aea4-4881-a180-70fb481f98ff
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - york_drupal_theme
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: york_drupal_theme_content
+theme: york_drupal_theme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }
