@@ -2,10 +2,6 @@
  * @file
  * Subtheme specific CSS.
  */
-.york_red {
-  background-color: #e31837;
-}
-
 @font-face {
   font-family: yorkFont;
   src: url(/themes/custom/york_drupal_theme/css/IBMPlexSans-Regular.ttf);
@@ -16,16 +12,4 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 400;
-}
-
-.menu {
-  margin-left: 40px;
-  margin-right: 40px;
-}
-
-.york_logo {
-  margin-left: 40px;
-  width: 30px;
-  background-color: white;
-  padding: 2px;
 }
