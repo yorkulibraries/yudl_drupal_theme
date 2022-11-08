@@ -17,17 +17,24 @@
   border-bottom-color: #fff;
 }
 
-@media (max-width: 992px) {
-  .navbar {
+@media (max-width: 991px) {
+
+  #CollapsingNavbar,
+  #navbar-top,
+  #block-york-drupal-theme-content {
     padding-right: 10px;
     padding-left: 10px;
   }
 }
 
 @media (min-width: 992px) {
-  .navbar {
-    padding-right: 90px;
-    padding-left: 90px;
+
+  #CollapsingNavbar,
+  #navbar-top,
+  #block-york-drupal-theme-content {
+    max-width: 1110px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
