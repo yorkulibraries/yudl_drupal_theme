@@ -1,0 +1,25 @@
+uuid: 6bc5943d-98f2-4c8d-8bb9-44b4c30d3be1
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:af3559dc-a8d1-4abf-a8c0-50bd4a79aac5'
+  module:
+    - block_content
+  theme:
+    - york_drupal_theme
+id: footeryorklinks
+theme: york_drupal_theme
+region: footer_fifth
+weight: 0
+provider: null
+plugin: 'block_content:af3559dc-a8d1-4abf-a8c0-50bd4a79aac5'
+settings:
+  id: 'block_content:af3559dc-a8d1-4abf-a8c0-50bd4a79aac5'
+  label: 'Footer york links'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
