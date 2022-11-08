@@ -1,13 +1,13 @@
 uuid: a3dea36d-610d-45a2-9039-fa176fae8068
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - node
   theme:
     - york_drupal_theme
 _core:
-  default_config_hash: 0gq3VPg-_UM69FCCWurLFIrrnIjC2HLKhwo9iQNtcUo
+  default_config_hash: TfWgglrJe3GLrtvScF_sBkvThw2CVI1i4p5YpPVdaUM
 id: york_drupal_theme_syndicate
 theme: york_drupal_theme
 region: footer_fifth

@@ -102,6 +102,16 @@ a:active,
 
 .site-footer {
   background: #E31837;
+  text-align: center;
+}
+
+.site-footer .content a {
+  color: #FFF;
+  font-family: yorkFont;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+  padding: 16px;
 }
 
 .region-header,
