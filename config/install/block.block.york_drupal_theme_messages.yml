@@ -7,11 +7,11 @@ dependencies:
   theme:
     - york_drupal_theme
 _core:
-  default_config_hash: BZ5tpW7H8X4PVGRm3MImTIHd2tN0eF7zOtp4SpRYUA0
+  default_config_hash: pjUpEvQ0-An8iAdyiw9mPA00HsK-GeVbZ7ykExeUJUo
 id: york_drupal_theme_messages
 theme: york_drupal_theme
 region: highlighted
-weight: -6
+weight: -7
 provider: null
 plugin: system_messages_block
 settings:
