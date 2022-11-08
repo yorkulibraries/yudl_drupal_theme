@@ -18,38 +18,21 @@
 }
 
 @media (min-width: 576px) {
-  .featured-top {
-    max-width: max-content;
-    margin: 0;
+  .container {
+    /* min-width: max-content; */
     padding: 0;
   }
-
-  .site-footer .container {
-    margin: 0px;
-  }
 }
 
 
-@media (min-width: 768px) {
-  .featured-top__inner {
-    min-width: max-content;
-
-    margin-left: 30px;
-    margin-right: 30px;
-  }
-
-  #block-york-drupal-theme-content {
-    margin-left: -40px;
-    margin-right: -40px;
-    max-width: max-content;
-  }
-}
+@media (min-width: 768px) {}
 
 @media (min-width: 992px) {
 
+  .content,
   #CollapsingNavbar,
   #navbar-top,
-  .featured-top,
+  .featured-bottom,
   .site-footer .container {
     max-width: 1110px;
     margin-left: auto;

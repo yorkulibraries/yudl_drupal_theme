@@ -5,11 +5,11 @@ dependencies:
   theme:
     - york_drupal_theme
 _core:
-  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+  default_config_hash: 5CBb_HVcvh9EHbZtuSO3MGTieiOZBeZz84cVCWdsNpw
 id: york_drupal_theme_secondary_local_tasks
 theme: york_drupal_theme
-region: highlighted
-weight: -4
+region: featured_bottom_first
+weight: -6
 provider: null
 plugin: local_tasks_block
 settings:
