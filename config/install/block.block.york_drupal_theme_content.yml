@@ -7,11 +7,11 @@ dependencies:
   theme:
     - york_drupal_theme
 _core:
-  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+  default_config_hash: aXt6Box6u9AC-osPdESTL3g8Y8dfDr0c_uEF7OB-x_8
 id: york_drupal_theme_content
 theme: york_drupal_theme
-region: content
-weight: 0
+region: featured_top
+weight: -7
 provider: null
 plugin: system_main_block
 settings:
