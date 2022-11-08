@@ -17,13 +17,19 @@
   border-bottom-color: #fff;
 }
 
-@media (max-width: 991px) {
+@media (min-width: 576px) {
+  #main-wrapper {
+    max-width: max-content;
+  }
+}
 
-  #CollapsingNavbar,
-  #navbar-top,
-  #block-york-drupal-theme-content {
-    padding-right: 10px;
-    padding-left: 10px;
+
+@media (min-width: 768px) {
+
+  #main {
+    max-width: max-content;
+    margin-left: 2px;
+    margin-right: 2px;
   }
 }
 
@@ -31,7 +37,7 @@
 
   #CollapsingNavbar,
   #navbar-top,
-  #block-york-drupal-theme-content {
+  #main-wrapper {
     max-width: 1110px;
     margin-left: auto;
     margin-right: auto;
