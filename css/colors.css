@@ -19,17 +19,21 @@
 
 @media (min-width: 576px) {
   .container {
-    /* min-width: max-content; */
     padding: 0;
+    margin-left: 6px;
+    margin-right: 6px;
   }
 }
 
 
-@media (min-width: 768px) {}
-
 @media (min-width: 992px) {
 
-  .content,
+  .container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #main-wrapper,
   #CollapsingNavbar,
   #navbar-top,
   .featured-bottom,
@@ -66,9 +70,16 @@ a:active,
   border-color: #FFF;
 }
 
+#block-york-drupal-theme-main-menu .nav-link,
+#block-york-drupal-theme-main-menu .nav-link:hover,
+#block-york-drupal-theme-account-menu .nav-link,
+#block-york-drupal-theme-account-menu .nav-link:hover {
+  color: #FFF;
+}
+
 .nav-link,
 .nav-link:hover {
-  color: #FFF;
+  color: #495057;
 }
 
 .page-link,
