@@ -21,6 +21,10 @@
   #main-wrapper {
     max-width: max-content;
   }
+
+  .site-footer .container {
+    margin: 0px;
+  }
 }
 
 
@@ -28,8 +32,8 @@
 
   #main {
     max-width: max-content;
-    margin-left: 2px;
-    margin-right: 2px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
 }
 
@@ -37,7 +41,8 @@
 
   #CollapsingNavbar,
   #navbar-top,
-  #main-wrapper {
+  #main-wrapper,
+  .site-footer .container {
     max-width: 1110px;
     margin-left: auto;
     margin-right: auto;
