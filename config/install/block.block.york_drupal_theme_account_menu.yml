@@ -9,7 +9,7 @@ dependencies:
     - york_drupal_theme
 id: york_drupal_theme_account_menu
 theme: york_drupal_theme
-region: top_header
+region: primary_menu
 weight: 0
 provider: null
 plugin: 'system_menu_block:account'
