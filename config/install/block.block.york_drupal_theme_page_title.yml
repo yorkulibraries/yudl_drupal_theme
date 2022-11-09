@@ -1,15 +1,14 @@
-uuid: 98af7c20-255a-417e-aedc-af07eca9b104
 langcode: en
-status: false
+status: true
 dependencies:
+  module:
+    - system
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: 6aOgWsNTXjqrDm98TXSAjP6qd2nCijD1xw45MrnbK-Y
 id: york_drupal_theme_page_title
 theme: york_drupal_theme
-region: primary_menu
-weight: -4
+region: content
+weight: -7
 provider: null
 plugin: page_title_block
 settings:
@@ -17,4 +16,9 @@ settings:
   label: 'Page title'
   label_display: '0'
   provider: core
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: "/node/*\r\n/user/*\r\n<front>"
