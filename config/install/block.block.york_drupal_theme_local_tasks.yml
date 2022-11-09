@@ -1,22 +1,19 @@
-uuid: 6548bb35-55c1-41ba-8c0e-454df4e695cc
 langcode: en
 status: true
 dependencies:
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: EWhQ1oyj_5I8Uyv6h79XxsTWhNi0IMCgDpSqORoVjRI
-id: york_drupal_theme_primary_local_tasks
+id: york_drupal_theme_local_tasks
 theme: york_drupal_theme
-region: featured_bottom_first
-weight: -7
+region: content
+weight: -6
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Primary tabs'
+  label: Tabs
   label_display: '0'
   provider: core
   primary: true
-  secondary: false
+  secondary: true
 visibility: {  }

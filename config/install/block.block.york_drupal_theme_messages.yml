@@ -1,4 +1,3 @@
-uuid: 343739ad-9dd3-41fa-86c8-e58dc94ed4f7
 langcode: en
 status: true
 dependencies:
@@ -6,12 +5,10 @@ dependencies:
     - system
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: pjUpEvQ0-An8iAdyiw9mPA00HsK-GeVbZ7ykExeUJUo
 id: york_drupal_theme_messages
 theme: york_drupal_theme
 region: highlighted
-weight: -7
+weight: 0
 provider: null
 plugin: system_messages_block
 settings:

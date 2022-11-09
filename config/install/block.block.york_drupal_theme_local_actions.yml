@@ -1,15 +1,12 @@
-uuid: f59665bb-69be-4928-92d4-781b7bb2a3b7
 langcode: en
 status: true
 dependencies:
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: fcDZpuABLV5OJUjBjt4bOACBpVw0aDwERz1Qj3nOcRg
-id: york_drupal_theme_primary_admin_actions
+id: york_drupal_theme_local_actions
 theme: york_drupal_theme
-region: highlighted
-weight: -8
+region: content
+weight: -4
 provider: null
 plugin: local_actions_block
 settings:

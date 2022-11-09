@@ -1,4 +1,3 @@
-uuid: d238d58a-d514-4208-afdd-e586764ae1f4
 langcode: en
 status: true
 dependencies:
@@ -6,11 +5,9 @@ dependencies:
     - help
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
 id: york_drupal_theme_help
 theme: york_drupal_theme
-region: primary_menu
+region: content
 weight: -5
 provider: null
 plugin: help_block
