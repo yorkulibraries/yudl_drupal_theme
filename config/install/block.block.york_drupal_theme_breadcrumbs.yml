@@ -1,17 +1,14 @@
-uuid: a9edeb57-734e-46c3-a3c5-49fa196bc0ad
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - system
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
 id: york_drupal_theme_breadcrumbs
 theme: york_drupal_theme
-region: breadcrumb
-weight: 0
+region: header
+weight: -1
 provider: null
 plugin: system_breadcrumb_block
 settings:
@@ -19,4 +16,9 @@ settings:
   label: Breadcrumbs
   label_display: '0'
   provider: system
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    negate: true
+    context_mapping: {  }
+    pages: '<front>'
