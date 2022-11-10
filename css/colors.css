@@ -48,10 +48,8 @@
   #navbar-main {
     padding-left: 26px;
     padding-right: 26px;
-
   }
 }
-
 
 @media (min-width: 992px) {
 
@@ -60,9 +58,10 @@
     padding-right: 12px;
   }
 
+  #navbar-main,
   #main-wrapper,
-  #CollapsingNavbar,
   #navbar-top,
+  .region-featured-top,
   .featured-bottom,
   .site-footer .container {
     max-width: 1110px;
@@ -70,14 +69,21 @@
     margin-right: auto;
   }
 
-  .navbar-brand {
-    margin-left: 36px;
+  .navbar-brand img {
+    padding-left: 26px;
   }
 
-}
+  .region-featured-top {}
 
-#navbar-main {
-  background-color: #E31837;
+  #CollapsingNavbar {
+    margin-right: -66px;
+  }
+
+  #main {
+    padding-left: -20px;
+    padding-right: -20px;
+  }
+
 }
 
 a,
