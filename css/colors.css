@@ -59,6 +59,7 @@
   }
 
   #navbar-main,
+  .highlighted,
   #main-wrapper,
   #navbar-top,
   .region-featured-top,
@@ -82,6 +83,17 @@
   #main {
     padding-left: -20px;
     padding-right: -20px;
+  }
+
+  .site-footer__top {
+    display: flex;
+  }
+
+  .region-footer-first,
+  .region-footer-second,
+  .region-footer-third,
+  .region-footer-fourth {
+    flex: 1;
   }
 
 }
