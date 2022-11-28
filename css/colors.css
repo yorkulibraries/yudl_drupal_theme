@@ -18,6 +18,10 @@
 }
 
 
+#main {
+  padding-top: 10px;
+}
+
 @media (max-width: 575px) {
 
   #navbar-top,
@@ -48,6 +52,10 @@
   #navbar-main {
     padding-left: 26px;
     padding-right: 26px;
+  }
+
+  .views-col {
+    padding: 2px;
   }
 }
 
