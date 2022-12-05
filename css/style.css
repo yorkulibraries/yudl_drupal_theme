@@ -35,3 +35,9 @@ body {
 #default_york_red {
   background-color: #E31837;
 }
+
+#extra_footer li {
+  display: inline;
+  padding-left: 5px;
+  padding-right: 5px;
+}
