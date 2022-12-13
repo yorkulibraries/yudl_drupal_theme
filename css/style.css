@@ -12,6 +12,7 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   font-weight: 400;
+  color: #212529;
 }
 
 
@@ -35,6 +36,33 @@ body {
 #default_york_red {
   background-color: #E31837;
 }
+
+table tr th a {
+  color: #E31837;
+  font-weight: bolder;
+}
+
+table tr th a:hover {
+  color: #8C0000;
+}
+
+thead {
+  background-color: white;
+  font-weight: bold;
+  color: #212529;
+}
+
+tr {
+  color: #212529;
+  background-color: white;
+}
+
+table,
+th,
+td {
+  border: 2px solid;
+}
+
 
 #extra_footer li {
   display: inline;
