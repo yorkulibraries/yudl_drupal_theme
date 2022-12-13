@@ -202,3 +202,8 @@ a:active,
   right: -20px;
   left: 0;
 }
+
+.views-summary {
+  display: inline-block;
+  width: auto;
+}
