@@ -69,3 +69,22 @@ td {
   padding-left: 5px;
   padding-right: 5px;
 }
+
+.box {
+  border: 1px solid #ccc;
+  padding: 10px;
+  float: left;
+  margin: 6px;
+}
+
+.box img {
+  object-fit: cover;
+  width: 146px;
+  height: 146px;
+}
+
+.explore-col {
+  padding-top: 10px;
+  clear: both;
+  text-align: center;
+}
