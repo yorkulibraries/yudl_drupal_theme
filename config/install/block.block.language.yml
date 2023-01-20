@@ -2,38 +2,29 @@ langcode: en
 status: true
 dependencies:
   config:
-    - views.view.members
+    - facets.facet.language
   module:
-    - block_class
     - context
+    - facets
     - islandora
-    - views
   theme:
-    - yudl_barrio_subtheme
-third_party_settings:
-  block_class:
-    classes: null
-id: views_block__members_block_1
+    - york_drupal_theme
+id: language
 theme: york_drupal_theme
-region: content
-weight: 6
+region: sidebar_first
+weight: 0
 provider: null
-plugin: 'views_block:members-block_1'
+plugin: 'facet_block:language'
 settings:
-  id: 'views_block:members-block_1'
-  label: ''
+  id: 'facet_block:language'
+  label: Language
   label_display: visible
-  provider: views
+  provider: facets
   context_mapping: {  }
-  views_label: ''
-  items_per_page: none
+  block_id: language
 visibility:
   context_all:
     id: context_all
-    negate: null
-    values: ''
-  context:
-    id: context
     negate: null
     values: ''
   user_status:
@@ -47,6 +38,10 @@ visibility:
       own_page_true: '0'
       field_value: '0'
     user_fields: uid
+  context:
+    id: context
+    negate: null
+    values: ''
   media_source_mimetype:
     id: media_source_mimetype
     negate: false
