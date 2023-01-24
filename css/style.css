@@ -63,14 +63,6 @@ td {
   border: 2px solid;
 }
 
-#extra_footer {
-  background-image: url('/themes/custom/york_drupal_theme/images/arrow.png');
-  background-position: 100% 1%;
-  background-repeat: no-repeat;
-  color: white;
-  text-align: left;
-}
-
 #extra_footer li {
   text-align: left;
   list-style-type: none;
