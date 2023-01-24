@@ -152,54 +152,12 @@
 						<main{{content_attributes}}>
 							<section class="section">
 								<a id="main-content" tabindex="-1"></a>
-								<div class="images-home">
-									<div class="box">
-										<a href="/node/101"><img src="/{{ directory }}/images/featured-collection-ntree.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/10"><img src="/{{ directory }}/images/featured-collection-ocf.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/11"><img src="/{{ directory }}/images/featured-collection-rare-classic-chinese-literature.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/48"><img src="/{{ directory }}/images/featured-collection-toronto-telegram.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/14"><img src="/{{ directory }}/images/featured-collection-yolton.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/28"><img src="/{{ directory }}/images/featured-collection-york-photographs.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/88"><img src="/{{ directory }}/images/featured-collection-historical-maps.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/106"><img src="/{{ directory }}/images/featured-collection-golha.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/86"><img src="/{{ directory }}/images/featured-collection-home-made-visible.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/61"><img src="/{{ directory }}/images/featured-collection-jean.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/119"><img src="/{{ directory }}/images/featured-collection-kenneth-shah.jpg"></a>
-									</div>
-									<div class="box">
-										<a href="/node/59"><img src="/{{ directory }}/images/featured-collection-mariposa-folk-foundation.jpg"></a>
-									</div>
-								</div>
-								<div class="explore-col">
-									<p>
-										<a href="/explore/collections">Explore more collections</a>
-									</p>
-								</div>
+								{{ page.content }}
 							</section>
 						</main>
 						{% if page.sidebar_first %}
 							<div{{sidebar_first_attributes}}>
-								<aside class=" section" role=" complementary">
+								<aside class="section" role="complementary">
 									{{ page.sidebar_first }}
 								</aside>
 							</div>
@@ -224,6 +182,27 @@
 				</aside>
 			</div>
 		{% endif %}
+
+		<div class="bg-black">
+			<div class="row text-center">
+				<div class=" col-md-6 text-white">Connect with York University Libraries
+				</div>
+				<div class="col-md-6">
+					<span style="font-size: 26px; color: white;">
+						<i class="fa-brands fa-facebook"></i>
+						&nbsp;&nbsp;
+						<i class="fa-brands fa-twitter"></i>
+						&nbsp;&nbsp;
+						<i class="fa-brands fa-twitter"></i>
+						&nbsp;&nbsp;
+						<i class="fa-brands fa-youtube"></i>
+						&nbsp;&nbsp;
+						<i class="fa-solid fa-rss"></i>
+					</span>
+				</div>
+			</div>
+
+		</div>
 		<footer class="site-footer">
 			{% block footer %}
 				<div class="{{ container }}">
