@@ -25,7 +25,7 @@
 .site-footer {
   background: #E31837;
   padding: 10px 0 0 0;
-  margin: 20px;
+  margin: 0;
 }
 
 .site-footer .content a {
@@ -123,7 +123,7 @@
   }
 
   #extra_footer {
-    background-position-y: 0%;
+    background-position-y: 0;
   }
 
 }
