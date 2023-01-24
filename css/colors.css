@@ -36,7 +36,18 @@
   font-weight: 400;
 }
 
+#extra_footer {
+  background-image: url('/themes/custom/york_drupal_theme/images/arrow.png');
+  background-position-x: 100%;
+  background-position-y: 220px;
+  background-repeat: no-repeat;
+  color: white;
+  text-align: left;
+  font-size: small;
+}
+
 @media (max-width: 575px) {
+
 
   #navbar-top,
   #CollapsingNavbar,
@@ -111,6 +122,9 @@
     height: 130px;
   }
 
+  #extra_footer {
+    background-position-y: 0%;
+  }
 
 }
 
