@@ -92,3 +92,7 @@ td {
   clear: both;
   text-align: center;
 }
+
+.sidebar h2 {
+    font-weight: bold;
+}
