@@ -126,6 +126,11 @@
     background-position-y: 0;
   }
 
+  #extra_footer_black {
+    max-width: 1550px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 a,
