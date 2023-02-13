@@ -1,5 +1,7 @@
 favicon:
-  use_default: true
+  mimetype: image/vnd.microsoft.icon
+  path: themes/custom/york_drupal_theme/images/favicon.ico
+  use_default: false
 features:
   comment_user_picture: true
   comment_user_verification: true
@@ -65,6 +67,7 @@ bootstrap_barrio_sidebar_second_offset: 0
 bootstrap_barrio_hide_node_label: 0
 bootstrap_barrio_button: 1
 bootstrap_barrio_button_size: ''
+bootstrap_barrio_button_type: primary
 bootstrap_barrio_button_outline: 0
 bootstrap_barrio_navbar_container: '0'
 bootstrap_barrio_navbar_toggle: navbar-toggleable-lg
@@ -81,6 +84,7 @@ bootstrap_barrio_navbar_flyout: false
 bootstrap_barrio_navbar_slide: false
 bootstrap_barrio_navbar_offcanvas: ''
 bootstrap_barrio_messages_widget: alerts
+bootstrap_barrio_float_label: '0'
 bootstrap_barrio_navbar_top_affix: 0
 bootstrap_barrio_navbar_affix: 0
 bootstrap_barrio_sidebar_first_affix: 0
