@@ -97,7 +97,7 @@ td {
     font-weight: bold;
 }
 
-/** BOOTSTRAP 5 Styles Override **/
+/** BOOTSTRAP 5 OVERRIDE & CUSTOM STYLES **/
 
 .featured-collections .card-img-top {
   width: 100%;
@@ -107,4 +107,50 @@ td {
 
 .featured-collections .card-title {
   font-weight: 500;
+}
+
+.highlighted #views-exposed-form-solr-search-content-page-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.search{
+  position: relative;
+  box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+}
+
+.search input[type="text"] {
+  text-indent: 25px;
+  /* border: 2px solid #d6d4d4; */
+  border: 2px solid #d6cfca;
+  height: 50px;
+}
+
+.search input:focus{
+  box-shadow: none;
+  /* border: 2px solid #E31837; */
+  border: 2px solid #b7aea9;
+}
+
+.search .fa-search, .search .fa-magnifying-glass {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+}
+
+.search button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  height: 40px;
+  width: 110px;
+}
+
+/* For mobile: */
+@media only screen and (max-width: 500px) {
+  .search input::placeholder {
+    color: transparent;
+  }
 }
