@@ -32,3 +32,27 @@ function york_drupal_theme_form_system_theme_settings_alter(&$form, FormStateInt
     'bg-transparent' => t('Transparent'),
   ];
 }
+
+/**
+  * Implements hook_form_FORM_ID_alter().
+  * function york_drupal_theme_form_views_exposed_form_alter(&$form, &$form_state) {
+  * Targeted Form: views-exposed-form-solr-search-content-page-1
+  */
+
+function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  if ($form['#id'] == 'views-exposed-form-solr-search-content-page-1') {
+
+    if (isset($form['search_api_fulltext']) && $form['search_api_fulltext']['#type'] == 'textfield') {
+      $form['search_api_fulltext'] = array(
+        '#type' => 'textfield',
+        // This is the placeholder, the text inside the textfield.
+        '#attributes' => array(
+          'placeholder' => t('Search York University Digital Library')
+          // 'class' => array('form-control form-control-lg rounded-0 ')
+        ),
+      );
+      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+    }
+  }
+}
