@@ -96,8 +96,7 @@
   #main-wrapper,
   #navbar-top,
   .region-featured-top,
-  .featured-bottom,
-  .site-footer .container {
+  .featured-bottom {
     max-width: 1110px;
     margin-left: auto;
     margin-right: auto;
