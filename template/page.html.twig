@@ -127,8 +127,9 @@
 						{% endif %}
 						{% if container_navbar %}{% endif %}
 					</nav>
-				{% endblock %}
-			</div>
+				</div>
+			{% endblock %}
+
 		</header>
 		{% if page.highlighted %}
 			<div class="highlighted">
@@ -182,83 +183,99 @@
 				</aside>
 			</div>
 		{% endif %}
-
-		<div class="bg-black">
-			<div class="row text-center">
-				<div class=" col-md-6 text-white">Connect with York University Libraries</div>
-				<div class="col-md-6">
-					<a href="https://www.facebook.com/YorkUniversityLibraries">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-facebook"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://twitter.com/yorkulibraries">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-twitter"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://www.instagram.com/yorkulibraries/">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-twitter"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://www.youtube.com/user/yorkulibraries/videos">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-youtube"></i>
-						</span>
-					</a>
-				</div>
-			</div>
-		</div>
 		<footer class="site-footer">
 			{% block footer %}
-				<div class="{{ container }}">
-					{% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-						<div class="site-footer__top clearfix">
-							{{ page.footer_first }}
-							{{ page.footer_second }}
-							{{ page.footer_third }}
-							{{ page.footer_fourth }}
+				{% if page.footer_first  %}
+					{{ page.footer_first }}
+					<div class="row text-center text-white">
+						<div class=" col-md-6">Connect with York University Libraries</div>
+						<div class="col-md-6">
+							<a class="text-decoration-none" href="https://www.facebook.com/YorkUniversityLibraries">
+								<span style="font-size: 26px; color: white;">
+									<i class="fa-brands fa-facebook"></i>
+								</span>
+							</a>
+							&nbsp;&nbsp;
+							<a class="text-decoration-none" href="https://twitter.com/yorkulibraries">
+								<span style="font-size: 26px; color: white;">
+									<i class="fa-brands fa-twitter"></i>
+								</span>
+							</a>
+							&nbsp;&nbsp;
+							<a class="text-decoration-none" href="https://www.instagram.com/yorkulibraries/">
+								<span style="font-size: 26px; color: white;">
+									<i class="fa-brands fa-instagram"></i>
+								</span>
+							</a>
+							&nbsp;&nbsp;
+							<a class="text-decoration-none" href="https://www.youtube.com/user/yorkulibraries/videos">
+								<span style="font-size: 26px; color: white;">
+									<i class="fa-brands fa-youtube"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+				{% if page.footer_second or page.footer_third or page.footer_fourth %}
+					<div class="text-center">
+						<div class="row">
+							<div class="col">{{ page.footer_second }}
+								<ul>
+									<li><a class="text-decoration-none text-white" href="#">Questions Feedback</a></li>
+									<li><a class="text-decoration-none text-white" href="#">Correct a record</a></li>
+								</ul>
+
+							</div>
+							<div class="col">{{ page.footer_third }}
+								<ul>
+									<li><a class="text-decoration-none text-white" href="#">Collection Policy</a></li>
+									<li><a class="text-decoration-none text-white" href="#">Digital Scholarship Infrastructure Department</a></li>
+									<li><a class="text-decoration-none text-white" href="#">YorkSpace</a></li>
+									<li><a class="text-decoration-none text-white" href="#">York Digital Journals</a></li>
+									<li><a class="text-decoration-none text-white" href="#">PressBooks/Scalar</a></li>
+								</ul>
+							</div>
+							<div class="col">{{ page.footer_fourth }}
+								<ul>
+									<li><a class="text-decoration-none text-white" href="#">YorkU Libraries</a></li>
+									<li><a class="text-decoration-none text-white" href="#">Terms of Use</a></li>
+									<li><a class="text-decoration-none text-white" href="#">Privacy</a></li>
+								</ul>
+							</div>
 						</div>
 					{% endif %}
 					{% if page.footer_fifth %}
 						<div class="site-footer__bottom">
 							{{ page.footer_fifth }}
-						</div>
-					{% endif %}
-					<div id="extra_footer">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3">
-									<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
-								</div>
-								<div class="col-md-3">
-									<p>
-										<strong>Keele Campus</strong><br/>
-										4700 Keele Street, Toronto<br/>
-										ON Canada<br/>
-										M3J 1P3<br/>
-										<a href="tel:4167362100">(416) 736-2100</a>
-									</p>
-								</div>
-								<div class="col-md-6">
-									<ul>
-										<li><a href="https://www.yorku.ca/safety/">Community Safety</a></li>
-										<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093">Campus Maps</a></li>
-										<li><a href="https://www.yorku.ca/about/privacy-legal/">Privacy &amp; Legal</a></li>
-										<li><a href="https://accessibility.students.yorku.ca/">Accessibility</a></li>
-										<li><a href="https://www.yorku.ca/about/careers/">Careers</a></li>
-									</ul>
+							<div class="container">
+								<div class="row">
+									<div class="col-md-3">
+										<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
+									</div>
+									<div class="col-md-3">
+										<p>
+											<strong>Keele Campus</strong><br/>
+											4700 Keele Street, Toronto<br/>
+											ON Canada<br/>
+											M3J 1P3<br/>
+											<a href="tel:4167362100">(416) 736-2100</a>
+										</p>
+									</div>
+									<div class="col-md-6">
+										<ul>
+											<li><a href="https://www.yorku.ca/safety/">Community Safety</a></li>
+											<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093">Campus Maps</a></li>
+											<li><a href="https://www.yorku.ca/about/privacy-legal/">Privacy &amp; Legal</a></li>
+											<li><a href="https://accessibility.students.yorku.ca/">Accessibility</a></li>
+											<li><a href="https://www.yorku.ca/about/careers/">Careers</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-
-				</div>
-			{% endblock %}
-		</footer>
+					{% endif %}
+				{% endblock %}
+			</footer>
+		</div>
 	</div>
 </div>
