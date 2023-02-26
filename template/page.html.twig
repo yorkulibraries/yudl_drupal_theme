@@ -185,9 +185,10 @@
 		{% endif %}
 		<footer class=''>
 			{% block footer %}
-				<div class='container-fluid mx-auto border-top'>
+			<div class="bg-dark">
+				<div class='container'>
 					<div class="row p-3 text-center text-white bg-dark p-3 align-items-center">
-						<div class="col-12 col-md-6">Connect with York University Libraries</div>
+						<div class="col-12 col-md-6 text-white">Connect with York University Libraries</div>
 						<div class="col-12 col-md-6">
 							<a class="text-decoration-none" href="https://www.facebook.com/YorkUniversityLibraries">
 								<span style="font-size: 26px; color: white;">
@@ -215,8 +216,11 @@
 						</div>
 					</div>
 				</div>
-				{% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-				<div class='container-fluid mx-auto'>
+			</div>
+			{% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
+			<div class="bg-dark">
+				<div class='container bg-primary'>
+					{# <div class='row'> #}
 					<div class='row row-cols-1 row-cols-sm-2 row-cols-md-4'>
 						<div class='col text-light align-items-center' style='background-color: #333'>
 							{{ page.footer_first }}
@@ -231,41 +235,42 @@
 						</div>
 					</div>
 				</div>
-				{% endif %}
-				<div class="">
-					<div class="container-fluid bg-primary">
-						{% if page.footer_fifth %}
-						<div class='row'>
-							<div class='col-12 col-md-12' style='background-color: red'>
-								{{ page.footer_fifth }}
-							</div>
+			</div>
+			{% endif %}
+			<div class="bg-primary">
+				<div class="container bg-primary">
+					{% if page.footer_fifth %}
+					<div class='row'>
+						<div class='col-12 col-md-12' style='background-color: red'>
+							{{ page.footer_fifth }}
 						</div>
-						{% endif %}
-						<div class="row">
-							<div class="col-md-3">
-								<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
-							</div>
-							<div class="col-md-3">
-								<p>
-									<strong>Keele Campus</strong><br/>
-									4700 Keele Street, Toronto<br/>
-									ON Canada<br/>
-									M3J 1P3<br/>
-									<a href="tel:4167362100">(416) 736-2100</a>
-								</p>
-							</div>
-							<div class="col-md-6">
-								<ul>
-									<li><a href="https://www.yorku.ca/safety/">Community Safety</a></li>
-									<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093">Campus Maps</a></li>
-									<li><a href="https://www.yorku.ca/about/privacy-legal/">Privacy &amp; Legal</a></li>
-									<li><a href="https://accessibility.students.yorku.ca/">Accessibility</a></li>
-									<li><a href="https://www.yorku.ca/about/careers/">Careers</a></li>
-								</ul>
-							</div>
+					</div>
+					{% endif %}
+					<div class="row">
+						<div class="col-md-3">
+							<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
+						</div>
+						<div class="col-md-3">
+							<p>
+								<strong>Keele Campus</strong><br/>
+								4700 Keele Street, Toronto<br/>
+								ON Canada<br/>
+								M3J 1P3<br/>
+								<a href="tel:4167362100">(416) 736-2100</a>
+							</p>
+						</div>
+						<div class="col-md-6">
+							<ul>
+								<li><a href="https://www.yorku.ca/safety/">Community Safety</a></li>
+								<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093">Campus Maps</a></li>
+								<li><a href="https://www.yorku.ca/about/privacy-legal/">Privacy &amp; Legal</a></li>
+								<li><a href="https://accessibility.students.yorku.ca/">Accessibility</a></li>
+								<li><a href="https://www.yorku.ca/about/careers/">Careers</a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
+			</div>
 			{% endblock %}
 		</footer>
 		</div>
