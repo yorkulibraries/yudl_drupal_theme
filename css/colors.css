@@ -36,96 +36,20 @@
   font-weight: 400;
 }
 
-#extra_footer {
+.extra_footer {
   background-image: url('/themes/custom/york_drupal_theme/images/arrow.png');
   background-position-x: 100%;
-  background-position-y: 220px;
   background-repeat: no-repeat;
-  color: white;
-  text-align: left;
   font-size: small;
 }
+.extra_footer ul{
+  list-style-type: none;
+  text-decoration: underline;
+}
 
-/* @media (max-width: 575px) {
-
-
-  #navbar-top,
-  #CollapsingNavbar,
-  .container {
-    padding: 0;
-    margin-left: 24px;
-    margin-right: 24px;
-  }
-
-  #navbar-main {
-    padding-left: 26px;
-    padding-right: 26px;
-
-  }
-} */
-
-/* @media (min-width: 576px) {
-
-  #navbar-top,
-  #CollapsingNavbar,
-  .container {
-    padding: 0;
-    margin-left: 24px;
-    margin-right: 24px;
-  }
-
-  #navbar-main {
-    padding-left: 26px;
-    padding-right: 26px;
-  }
-
-  .views-col {
-    padding: 2px;
-  }
-} */
-
-/* @media (min-width: 992px) {
-
-  .container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  #navbar-main,
-  .highlighted,
-  #main-wrapper,
-  #navbar-top,
-  .region-featured-top,
-  .featured-bottom {
-    max-width: 1110px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .navbar-brand img {
-    padding-left: 26px;
-  }
-
-  .region-featured-top {}
-
-  #CollapsingNavbar {
-    margin-right: -66px;
-  }
-
-  #main {
-    padding-left: -20px;
-    padding-right: -20px;
-  }
-
-  .site-footer {
-    height: 130px;
-  }
-
-  #extra_footer {
-    background-position-y: 0;
-  }
-
-} */
+.bg-primary {
+  background-color: #E31837 !important;
+}
 
 a,
 .link {
