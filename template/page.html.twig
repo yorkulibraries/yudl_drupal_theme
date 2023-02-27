@@ -145,32 +145,40 @@
 				</div>
 			{% endblock %}
 		{% endif %}
+	
 		<div id="main-wrapper" class="layout-main-wrapper clearfix">
 			{% block content %}
+				{% set sidebar_first_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+				{% set sidebar_second_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+				{%
+					set content_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-lg-6' : ((page.sidebar_first or page.sidebar_second) ? 'col-12 col-lg-9' : 'col-12' )
+				%}
 				<div id="main" class="{{ container }}">
-					{{ page.breadcrumb }}
-					<div class="row row-offcanvas row-offcanvas-left clearfix">
-						<main{{content_attributes}}>
+					<div class="">
+						{% if page.breadcrumb %}
+							{{ page.breadcrumb }}
+						{% endif %}
+						<div class="row">
+						{% if page.sidebar_first %}
+							<div {{sidebar_first_attributes.addClass("order-2 order-lg-1 {{ sidebar_first_classes }}")}}>
+							{{ page.sidebar_first }}
+							</div>
+						{% endif %}
+						
+						<main{{content_attributes.addClass("order-1 order-lg-2 {{ content_classes }}")}}>
 							<section class="section">
 								<a id="main-content" tabindex="-1"></a>
 								{{ page.content }}
 							</section>
 						</main>
-						{% if page.sidebar_first %}
-							<div{{sidebar_first_attributes}}>
-								<aside class="section" role="complementary">
-									{{ page.sidebar_first }}
-								</aside>
-							</div>
-						{% endif %}
 						{% if page.sidebar_second %}
-							<div{{sidebar_second_attributes}}>
-								<aside class="section" role="complementary">
-									{{ page.sidebar_second }}
-								</aside>
+							<div{{sidebar_second_attributes.addClass("order-3 {{ sidebar_second_classes }}")}}>
+							{{ page.sidebar_second }}
 							</div>
 						{% endif %}
+						</div>
 					</div>
+					
 				</div>
 			{% endblock %}
 		</div>
