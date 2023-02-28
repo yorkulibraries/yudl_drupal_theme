@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:12989f78-2b37-4309-bd84-045b166db49c'
+  module:
+    - block_content
+    - context
+    - islandora
+  theme:
+    - york_drupal_theme
+id: footerlist2
+theme: york_drupal_theme
+region: footer_third
+weight: -12
+body:
+  - format: "full_html"
+    summary: ""
+    value: '<ul><li><a class="text-white" href="#">Collection Policy</a></li><li><a class="text-white" href="#">Digital Scholarship Infrastructure Department</a></li><li><a class="text-white" href="#">YorkSpace</a></li><li><a class="text-white" href="#">York Digital Journals</a></li><li><a class="text-white" href="#">PressBooks/Scalar</a></li></ul>'
+provider: null
+plugin: 'block_content:12989f78-2b37-4309-bd84-045b166db49c'
+settings:
+  id: 'block_content:12989f78-2b37-4309-bd84-045b166db49c'
+  label: footer-list-2
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  user_status:
+    id: user_status
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    user_status:
+      viewing_profile: '0'
+      logged_viewing_profile: '0'
+      own_page_true: '0'
+      field_value: '0'
+    user_fields: uid
+  context_all:
+    id: context_all
+    negate: null
+    values: ''
+  context:
+    id: context
+    negate: null
+    values: ''
+  media_source_mimetype:
+    id: media_source_mimetype
+    negate: false
+    context_mapping: {  }
+    mimetype: ''
