@@ -1,0 +1,54 @@
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:aec0d034-aa9b-439b-a74c-501015c7d0be'
+  module:
+    - block_content
+    - context
+    - islandora
+  theme:
+    - york_drupal_theme
+id: rightsocial
+theme: york_drupal_theme
+region: footer_first
+weight: -12
+body:
+  - format: "full_html"
+    summary: ""
+    value: '<a class="text-decoration-none" href="https://www.facebook.com/YorkUniversityLibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-facebook"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://twitter.com/yorkulibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-twitter"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.instagram.com/yorkulibraries/"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-instagram"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.youtube.com/user/yorkulibraries/videos"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-youtube"></i></span></a>'
+provider: null
+plugin: 'block_content:aec0d034-aa9b-439b-a74c-501015c7d0be'
+settings:
+  id: 'block_content:aec0d034-aa9b-439b-a74c-501015c7d0be'
+  label: right-social
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  user_status:
+    id: user_status
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+    user_status:
+      viewing_profile: '0'
+      logged_viewing_profile: '0'
+      own_page_true: '0'
+      field_value: '0'
+    user_fields: uid
+  context_all:
+    id: context_all
+    negate: null
+    values: ''
+  context:
+    id: context
+    negate: null
+    values: ''
+  media_source_mimetype:
+    id: media_source_mimetype
+    negate: false
+    context_mapping: {  }
+    mimetype: ''
