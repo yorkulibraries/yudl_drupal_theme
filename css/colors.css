@@ -42,6 +42,13 @@
   background-repeat: no-repeat;
   font-size: small;
 }
+
+@media (max-width: 500px) {
+  .extra_footer {
+    background-image: none;
+  }
+} 
+
 .extra_footer ul{
   list-style-type: none;
   text-decoration: underline;
