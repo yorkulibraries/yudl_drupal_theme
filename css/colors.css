@@ -43,11 +43,11 @@
   font-size: small;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 767px) {
   .extra_footer {
     background-image: none;
   }
-} 
+}
 
 .extra_footer ul{
   list-style-type: none;
