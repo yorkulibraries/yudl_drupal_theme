@@ -293,7 +293,6 @@
 {% endif %}
 
 <footer class=''>
-	{% block footer %}
 	<div class="bg-dark">
 		<div class='container'>
 			<div class="row p-1 text-center text-white bg-dark align-items-center">
@@ -304,7 +303,6 @@
 			</div>
 		</div>
 	</div>
-	{% if page.footer_second or page.footer_third or page.footer_fourth %}
 	<div class="bg-primary p-4">
 		<div class='container extra_footer'>
 			<div class='row'>
@@ -323,7 +321,6 @@
 			</div>
 		</div>
 	</div>
-	{% endif %}
 	{% if page.footer_fifth %}
 	<div class='container extra_footer'>
 		<div class='col'>
@@ -331,5 +328,4 @@
 		</div>
 	</div>
 	{% endif %}
-	{% endblock %}
 </footer>
