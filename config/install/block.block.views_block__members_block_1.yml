@@ -17,11 +17,11 @@ provider: null
 plugin: 'views_block:members-block_1'
 settings:
   id: 'views_block:members-block_1'
-  label: ''
+  label: 'Collection items'
   label_display: visible
   provider: views
   context_mapping: {  }
-  views_label: ''
+  views_label: 'Collection items'
   items_per_page: '8'
 visibility:
   context_all:
