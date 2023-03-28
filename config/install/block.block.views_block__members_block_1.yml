@@ -11,7 +11,7 @@ dependencies:
     - york_drupal_theme
 id: views_block__members_block_1
 theme: york_drupal_theme
-region: content
+region: featured_bottom_first
 weight: -1
 provider: null
 plugin: 'views_block:members-block_1'
@@ -22,7 +22,7 @@ settings:
   provider: views
   context_mapping: {  }
   views_label: ''
-  items_per_page: '6'
+  items_per_page: '8'
 visibility:
   context_all:
     id: context_all
