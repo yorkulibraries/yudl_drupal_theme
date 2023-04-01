@@ -72,63 +72,61 @@
 		<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
 			{% block head %}
 				{% if page.secondary_menu or page.top_header or page.top_header_form %}
-
-					<nav{{navbar_top_attributes}}>
-						{% if container_navbar %}
-							<div class="container">
-							{% endif %}
+					<div class="container">
+						<nav{{navbar_top_attributes}}>
 							{{ page.secondary_menu }}
-							{{ page.top_header }}
-							{% if page.top_header_form %}
-								<div class="form-inline navbar-form ms-auto">
-									{{ page.top_header_form }}
-								</div>
-							{% endif %}
-							{% if container_navbar %}
+
+							<div class="me-auto">{{ page.top_header }}</div>
+							<div class="">
+								{% if page.top_header_form %}
+									<div class="form-inline navbar-form ms-auto">
+										{{ page.top_header_form }}
+									</div>
+								{% endif %}
 							</div>
-						{% endif %}
-					</nav>
-				{% endif %}
-				<div id="default_york_red">
+						</nav>
+					</div>
+				{% endif %}	
+				<div class="bg-primary">
 					<nav{{navbar_attributes}}>
-
-						{% if container_navbar %}
-							<div class="container">
-							{% endif %}
-							{{ page.header }}
-
+						<div class="container">
+							{{ page.header }}							
 							{% if page.primary_menu or page.header_form %}
-
-								<button class="navbar-toggler collapsed" type="button" data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+								<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
 									<span class="navbar-toggler-icon"></span>
 								</button>
-								<div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
-									{% if navbar_offcanvas %}
-										<div class="offcanvas-header">
-											<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-										</div>
-										<div class="offcanvas-body">
+								<div class="">
+									<div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
+										{% if navbar_offcanvas %}
+											<div class="offcanvas-header">
+												<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+											</div>
+											<div class="offcanvas-body">
 										{% endif %}
-										{{ page.primary_menu }}
+
+										<div class="navbar-nav me-auto mb-2 mb-lg-0">
+											{{ page.primary_menu }}
+										</div>
 										{% if page.header_form %}
-											<div class="form-inline navbar-form justify-content-end">
+											<div class="form-inline navbar-form">
 												{{ page.header_form }}
 											</div>
 										{% endif %}
 										{% if navbar_offcanvas %}
-										</div>
-									{% endif %}
+											</div>
+										{% endif %}
+									</div>
 								</div>
-
+							{% endif %}
+							
+							
+							{% if sidebar_collapse %}
+								<button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
 							{% endif %}
 						</div>
-						{% if sidebar_collapse %}
-							<button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
-						{% endif %}
-						{% if container_navbar %}{% endif %}
 					</nav>
-				{% endblock %}
-			</div>
+				</div>
+			{% endblock %}
 		</header>
 		{% if page.highlighted %}
 			<div class="highlighted">
@@ -144,32 +142,41 @@
 				</div>
 			{% endblock %}
 		{% endif %}
+	
 		<div id="main-wrapper" class="layout-main-wrapper clearfix">
 			{% block content %}
+				{% set sidebar_first_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+				{% set sidebar_second_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+				{%
+					set content_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-lg-6' : ((page.sidebar_first or page.sidebar_second) ? 'col-12 col-lg-9' : 'col-12' )
+				%}
 				<div id="main" class="{{ container }}">
-					{{ page.breadcrumb }}
-					<div class="row row-offcanvas row-offcanvas-left clearfix">
-						<main{{content_attributes}}>
+					<div class="">
+						{% if page.breadcrumb %}
+							{{ page.breadcrumb }}
+						{% endif %}
+						<div class="row">
+						{% if page.sidebar_first %}
+							<div {{sidebar_first_attributes.addClass("order-2 order-lg-1 {{ sidebar_first_classes }}")}}>
+							{{ page.sidebar_first }}
+							</div>
+						{% endif %}
+						
+						<main{{content_attributes.addClass("order-1 order-lg-2 {{ content_classes }}")}}>
 							<section class="section">
 								<a id="main-content" tabindex="-1"></a>
 								{{ page.content }}
 							</section>
+
 						</main>
-						{% if page.sidebar_first %}
-							<div{{sidebar_first_attributes}}>
-								<aside class="section" role="complementary">
-									{{ page.sidebar_first }}
-								</aside>
-							</div>
-						{% endif %}
 						{% if page.sidebar_second %}
-							<div{{sidebar_second_attributes}}>
-								<aside class="section" role="complementary">
-									{{ page.sidebar_second }}
-								</aside>
+							<div{{sidebar_second_attributes.addClass("order-3 {{ sidebar_second_classes }}")}}>
+							{{ page.sidebar_second }}
 							</div>
 						{% endif %}
+						</div>
 					</div>
+					
 				</div>
 			{% endblock %}
 		</div>
@@ -182,83 +189,43 @@
 				</aside>
 			</div>
 		{% endif %}
-
-		<div class="bg-black">
-			<div class="row text-center">
-				<div class=" col-md-6 text-white">Connect with York University Libraries</div>
-				<div class="col-md-6">
-					<a href="https://www.facebook.com/YorkUniversityLibraries">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-facebook"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://twitter.com/yorkulibraries">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-twitter"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://www.instagram.com/yorkulibraries/">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-twitter"></i>
-						</span>
-					</a>
-					&nbsp;&nbsp;
-					<a href="https://www.youtube.com/user/yorkulibraries/videos">
-						<span style="font-size: 26px; color: white;">
-							<i class="fa-brands fa-youtube"></i>
-						</span>
-					</a>
+		<footer class=''>
+			<div class="bg-dark">
+				<div class='container'>
+					<div class="row p-1 text-center text-white bg-dark p-3 align-items-center">
+						<div class="col-12 col-md-6 text-white">Connect with York University Libraries</div>
+						<div class="col-12 col-md-6">
+								<a class="text-decoration-none" href="https://www.facebook.com/YorkUniversityLibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-facebook"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://twitter.com/yorkulibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-twitter"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.instagram.com/yorkulibraries/"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-instagram"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.youtube.com/user/yorkulibraries/videos"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-youtube"></i></span></a>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<footer class="site-footer">
-			{% block footer %}
-				<div class="{{ container }}">
-					{% if page.footer_first or page.footer_second or page.footer_third or page.footer_fourth %}
-						<div class="site-footer__top clearfix">
-							{{ page.footer_first }}
-							{{ page.footer_second }}
-							{{ page.footer_third }}
-							{{ page.footer_fourth }}
-						</div>
-					{% endif %}
-					{% if page.footer_fifth %}
-						<div class="site-footer__bottom">
-							{{ page.footer_fifth }}
-						</div>
-					{% endif %}
-					<div id="extra_footer">
-						<div class="container">
-							<div class="row">
-								<div class="col-md-3">
-									<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
-								</div>
-								<div class="col-md-3">
-									<p>
-										<strong>Keele Campus</strong><br/>
-										4700 Keele Street, Toronto<br/>
-										ON Canada<br/>
-										M3J 1P3<br/>
-										<a href="tel:4167362100">(416) 736-2100</a>
-									</p>
-								</div>
-								<div class="col-md-6">
-									<ul>
-										<li><a href="https://www.yorku.ca/safety/">Community Safety</a></li>
-										<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093">Campus Maps</a></li>
-										<li><a href="https://www.yorku.ca/about/privacy-legal/">Privacy &amp; Legal</a></li>
-										<li><a href="https://accessibility.students.yorku.ca/">Accessibility</a></li>
-										<li><a href="https://www.yorku.ca/about/careers/">Careers</a></li>
-									</ul>
-								</div>
+				<div class="bg-primary p-4">
+					<div class='container extra_footer'>
+						<div class='row'>
+							<div class='col-sm-12 col-md-3 '>
+								<a href="https://www.yorku.ca"><img src="/themes/custom/york_drupal_theme/images/yorku-logo-ko.png" alt="York University" class="img-fluid"></a>
+							</div>
+							<div class='col-sm-12 col-md-2 '>
+								<ul><li><a class="text-white" href="#">Questions Feedback</a></li><li><a class="text-white" href="#">Correct a record</a></li></ul>
+							</div>
+							<div class='col-sm-12 col-md-3 '>
+								<ul><li><a class="text-white" href="#">Collection Policy</a></li><li><a class="text-white" href="#">Digital Scholarship Infrastructure Department</a></li><li><a class="text-white" href="#">YorkSpace</a></li><li><a class="text-white" href="#">York Digital Journals</a></li><li><a class="text-white" href="#">PressBooks/Scalar</a></li></ul>
+							</div>
+							<div class='col-sm-12 col-md-4 '>
+								<ul><li><a class="text-white" href="#">Questions Feedback</a></li><li><a class="text-white" href="#">Correct a record</a></li></ul>
 							</div>
 						</div>
 					</div>
-
 				</div>
-			{% endblock %}
+				{% if page.footer_fifth %}
+				<div class='container extra_footer'>
+					<div class='col'>
+						{{ page.footer_fifth }}
+					</div>
+				</div>
+				{% endif %}
 		</footer>
+		</div>
 	</div>
 </div>
