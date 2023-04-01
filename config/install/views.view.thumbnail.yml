@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.media.thumbnail
     - views.view.thumbnail_of_first_child
   module:
     - media
