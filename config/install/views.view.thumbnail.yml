@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.media.thumbnail
+    - core.entity_view_mode.media.source
     - views.view.thumbnail_of_first_child
   module:
     - media
@@ -105,7 +105,7 @@ display:
           entity_type: media
           entity_field: changed
           plugin_id: date
-          order: DESC
+          order: ASC
           expose:
             label: ''
             field_identifier: ''
@@ -169,7 +169,7 @@ display:
           admin_label: ''
           plugin_id: string
           operator: '='
-          value: 'http://pcdm.org/use#ThumbnailImage'
+          value: 'http://pcdm.org/use#ServiceFile'
           group: 1
           exposed: false
           expose:
@@ -201,11 +201,15 @@ display:
             group_items: {  }
       style:
         type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
       row:
         type: 'entity:media'
         options:
           relationship: none
-          view_mode: thumbnail
+          view_mode: source
       query:
         type: views_query
         options:
