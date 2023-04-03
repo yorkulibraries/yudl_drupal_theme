@@ -67,270 +67,297 @@
 * @see html.html.twig
 */
 #}
-<div id="page-wrapper">
-	<div id="page">
-		<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
-			{% block head %}
-				{% if page.secondary_menu or page.top_header or page.top_header_form %}
-					<div class="container" style="padding-right: 5px;">
-						<nav{{navbar_top_attributes}}>
-							{{ page.secondary_menu }}
+<header id="header" class="header" role="banner" aria-label="{{ 'Site header'|t}}">
+	{% block head %}
+		{% if page.secondary_menu or page.top_header or page.top_header_form %}
+			<div class="container">
+				<nav{{navbar_top_attributes}}>
+					{{ page.secondary_menu }}
 
-							<div class="me-auto">{{ page.top_header }}</div>
-							<div class="">
-								{% if page.top_header_form %}
-									<div class="form-inline navbar-form ms-auto">
-										{{ page.top_header_form }}
+					<div class="me-auto">{{ page.top_header }}</div>
+					<div class="">
+						{% if page.top_header_form %}
+							<div class="form-inline navbar-form ms-auto">
+								{{ page.top_header_form }}
+							</div>
+						{% endif %}
+					</div>
+				</nav>
+			</div>
+		{% endif %}
+		<div class="bg-primary">
+			<nav{{navbar_attributes}}>
+				<div class="container">
+					{{ page.header }}
+					{% if page.primary_menu or page.header_form %}
+						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="">
+							<div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
+								{% if navbar_offcanvas %}
+									<div class="offcanvas-header">
+										<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+									</div>
+									<div class="offcanvas-body">
+								{% endif %}
+
+								<div class="navbar-nav me-auto mb-2 mb-lg-0">
+									{{ page.primary_menu }}
+								</div>
+								{% if page.header_form %}
+									<div class="form-inline navbar-form">
+										{{ page.header_form }}
+									</div>
+								{% endif %}
+								{% if navbar_offcanvas %}
 									</div>
 								{% endif %}
 							</div>
-						</nav>
-					</div>
-				{% endif %}	
-				<div class="bg-primary">
-					<nav{{navbar_attributes}}>
-						<div class="container">
-							{{ page.header }}							
-							{% if page.primary_menu or page.header_form %}
-								<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="{{ navbar_collapse_btn_data }}" data-bs-target="#CollapsingNavbar" aria-controls="CollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
-									<span class="navbar-toggler-icon"></span>
-								</button>
-								<div class="">
-									<div class="{{ navbar_collapse_class }}" id="CollapsingNavbar">
-										{% if navbar_offcanvas %}
-											<div class="offcanvas-header">
-												<button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-											</div>
-											<div class="offcanvas-body">
-										{% endif %}
-
-										<div class="navbar-nav me-auto mb-2 mb-lg-0">
-											{{ page.primary_menu }}
-										</div>
-										{% if page.header_form %}
-											<div class="form-inline navbar-form">
-												{{ page.header_form }}
-											</div>
-										{% endif %}
-										{% if navbar_offcanvas %}
-											</div>
-										{% endif %}
-									</div>
-								</div>
-							{% endif %}
-							
-							
-							{% if sidebar_collapse %}
-								<button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
-							{% endif %}
 						</div>
-					</nav>
+					{% endif %}
+					{% if sidebar_collapse %}
+						<button class="navbar-toggler navbar-toggler-left collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#CollapsingLeft" aria-controls="CollapsingLeft" aria-expanded="false" aria-label="Toggle navigation"></button>
+					{% endif %}
 				</div>
-			{% endblock %}
-		</header>
-		{% if page.highlighted %}
-			<div class="highlighted">
-				<aside class="{{ container }} section clearfix" role="complementary">
-					{{ page.highlighted }}
-				</aside>
-			</div>
-		{% endif %}
-		{% if page.featured_top %}
-			{% block featured %}
-				<div class="featured-top">
-					{{ page.featured_top }}
-				</div>
-			{% endblock %}
-		{% endif %}
-	
-		<div id="main-wrapper" class="layout-main-wrapper clearfix">
-			{% block content %}
-				{% set sidebar_first_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
-				{% set sidebar_second_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
-				{%
-					set content_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-lg-6' : ((page.sidebar_first or page.sidebar_second) ? 'col-12 col-lg-9' : 'col-12' )
-				%}
-				<div id="main" class="{{ container }}">
-					<div class="">
-						{% if page.breadcrumb %}
-							{{ page.breadcrumb }}
-						{% endif %}
-						<div class="row">
-						{% if page.sidebar_first %}
-							<div {{sidebar_first_attributes.addClass("order-2 order-lg-1 {{ sidebar_first_classes }}")}}>
-							{{ page.sidebar_first }}
-							</div>
-						{% endif %}
-						
-						<main{{content_attributes.addClass("order-1 order-lg-2 {{ content_classes }}")}}>
-							<section class="section">
-								<a id="main-content" tabindex="-1"></a>
-								{# {{ page.content }} #}
-							</section>
-							<section class="section featured-collections my-4 bg-light p-3 rounded">
-								<h2 class="display-6 border-bottom border-danger mb-4">Featured Collections</h2>
-								<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/99"><img src="/{{ directory }}/images/featured-collection-ntree.jpg" class="card-img-top" alt="National Round Table for the Environment and the Economy Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">National Round Table for the Environment and the Economy</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/9"><img src="/{{ directory }}/images/featured-collection-ocf.jpg" class="card-img-top" alt="Ojibwe Cultural Foundation Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Ojibwe Cultural Foundation</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/10"><img src="/{{ directory }}/images/featured-collection-rare-classic-chinese-literature.jpg" class="card-img-top" alt="Rare classic Chinese literature Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Rare classic Chinese literature</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/46"><img src="/{{ directory }}/images/featured-collection-toronto-telegram.jpg" class="card-img-top" alt="Toronto Telegram Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Toronto Telegram</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/13"><img src="/{{ directory }}/images/featured-collection-yolton.jpg" class="card-img-top" alt="Yolton Library Rare Book Collection Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Yolton Library Rare Book Collection</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/26"><img src="/{{ directory }}/images/featured-collection-york-photographs.jpg" class="card-img-top" alt="York University Photograph collection Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">York University Photograph collection</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/86"><img src="/{{ directory }}/images/featured-collection-historical-maps.jpg" class="card-img-top" alt="Historical Map Collections Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Historical Map Collections</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/104"><img src="/{{ directory }}/images/featured-collection-golha.jpg" class="card-img-top" alt="The Golha Programmes Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">The Golha Programmes</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/84"><img src="/{{ directory }}/images/featured-collection-home-made-visible.jpg" class="card-img-top" alt="Home Made Visible collection Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Home Made Visible collection</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/59"><img src="/{{ directory }}/images/featured-collection-jean.jpg" class="card-img-top" alt="Jean Augustine fonds Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Jean Augustine fonds</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/117"><img src="/{{ directory }}/images/featured-collection-kenneth-shah.jpg" class="card-img-top" alt="Kenneth Shah fonds Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Kenneth Shah fonds</h5>
-											</div>
-										</div>
-									</div>
-									<div class="col">
-										<div class="card h-100">
-											<a href="/node/57"><img src="/{{ directory }}/images/featured-collection-mariposa-folk-foundation.jpg" class="card-img-top" alt="Mariposa Folk Foundation fonds Image"></a>
-											<div class="card-body">
-												<h5 class="card-title">Mariposa Folk Foundation fonds</h5>
-											</div>
-										</div>
-									</div>
-								</div>
-
-								<div class="d-grid gap-2 my-4">
-									<a class="btn btn-primary btn-lg" aria-current="page" href="/explore/collections">Explore more collections</a>
-								</div>
-							</section>
-						</main>
-						{% if page.sidebar_second %}
-							<div{{sidebar_second_attributes.addClass("order-3 {{ sidebar_second_classes }}")}}>
-							{{ page.sidebar_second }}
-							</div>
-						{% endif %}
-						</div>
-					</div>
-					
-				</div>
-				
-			{% endblock %}
+			</nav>
 		</div>
-		{% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
-			<div class="featured-bottom">
-				<aside class="{{ container }} clearfix" role="complementary">
-					{{ page.featured_bottom_first }}
-					{{ page.featured_bottom_second }}
-					{{ page.featured_bottom_third }}
-				</aside>
-			</div>
-		{% endif %}
-		<footer class=''>
-			<div class="bg-dark">
-				<div class='container'>
-					<div class="row p-1 text-center text-white bg-dark p-3 align-items-center">
-						<div class="col-12 col-md-6 text-white">Connect with York University Libraries</div>
-						<div class="col-12 col-md-6">
-								<a class="text-decoration-none" href="https://www.facebook.com/YorkUniversityLibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-facebook"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://twitter.com/yorkulibraries"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-twitter"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.instagram.com/yorkulibraries/"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-instagram"></i></span></a>&nbsp;&nbsp;<a class="text-decoration-none" href="https://www.youtube.com/user/yorkulibraries/videos"><span style="font-size: 26px; color: white;"><i class="fa-brands fa-youtube"></i></span></a>
-						</div>
-					</div>
-				</div>
-			</div>
-				<div class="bg-primary p-4">
-					<div class='container extra_footer'>
-						<div class='row'>
-							<div class='col-sm-12 col-md-3 '>
-								<a href="https://www.yorku.ca"><img src="/themes/custom/york_drupal_theme/images/yorku-logo-ko.png" alt="York University" class="img-fluid"></a>
-							</div>
-							<div class='col-sm-12 col-md-2 '>
-								<ul><li><a class="text-white" href="#">Questions Feedback</a></li><li><a class="text-white" href="#">Correct a record</a></li></ul>
-							</div>
-							<div class='col-sm-12 col-md-3 '>
-								<ul><li><a class="text-white" href="#">Collection Policy</a></li><li><a class="text-white" href="#">Digital Scholarship Infrastructure Department</a></li><li><a class="text-white" href="#">YorkSpace</a></li><li><a class="text-white" href="#">York Digital Journals</a></li><li><a class="text-white" href="#">PressBooks/Scalar</a></li></ul>
-							</div>
-							<div class='col-sm-12 col-md-4 '>
-								<ul><li><a class="text-white" href="#">Questions Feedback</a></li><li><a class="text-white" href="#">Correct a record</a></li></ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				{% if page.footer_fifth %}
-				<div class='container extra_footer'>
-					<div class='col'>
-						{{ page.footer_fifth }}
-					</div>
-				</div>
+	{% endblock %}
+</header>
+{% if page.highlighted %}
+	<div class="highlighted p-3">
+		<aside class="{{ container }} section clearfix" role="complementary">
+			{{ page.highlighted }}
+		</aside>
+	</div>
+{% endif %}
+{% if page.featured_top %}
+	{% block featured %}
+		<div class="featured-top">
+			{{ page.featured_top }}
+		</div>
+	{% endblock %}
+{% endif %}
+
+<div id="main-wrapper" class="layout-main-wrapper clearfix">
+	{% block content %}
+		{% set sidebar_first_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+		{% set sidebar_second_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-sm-6 col-lg-3' : 'col-12 col-lg-3' %}
+		{%
+			set content_classes = (page.sidebar_first and page.sidebar_second) ? 'col-12 col-lg-6' : ((page.sidebar_first or page.sidebar_second) ? 'col-12 col-lg-9' : 'col-12' )
+		%}
+		<div id="main" class="{{ container }}">
+			<div class="">
+				{% if page.breadcrumb %}
+					{{ page.breadcrumb }}
 				{% endif %}
-		</footer>
+				<div class="row">
+				{% if page.sidebar_first %}
+					<div {{sidebar_first_attributes.addClass("order-2 order-lg-1 {{ sidebar_first_classes }}")}}>
+					{{ page.sidebar_first }}
+					</div>
+				{% endif %}
+				<main{{content_attributes.addClass("order-1 order-lg-2 {{ content_classes }}")}}>
+					<section class="section">
+						<a id="main-content" tabindex="-1"></a>
+						{# {{ page.content }} #}
+					</section>
+					<section class="section featured-collections my-4 bg-light p-3 rounded">
+						<h2 class="display-6 border-bottom border-danger mb-4">Featured Collections</h2>
+						<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/99"><img src="/{{ directory }}/images/featured-collection-ntree.jpg" class="card-img-top" alt="National Round Table for the Environment and the Economy Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">National Round Table for the Environment and the Economy</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/9"><img src="/{{ directory }}/images/featured-collection-ocf.jpg" class="card-img-top" alt="Ojibwe Cultural Foundation Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Ojibwe Cultural Foundation</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/10"><img src="/{{ directory }}/images/featured-collection-rare-classic-chinese-literature.jpg" class="card-img-top" alt="Rare classic Chinese literature Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Rare classic Chinese literature</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/46"><img src="/{{ directory }}/images/featured-collection-toronto-telegram.jpg" class="card-img-top" alt="Toronto Telegram Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Toronto Telegram</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/13"><img src="/{{ directory }}/images/featured-collection-yolton.jpg" class="card-img-top" alt="Yolton Library Rare Book Collection Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Yolton Library Rare Book Collection</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/26"><img src="/{{ directory }}/images/featured-collection-york-photographs.jpg" class="card-img-top" alt="York University Photograph collection Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">York University Photograph collection</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/86"><img src="/{{ directory }}/images/featured-collection-historical-maps.jpg" class="card-img-top" alt="Historical Map Collections Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Historical Map Collections</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/104"><img src="/{{ directory }}/images/featured-collection-golha.jpg" class="card-img-top" alt="The Golha Programmes Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">The Golha Programmes</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/84"><img src="/{{ directory }}/images/featured-collection-home-made-visible.jpg" class="card-img-top" alt="Home Made Visible collection Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Home Made Visible collection</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/59"><img src="/{{ directory }}/images/featured-collection-jean.jpg" class="card-img-top" alt="Jean Augustine fonds Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Jean Augustine fonds</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/117"><img src="/{{ directory }}/images/featured-collection-kenneth-shah.jpg" class="card-img-top" alt="Kenneth Shah fonds Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Kenneth Shah fonds</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="card h-100">
+									<a href="/node/57"><img src="/{{ directory }}/images/featured-collection-mariposa-folk-foundation.jpg" class="card-img-top" alt="Mariposa Folk Foundation fonds Image"></a>
+									<div class="card-body">
+										<h5 class="card-title">Mariposa Folk Foundation fonds</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="d-grid gap-2 my-4">
+							<a class="btn btn-primary btn-lg" aria-current="page" href="/explore/collections">Explore more collections</a>
+						</div>
+					</section>
+				</main>
+				{% if page.sidebar_second %}
+					<div{{sidebar_second_attributes.addClass("order-3 {{ sidebar_second_classes }}")}}>
+					{{ page.sidebar_second }}
+					</div>
+				{% endif %}
+				</div>
+			</div>
+		</div>
+	{% endblock %}
+</div>
+
+{% if page.featured_bottom_first or page.featured_bottom_second or page.featured_bottom_third %}
+	<div class="featured-bottom">
+		<aside class="{{ container }} clearfix" role="complementary">
+			{{ page.featured_bottom_first }}
+			{{ page.featured_bottom_second }}
+			{{ page.featured_bottom_third }}
+		</aside>
+	</div>
+{% endif %}
+
+<footer class=''>
+	<div class="bg-dark">
+		<div class='container'>
+			<div class="row p-1 text-center text-white bg-dark align-items-center">
+				<div class="col-12 col-md-4 text-white">
+				  <h2>Get in Touch</h2>
+					<ul>
+					  <li><a href="/contact">Questions / Feedback</a></li>
+						<li><a href="/contact">Correct a record</a></li>
+					</ul>
+					<h2>Follow Along</h2>
+					<ul>
+						<li><i class="fa-solid fa-rss"></i> <a href="/feed">New items</a></li>
+						<li><a href="https://www.library.yorku.ca/web/blog/category/news/">Library News</a></li>
+					</ul>
+					</div>
+					<div class="col-12 col-md-4 text-white">
+						<h2>Additional Resources</h2>
+						<ul>
+							<li><a href="https://www.library.yorku.ca/web/about-us/library-policies/digital-preservation-policy/collection-policy/">Collection Policy</a></li>
+							<li><a href="https://www.library.yorku.ca/web/about-us/departments/digital-scholarship-infrastructure/">Digital Scholarship Infrastructure Departmenti</a></li>
+							<li><a href="https://yorkspace.library.yorku.ca">YorkSpace</a></li>
+							<li><a href="https://www.library.yorku.ca/web/collections/discover-our-collections/york-digital-journals-3/">York Digital Journals</a></li>
+						</ul>
+					</div>
+					<div class="col-12 col-md-4 text-white">
+						<h2>Links</h2>
+						<ul>
+							<li>Terms of Use</li>
+							<li>Cultural sensitivity</li>
+							<li>Privacy Policy</li>
+							<li><a href="https://www.library.yorku.ca/">YorkU Libraries</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+	<div class="bg-primary p-4">
+		<div class='container extra_footer'>
+			<div class="row">
+				<div class="col-md-3">
+					<a href="https://www.yorku.ca"><img src="https://www.library.yorku.ca/web/wp-content/themes/york2020/images/yorku-logo-ko.png" alt="York University" class="w-100 mb-4"></a>
+				</div>
+				<div class="col-md-3">
+					<p class="small text-white">
+						<strong>Keele Campus</strong><br/>
+						4700 Keele Street, Toronto<br/>
+						ON Canada<br/>
+						M3J 1P3<br/>
+						<a href="tel:4167362100" class="text-white">(416) 736-2100</a>
+					</p>
+				</div>
+				<div class="col-md-6">
+					<ul>
+						<li><a href="https://www.yorku.ca/safety/" class="text-white">Community Safety</a></li>
+						<li><a href="https://map.concept3d.com/?id=1200#!s/?ct/29101,29093" class="text-white">Campus Maps</a></li>
+						<li><a href="https://www.yorku.ca/about/privacy-legal/" class="text-white">Privacy &amp; Legal</a></li>
+						<li><a href="https://accessibility.students.yorku.ca/" class="text-white">Accessibility</a></li>
+						<li><a href="https://www.yorku.ca/about/careers/" class="text-white">Careers</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	{% if page.footer_fifth %}
+	<div class='container extra_footer'>
+		<div class='col'>
+			{{ page.footer_fifth }}
+		</div>
+	</div>
+	{% endif %}
+</footer>
