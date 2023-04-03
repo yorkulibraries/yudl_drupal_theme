@@ -1,0 +1,57 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.thumbnail
+  module:
+    - islandora
+    - views
+  enforced:
+    module:
+      - islandora_defaults
+label: 'Collection metadata'
+name: collection_metadata
+group: Display
+description: 'Collection metadata display'
+requireAllConditions: false
+disabled: false
+conditions:
+  node_has_term:
+    id: node_has_term
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uri: 'https://id.loc.gov/vocabulary/resourceTypes/col.html'
+    logic: and
+    tids:
+      -
+        target_id: 5
+reactions:
+  view_mode_alter:
+    id: view_mode_alter
+    saved: false
+    mode: node.collection
+  blocks:
+    id: blocks
+    uuid: e8063598-12ef-4de0-9b63-341072e10d02
+    blocks:
+      97de56fc-65cf-4711-8d08-90961e08617b:
+        uuid: 97de56fc-65cf-4711-8d08-90961e08617b
+        id: 'views_block:thumbnail-block_2'
+        label: ''
+        provider: views
+        label_display: '0'
+        region: sidebar_first
+        weight: '0'
+        custom_id: views_block_thumbnail_block_2
+        theme: york_drupal_theme
+        css_class: ''
+        unique: 0
+        context_id: collection_metadata
+        context_mapping: {  }
+        views_label: ''
+        items_per_page: none
+        third_party_settings: {  }
+    include_default_blocks: 1
+    saved: false
+weight: 0
