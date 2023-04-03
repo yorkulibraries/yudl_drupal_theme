@@ -144,7 +144,9 @@ td {
   }
 }
 
-
+.block-language {
+  padding-right: 5px;
+}
 .block-language nav {
   justify-content: right; /* right align language selection to right */
 }
