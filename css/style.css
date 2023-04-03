@@ -143,3 +143,40 @@ td {
     color: transparent;
   }
 }
+
+.block-language {
+  padding-right: 5px;
+}
+.block-language nav {
+  justify-content: right; /* right align language selection to right */
+}
+
+/** Node Details Tabs **/
+/* Add spacing from social share above and footer below */
+.horizontal-tabs {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Mobile collapse styles of grouping/tabs */
+.horizontal-tabs details summary {
+  padding: 10px;
+  font-weight:bolder;
+  color: #fff;
+  border-bottom: 2px solid #666;
+  background-color: #e31837;
+}
+
+.horizontal-tabs details summary::marker {
+  font-size: 1.1rem;
+}
+
+/* Zebra background for detail rows */
+details.horizontal-tabs-pane .row:nth-child(2n) {
+  background: #fafafa;
+}
+/* Search Results node details */
+#block-york-drupal-theme-content .node--type-islandora-object.node--view-mode-search-index {
+  padding: 1rem;
+}
+
