@@ -49,11 +49,6 @@
   }
 }
 
-.extra_footer ul{
-  list-style-type: none;
-  text-decoration: underline;
-}
-
 .bg-primary {
   background-color: #E31837 !important;
 }
