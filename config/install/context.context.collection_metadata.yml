@@ -1,0 +1,32 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - islandora
+    - views
+  enforced:
+    module:
+      - islandora_defaults
+label: 'Collection metadata'
+name: collection_metadata
+group: Display
+description: 'Collection metadata display'
+requireAllConditions: false
+disabled: false
+conditions:
+  node_has_term:
+    id: node_has_term
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uri: 'https://id.loc.gov/vocabulary/resourceTypes/col.html'
+    logic: and
+    tids:
+      -
+        target_id: 5
+reactions:
+  view_mode_alter:
+    id: view_mode_alter
+    saved: false
+    mode: node.collection
+weight: 0
