@@ -180,3 +180,28 @@ details.horizontal-tabs-pane .row:nth-child(2n) {
   padding: 1rem;
 }
 
+/* Collection View, Service file image styling */
+.node--view-mode-collection .node__field {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.node--view-mode-collection .field--type-image .field__item img {
+  object-fit: cover;
+  width: 400px;
+  height: 300px;
+  padding-top: 5px;
+}
+/* For mobile: */
+@media only screen and (max-width: 500px) {
+  .node--view-mode-collection .field--type-image .field__item img {
+    width: 100%;
+  }
+}
+/* For Tablet */
+@media only screen and (max-width: 1080px) {
+  .node--view-mode-collection .field--type-image .field__item img {
+    min-width: 680px;
+    height: 350px;
+  }
+}
