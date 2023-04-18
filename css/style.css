@@ -181,11 +181,6 @@ details.horizontal-tabs-pane .row:nth-child(2n) {
 }
 
 /* Collection View, Service file image styling */
-.node--view-mode-collection .node__field {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-}
 .node--view-mode-collection .field--type-image .field__item img {
   object-fit: cover;
   width: 400px;
@@ -195,12 +190,13 @@ details.horizontal-tabs-pane .row:nth-child(2n) {
 /* For mobile: */
 @media only screen and (max-width: 500px) {
   .node--view-mode-collection .field--type-image .field__item img {
-    width: 100%;
+    height: 220px;
   }
 }
 /* For Tablet */
-@media only screen and (max-width: 1080px) {
+@media only screen and (min-width: 500px) and (max-width: 1080px) {
   .node--view-mode-collection .field--type-image .field__item img {
+    /* min-width: 100%; */
     min-width: 680px;
     height: 350px;
   }
