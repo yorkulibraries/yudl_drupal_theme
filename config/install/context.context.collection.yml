@@ -6,6 +6,7 @@ dependencies:
   module:
     - islandora
     - views
+    - yudl_blocks
   enforced:
     module:
       - islandora_defaults
@@ -43,6 +44,21 @@ reactions:
         context_mapping: {  }
         views_label: ''
         items_per_page: none
+        third_party_settings: {  }
+      e9a37e1f-d894-4e73-8085-ff8d81bf936b:
+        uuid: e9a37e1f-d894-4e73-8085-ff8d81bf936b
+        id: yudl_collection_info_block
+        label: 'YUDL Collection information block'
+        provider: yudl_blocks
+        label_display: visible
+        region: content
+        weight: '0'
+        custom_id: yudl_collection_info_block
+        theme: york_drupal_theme
+        css_class: ''
+        unique: 0
+        context_id: collection
+        context_mapping: {  }
         third_party_settings: {  }
     include_default_blocks: 1
     saved: false
