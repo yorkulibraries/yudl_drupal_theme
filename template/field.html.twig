@@ -37,6 +37,40 @@
  * @see template_preprocess_field()
  */
 #}
+{% if (label == "Coordinates")%}
+  {%
+  set title_classes = [
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+  %}
+
+  {% if label_hidden %}
+    {% if multiple %}
+      <div{{ attributes }}>
+        {% for item in items %}
+          <div{{ item.attributes }}>{{ item.content }}</div>
+        {% endfor %}
+      </div>
+    {% else %}
+      {% for item in items %}
+        <div{{ attributes }}>{{ item.content }}</div>
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <div{{ attributes }}>
+      <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+      {% if multiple %}
+        <div>
+      {% endif %}
+      {% for item in items %}
+        <div{{ item.attributes }}>{{ item.content }}</div>
+      {% endfor %}
+      {% if multiple %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% else %}
 <div class='row p-2 border-bottom'>
   {% if label_hidden %}
     {% if multiple %}
@@ -65,3 +99,4 @@
       {% endif %}
   {% endif %}
 </div>
+{% endif %}
