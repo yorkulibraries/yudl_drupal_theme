@@ -1,5 +1,20 @@
 /* ---------- Color Module Styles ----------- */
 
+/* YorkU Colors 2022-2023 
+ ** PRIMARY  
+ * #e31837  Red 
+ * #000     black
+ * #fff     white
+ ** SECONDARY 
+ * #af0d1a  Med Red 
+ * #810001  Dark Red
+ * #e1dfdc  light grey
+ * #D6CFCA; Pewter
+ * #B7AEA9; Med Grey 
+ * #686260  Dark Grey 
+ * #3AC2ED Bright blue
+ * #ACe6F8 Light Blue
+*/ 
 
 #page,
 #main-wrapper,
@@ -142,3 +157,7 @@ a:active,
   display: inline-block;
   width: auto;
 }
+
+.text-primary { color: #E31837 !important;}
+.text-secondary { color: #686260 !important;}
+.text-info { color: #3AC2ED !important; }

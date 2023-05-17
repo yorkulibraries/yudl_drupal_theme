@@ -117,7 +117,7 @@ td {
   height: 50px;
 }
 
-.search input:focus{
+.search input:focus {
   box-shadow: none;
   /* border: 2px solid #E31837; */
   border: 2px solid #b7aea9;
@@ -210,4 +210,66 @@ details.horizontal-tabs-pane .row:nth-child(2n),
     /* min-width: 680px; */
     height: 400px;
   }
+}
+
+/* Collections Stats box */ 
+#block-yudl-collection-info-block {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+#block-yudl-collection-info-block > h2:first-child, 
+#block-yudl-collection-info-block #block-views-block-collection-search-block-1 > h2:first-child {
+  background: #e1dfdc; /* Light Warm Grey */
+  color: #686260;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px; 
+  border-radius: 5px;
+  border-color: #000;
+}
+
+.card-stats .card-body {
+  padding: 1rem 1.5rem;
+}
+
+.card-stats .icon {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.card-stats .icon i {
+  font-size: 2.25rem;
+}
+
+.card-stats .icon-shape {
+  display: inline-flex;
+  padding: 12px;
+  text-align: center;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: #e1dfdc;
+  color: #686260; 
+}
+
+.card-stats .icon-shape i {
+  font-size: 1.25rem;
+}
+
+/* Collectio Search Box */
+#views-exposed-form-collection-search-block-1 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.form-item-collection-search #edit-collection-search {
+  border-radius: 0;
+  padding: 10px;
+}
+#views-exposed-form-collection-search-block-1 #edit-submit-collection-search {
+  border-radius: 0;
+  padding: 10px;
+}
+#views-exposed-form-collection-search-block-1 input:focus {
+  border-color: #E31837;
+  box-shadow: 0 0 .25rem rgba(227,24,25,.25);
 }
