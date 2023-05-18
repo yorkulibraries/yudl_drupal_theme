@@ -273,3 +273,6 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   border-color: #E31837;
   box-shadow: 0 0 .25rem rgba(227,24,25,.25);
 }
+.copy_right{
+  height: 46px;
+}
