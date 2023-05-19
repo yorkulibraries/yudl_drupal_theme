@@ -65,7 +65,8 @@ function york_drupal_theme_preprocess_field(&$variables) {
       $entity = $items->entity;
       if(!empty($entity)){
         $image_url = $entity->get('field_image_url_')->uri;
-        $image = '<p><img class="p-1 bg-black copy_right" src="' . $image_url . '"></p>';
+        $alt_text = isset($variables['element'][$key]["#title"]) ? $variables['element'][$key]["#title"] : "";
+        $image = '<p><img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="'. $alt_text.'"></p>';
         $variables['items'][$key]['content'] = ['#markup' => $image];
       }
     }
@@ -79,10 +80,11 @@ function york_drupal_theme_preprocess_field(&$variables) {
 function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
 
   $term = $variables['term'];
+  $taxonomy_term = $variables["elements"]["#taxonomy_term"];
   if ($term->hasField('field_image_url_')){
-    $term->get('field_image_url_')->uri;
+    $alt_text = $taxonomy_term->hasField('name') ? $taxonomy_term->get('name')->value : "";
     $image_url = $term->get('field_image_url_')->uri;
-    $image = '<img class="p-1 bg-black copy_right" src="' . $image_url . '">';
+    $image = '<img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="'. $alt_text.'">';
     $variables['content'][0] = ['#markup' => $image];
   }
 }
