@@ -276,3 +276,18 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 .copy_right{
   height: 46px;
 }
+
+/* Collection Info Block Pagination */
+.block-yudl-collection-info-block nav .pagination { 
+  justify-content: center; /* Center the Pager */
+}
+.block-yudl-collection-info-block nav .pagination li {
+  margin-bottom: 10px;
+}
+/* Mobile */
+@media only screen and (max-width: 500px) {
+  .block-yudl-collection-info-block nav .pagination {
+    flex-wrap: wrap; /* To avoid pagination running off the screen */
+  }
+}
+
