@@ -259,20 +259,61 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 /* Collectio Search Box */
 #views-exposed-form-collection-search-block-1 {
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
 }
-.form-item-collection-search #edit-collection-search {
-  border-radius: 0;
-  padding: 10px;
+#edit-collection-search {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 12px;
+  border-width: 2px 0px 2px 2px;
+  border-color: #d6cfca;
 }
-#views-exposed-form-collection-search-block-1 #edit-submit-collection-search {
-  border-radius: 0;
-  padding: 10px;
+#edit-submit-collection-search {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 12px;
+  min-width: 110px;
+  border-width: 2px 2px 2px 0px;
+  border-color: #E31837;
 }
+
 #views-exposed-form-collection-search-block-1 input:focus {
   border-color: #E31837;
   box-shadow: 0 0 .25rem rgba(227,24,25,.25);
 }
+.form-item-collection-search input:focus {
+  box-shadow: none;
+  border: 2px solid #b7aea9;
+}
+/* Mobile */
+@media only screen and (max-width: 500px) {
+  #views-exposed-form-collection-search-block-1 .form-actions {
+    width:80%;
+  }
+  #edit-collection-search {
+    border-width: 2px;
+  }
+  #edit-submit-collection-search {
+    width: 100%;
+    border-width:2px;
+    border-radius: 10px;
+  }
+}
 .copy_right{
   height: 46px;
 }
+
+/* Collection Info Block Pagination */
+.block-yudl-collection-info-block nav .pagination { 
+  justify-content: center; /* Center the Pager */
+}
+.block-yudl-collection-info-block nav .pagination li {
+  margin-bottom: 10px;
+}
+/* Mobile */
+@media only screen and (max-width: 500px) {
+  .block-yudl-collection-info-block nav .pagination {
+    flex-wrap: wrap; /* To avoid pagination running off the screen */
+  }
+}
+
