@@ -45,10 +45,10 @@ reactions:
         views_label: ''
         items_per_page: none
         third_party_settings: {  }
-      e9a37e1f-d894-4e73-8085-ff8d81bf936b:
-        uuid: e9a37e1f-d894-4e73-8085-ff8d81bf936b
+      b0221fbc-ff0e-4720-9340-152cd71abde4:
+        uuid: b0221fbc-ff0e-4720-9340-152cd71abde4
         id: yudl_collection_info_block
-        label: 'YUDL Collection information block'
+        label: 'About this collection'
         provider: yudl_blocks
         label_display: visible
         region: content
