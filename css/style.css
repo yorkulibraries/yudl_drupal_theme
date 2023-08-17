@@ -318,7 +318,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 /* Description text below content display. */
-div[property="dcterms:description"] p {
+div[property="dcterms:description"]:only-of-type {
   padding-top: 20px;
   font-size: 1.25rem;
 }
