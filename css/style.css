@@ -303,6 +303,18 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   height: 46px;
 }
 
+/* Collection Search Results -- Box Removal */
+.node--view-mode-collection-search {
+  padding: 5px;
+}
+.node--view-mode-collection-search .horizontal-tabs {
+  border: none;
+}
+.node--view-mode-collection-search header {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+}
+
 /* Collection Info Block Pagination */
 .block-yudl-collection-info-block nav .pagination {
   justify-content: center; /* Center the Pager */
