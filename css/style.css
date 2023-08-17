@@ -212,18 +212,18 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   }
 }
 
-/* Collections Stats box */ 
+/* Collections Stats box */
 #block-yudl-collection-info-block {
   margin-top: 2%;
   margin-bottom: 2%;
 }
-#block-yudl-collection-info-block > h2:first-child, 
+#block-yudl-collection-info-block > h2:first-child,
 #block-yudl-collection-info-block #block-views-block-collection-search-block-1 > h2:first-child {
   background: #e1dfdc; /* Light Warm Grey */
   color: #686260;
   padding: 10px;
   margin-top: 10px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
   border-radius: 5px;
   border-color: #000;
 }
@@ -316,7 +316,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 /* Collection Info Block Pagination */
-.block-yudl-collection-info-block nav .pagination { 
+.block-yudl-collection-info-block nav .pagination {
   justify-content: center; /* Center the Pager */
 }
 .block-yudl-collection-info-block nav .pagination li {
@@ -329,3 +329,8 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   }
 }
 
+/* Description text below content display. */
+div[property="dcterms:description"]:only-of-type {
+  padding-top: 20px;
+  font-size: 1.25rem;
+}
