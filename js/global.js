@@ -13,4 +13,12 @@
     }
   };
 
+  // Description text below content display.
+  $(document).ready(function() {
+    var matchingElements = $("div[property='dcterms:description'] p");
+    if (matchingElements.length === 1) {
+      matchingElements.addClass("description-text");
+    }
+  });
+
 })(jQuery, Drupal);

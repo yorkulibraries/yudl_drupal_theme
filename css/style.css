@@ -334,3 +334,8 @@ div[property="dcterms:description"]:only-of-type {
   padding-top: 20px;
   font-size: 1.25rem;
 }
+
+.description-text {
+  padding-top: 20px;
+  font-size: 1.25rem
+}
