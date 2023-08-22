@@ -212,6 +212,25 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   }
 }
 
+.search-aligned .row.p-2.border-bottom {
+  float: right;
+  width: 70%;
+}
+
+.search-aligned .clearfix.field__item img {
+  float: left;
+}
+
+@media only screen and (max-width: 1420px) {
+  .search-aligned .row.p-2.border-bottom {
+    float: none;
+  }
+  
+  .search-aligned .clearfix.field__item img {
+    float: none;
+  }
+}
+
 /* Collections Stats box */
 #block-yudl-collection-info-block {
   margin-top: 2%;
