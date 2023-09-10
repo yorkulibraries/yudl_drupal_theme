@@ -367,3 +367,6 @@ div[property="dcterms:description"]:only-of-type {
   padding-top: 20px;
   font-size: 1.25rem
 }
+
+/* Hide the label in Taxonomy List. See twig template taxonomy-term.html.twig */
+.taxonomy-data .field__label { display: none; }

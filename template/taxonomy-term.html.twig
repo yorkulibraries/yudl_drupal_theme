@@ -33,5 +33,27 @@
     </h2>
     {% endif %}
   {{ title_suffix }}
-  {{ content }}
+  {# {{ content }} #}
+  <div class="container mt-4 mb-4">
+    <div class='taxonomy-data p-2'>
+      {% for fieldName, fieldData in content %}
+      {# <h5>{{fieldName}}</h5> #}
+      {# <p>{{ dump(fieldData)}}</p> #}
+        {% if fieldData['#title'] is not empty %}
+          {% if fieldName == 'description' %}
+            <div class='row border-bottom pt-2'>
+              <div class='col-md-3 fw-bold'>{{fieldData['#title']}}</div>
+              <div class='col-md-9'>{{ fieldData|without('#title') }}</div>
+            </div>
+          {% elseif fieldName starts with 'field_' %}
+              <div class='row border-bottom p-2'>
+                <div class='col-md-3 fw-bold'>{{fieldData['#title']}}</div>
+                <div class='col-md-9'>{{ fieldData|without('#title') }}</div>
+              </div>
+          {% endif %}
+        {% endif %} {# if data #}
+      {% endfor %}
+    </div>
+    
+  </div>
 </div>
