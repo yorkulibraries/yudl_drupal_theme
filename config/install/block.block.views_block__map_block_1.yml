@@ -19,7 +19,7 @@ plugin: 'views_block:map-block_1'
 settings:
   id: 'views_block:map-block_1'
   label: ''
-  label_display: '0'
+  label_display: visible
   provider: views
   views_label: ''
   items_per_page: none
@@ -51,4 +51,4 @@ visibility:
   request_path:
     id: request_path
     negate: false
-    pages: /explore/locations
+    pages: "/explore/locations\r\n/explore/locations/*"
