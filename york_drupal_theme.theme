@@ -88,33 +88,3 @@ function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
     $variables['content'][0] = ['#markup' => $image];
   }
 }
-
-/** 
-* Use common template for Explore A-Z listings 
-*/
-
-// function york_drupal_theme_theme_suggestions_views_view_summary_unformatted_alter(array &$suggestions, array $variables) {
-//   // Get the current view.
-//   $view = $variables['view'];
-
-//   // List the view names you want to target.
-//   $target_views = ['explore_subjects', 'explore_locations'];
-
-//   // Check if the current view is one of the target views.
-//   if (in_array($view->id(), $target_views)) {
-//     $suggestions[] = 'view-views-summary-unformatted--explore-common';
-//   }
-// }
-function york_drupal_theme_preprocess_views_view_summary_unformatted(array &$variables) {
-  // Get the view name.
-  $view_name = $variables['view']->id();
-
-  // Define an array of view names to target.
-  $target_views = ['explore_subjects', 'explore_locations'];
-
-  // Check if the current view is one of the target views.
-  if (in_array($view_name, $target_views)) {
-    // Set the template for the view.
-    $variables['theme_hook_suggestion'] = 'views_view_summary_unformatted__explore_common';
-  }
-}
