@@ -390,3 +390,51 @@ div[property="dcterms:description"]:only-of-type {
 
 /* Hide the label in Taxonomy List. See twig template taxonomy-term.html.twig */
 .taxonomy-data .field__label { display: none; }
+
+/* Explore-* Pages Styling */
+[class*="view-explore-"] {
+  margin-bottom: 20px;
+}
+[class*="view-explore-"] h3,
+[class*="view-explore-"] .item-list h3 {
+  font-weight: 700;
+  margin-top: 15px;
+}
+[class*="view-explore-"] .view-content.row {
+  padding: 10px;
+}
+[class*="view-explore-"] .views-summary.views-summary-unformatted,
+[class*="view-explore-"] .item-list li {
+  background: #fff;
+  border: 1px solid #efefef;
+  padding: 5px;
+}
+[class*="view-explore-"] .views-summary.views-summary-unformatted a,
+[class*="view-explore-"] .views-view-grid .views-col a,
+[class*="view-explore-"] .item-list li a {
+  font-weight: bold;
+}
+[class*="view-explore-"] .views-summary.views-summary-unformatted:hover,
+[class*="view-explore-"] .views-summary.views-summary-unformatted:focus,
+[class*="view-explore-"] .item-list li:hover,
+[class*="view-explore-"] .item-list li:focus {
+  background: #efefef;
+  border: 1px solid #efefef;
+  padding: 5px;
+}
+[class*="view-explore-"] .views-view-grid .views-col,
+[class*="view-explore-"] .item-list li {
+  background: #efefef;
+  border: 1px solid #efefef;
+  padding: 10px;
+  /* margin-bottom: 10px; */
+}
+[class*="view-explore-"] .views-view-grid .views-col:hover,
+[class*="view-explore-"] .views-view-grid .views-col:focus,
+[class*="view-explore-"] .item-list li:hover,
+[class*="view-explore-"] .item-list li:focus {
+  background: #e5e5e5;
+  border: 1px solid #efefef;
+  padding: 10px;
+  /* margin-bottom: 10px; */
+}
