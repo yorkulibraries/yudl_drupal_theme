@@ -12,7 +12,7 @@ dependencies:
 id: resourcetype
 theme: york_drupal_theme
 region: sidebar_first
-weight: 0
+weight: 6
 provider: null
 plugin: 'facet_block:resource_type'
 settings:

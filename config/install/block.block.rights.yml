@@ -12,7 +12,7 @@ dependencies:
 id: rights
 theme: york_drupal_theme
 region: sidebar_first
-weight: -3
+weight: 8
 provider: null
 plugin: 'facet_block:rights'
 settings:

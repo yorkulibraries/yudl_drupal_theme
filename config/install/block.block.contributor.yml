@@ -12,7 +12,7 @@ dependencies:
 id: contributor
 theme: york_drupal_theme
 region: sidebar_first
-weight: 0
+weight: 2
 provider: null
 plugin: 'facet_block:contributor'
 settings:
