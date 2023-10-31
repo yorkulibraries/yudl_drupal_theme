@@ -15,8 +15,9 @@
 
   // Description text below content display.
   $(document).ready(function() {
+    var titleElements = $("span[property='dcterms:title']");
     var matchingElements = $("div[property='dcterms:description'] p");
-    if (matchingElements.length === 1) {
+    if (titleElements.length <=2) {
       matchingElements.addClass("description-text");
     }
   });
