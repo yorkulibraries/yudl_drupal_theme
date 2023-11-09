@@ -64,7 +64,7 @@
       <div class='col-md-9 col-sm-12 mb-0'>
     {% endif %}
     {% for item in items %}
-      {% if item.attributes == ' property="dcterms:relation"' %}
+      {% if (item.attributes == ' property="dcterms:relation"') or (item.attributes == ' property="dcterms:hdl"')  %}
         <div{{ item.attributes.addClass('col') }}>
           <a href="{{ item.content }}" target="_blank">{{ item.content }}</a>
         </div>
