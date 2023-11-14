@@ -22,4 +22,12 @@
     }
   });
 
+  // Hide background on Explore Cat/Dogs pages.
+  $(document).ready(function() {
+    var body = document.body;
+    if (body.classList.contains('page-view-explore-dogs') || body.classList.contains('page-view-explore-cats')) {
+      body.classList.add('view-explore-no-background');
+    }
+  });
+
 })(jQuery, Drupal);

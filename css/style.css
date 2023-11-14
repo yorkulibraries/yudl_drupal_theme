@@ -438,3 +438,20 @@ div[property="dcterms:description"]:only-of-type {
   padding: 10px;
   /* margin-bottom: 10px; */
 }
+
+/* Disable background color on specific pages */
+.view-explore-no-background .views-view-grid .views-col,
+.view-explore-no-background .item-list li {
+  background: none;
+  border: none;
+  padding: 10px;
+}
+
+.view-explore-no-background .views-view-grid .views-col:hover,
+.view-explore-no-background .item-list li:hover,
+.view-explore-no-background .views-view-grid .views-col:focus,
+.view-explore-no-background .item-list li:focus {
+  background: none;
+  border: none;
+  padding: 10px;
+}
