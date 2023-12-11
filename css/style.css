@@ -455,3 +455,9 @@ div[property="dcterms:description"]:only-of-type {
   border: none;
   padding: 10px;
 }
+
+.table.table-striped thead.thead-map th {
+  background-color: #212529;
+  color: white;
+  font-weight: bold;
+}
