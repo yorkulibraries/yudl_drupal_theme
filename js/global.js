@@ -30,11 +30,4 @@
     }
   });
 
-  // Hide "Download" section on items if it is empty.
-  $(document).ready(function() {
-    if ($('#download').find('.views-element-container').length === 2) {
-      $('#download').hide();
-    }
-  });
-
 })(jQuery, Drupal);
