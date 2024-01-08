@@ -30,4 +30,19 @@
     }
   });
 
+  // Hide Download section on a specific edge case.
+  $(document).ready(function() {
+    if ($('#download').find('.views-element-container').length > 0) {
+      var containerChildren = $('#download').find('.views-element-container');
+
+      if (
+        containerChildren.length === 2 &&
+        $(containerChildren[0]).is(':empty') &&
+        $(containerChildren[1]).is(':empty')
+      ) {
+        $('#download').hide();
+      }
+    }
+  });
+
 })(jQuery, Drupal);
