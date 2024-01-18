@@ -43,6 +43,12 @@
         $('#download').hide();
       }
     }
+
+    var $contextualContainers = $('.media-download .views-element-container.contextual-region');
+
+    if ($contextualContainers.length === 2 && $contextualContainers.filter(':empty').length === 2) {
+      $('.media-download').hide();
+    }
   });
 
 })(jQuery, Drupal);
