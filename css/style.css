@@ -461,3 +461,7 @@ div[property="dcterms:description"]:only-of-type {
   color: white;
   font-weight: bold;
 }
+
+#edit-spammaster-signature {
+  display: none !important;
+}
