@@ -51,4 +51,12 @@
     }
   });
 
+  // Hide high resolution text on The Golha Programmes items.
+  $(document).ready(function() {
+    var breadcrumbLinkExists = $("a[href='/sound-and-moving-image-library-smil/golha-programmes']").length > 0;
+    if (breadcrumbLinkExists) {
+        $(".views-field.views-field-field-media-audio-file .field-content p:contains('If a high resolution copy of the file is needed')").hide();
+    }
+  });
+
 })(jQuery, Drupal);
