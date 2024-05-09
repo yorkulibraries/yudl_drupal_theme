@@ -59,4 +59,14 @@
     }
   });
 
+  // Hide Download link for Tagoona, Nelson videos.
+  $(document).ready(function() {
+    if (document.querySelector('a[href="/person/tagoona-nelson"]')) {
+        var fieldset = document.querySelector('fieldset.media-download');
+        if (fieldset) {
+          fieldset.style.display = 'none';
+        }
+    }
+  });
+
 })(jQuery, Drupal);
