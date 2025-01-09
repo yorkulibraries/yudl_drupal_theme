@@ -56,7 +56,8 @@ function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterf
     }
   }
 }
- /**
+
+/**
  * Implements hook_preprocess_field().
  */
 function york_drupal_theme_preprocess_field(&$variables) {
@@ -64,11 +65,11 @@ function york_drupal_theme_preprocess_field(&$variables) {
   if ($variables['element']['#field_name'] == 'field_rights') {
     foreach ($variables['element']['#items'] as $key => $items) {
       $entity = $items->entity;
-      if(!empty($entity)){
+      if (!empty($entity)) {
         $image_url = $entity->get('field_image_url_')->uri;
-        $alt_text = isset($variables['element'][$key]["#title"]) ? $variables['element'][$key]["#title"] : "";
+        $alt_text = isset($variables['element'][$key]['#title']) ? $variables['element'][$key]['#title'] : '';
         $term_path = $entity->get('path')->alias;
-        $image = '<p><a href="'. $base_path . $term_path.'"><img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="'. $alt_text.'" /></a></p>';
+        $image = '<p><a href="' . $base_path . $term_path . '"><img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="' . $alt_text . '" /></a></p>';
         $variables['items'][$key]['content'] = ['#markup' => $image];
       }
     }

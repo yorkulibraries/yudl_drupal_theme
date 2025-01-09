@@ -99,7 +99,7 @@
         <div class='col-md-3 col-sm-12'>{{content.display_media_thumbnail}}</div>
         <div class='col-md-9 col-sm-12'>{{content|without('display_media_thumbnail')}}</div>
       </div>
-    {% elseif content.display_media_thumbnail|render|striptags|trim is empty %}  
+    {% elseif content.display_media_thumbnail|render|striptags|trim is empty %}
       <div class="row">
         <div class='col-md-12 col-sm-12'>{{content|without('display_media_thumbnail')}}</div>
       </div>
