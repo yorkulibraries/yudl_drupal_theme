@@ -1,0 +1,10 @@
+{
+    "name": "yorkulibraries/york_drupal_theme",
+    "description": "A Bootstrap Barrio SubTheme for YUDL.",
+    "type": "drupal-theme",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/yorkulibraries/yudl_drupal_theme",
+    "require": {
+        "drupal/bootstrap_barrio": "^5.5"
+    }
+}
