@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - islandora
+    - islandora_mirador
+label: 'Mirador Block - Single image items'
+name: mirador_block_single_image_items
+group: Display
+description: 'Display an image in the Mirador viewer.'
+requireAllConditions: false
+disabled: false
+conditions:
+  node_has_term:
+    id: node_has_term
+    negate: false
+    uuid: 7566570e-a232-4e98-bee5-5a6317128920
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uri: 'https://projectmirador.org'
+    logic: or
+reactions:
+  blocks:
+    id: blocks
+    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
+    blocks:
+      2a0c10e7-ccfe-497e-8bb3-f7bd71aa4895:
+        uuid: 2a0c10e7-ccfe-497e-8bb3-f7bd71aa4895
+        id: mirador_block
+        label: 'Mirador block'
+        provider: islandora_mirador
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: mirador_block
+        theme: york_drupal_theme
+        css_class: yudl-mirador
+        unique: 0
+        context_id: mirador_block_single_image_items
+        context_mapping: {}
+        iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'
+        third_party_settings: {}
+    include_default_blocks: 1
+    saved: false
+weight: -8

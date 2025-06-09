@@ -1,0 +1,45 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - islandora
+    - islandora_mirador
+label: 'Mirador Block - Multipaged items'
+name: mirador_block_multipaged_items
+group: Display
+description: 'If Paged Content or Publication Issue, display Mirador from manifest.'
+requireAllConditions: false
+disabled: false
+conditions:
+  node_has_term:
+    id: node_has_term
+    negate: false
+    uuid: 7566570e-a232-4e98-bee5-5a6317128920
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uri: 'https://schema.org/Book,https://schema.org/PublicationIssue'
+    logic: or
+reactions:
+  blocks:
+    id: blocks
+    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
+    blocks:
+      6ce347d2-dbab-4013-9ccf-25510b186c96:
+        uuid: 6ce347d2-dbab-4013-9ccf-25510b186c96
+        id: mirador_block
+        label: 'Mirador block'
+        provider: islandora_mirador
+        label_display: '0'
+        region: content
+        weight: '0'
+        custom_id: mirador_block
+        theme: york_drupal_theme
+        css_class: yudl-mirador
+        unique: 0
+        context_id: mirador_block_multipaged_items
+        context_mapping: {}
+        iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/book-manifest'
+        third_party_settings: {}
+    include_default_blocks: 1
+    saved: false
+weight: -8
