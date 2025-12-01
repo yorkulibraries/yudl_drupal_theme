@@ -55,6 +55,21 @@ function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterf
       $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
     }
   }
+
+  if ($form['#id'] == 'views-exposed-form-collection-search-block-1') {
+    if (isset($form['collection_search']) && is_array($form['collection_search'])) {
+      $form['collection_search']['#attributes']['placeholder'] = t('Search collection');
+      $form['collection_search']['#placeholder'] = t('Search collection');
+      $form['collection_search']['#attributes']['class'][] = 'form-control';
+      $form['collection_search']['#attributes']['class'][] = 'form-control-lg';
+      $form['collection_search']['#attributes']['class'][] = 'rounded-0';
+      $form['collection_search']['#attributes']['data-cs-alter'] = '1';
+      $form['#attached']['library'][] = 'york_drupal_theme/collection-search-placeholder';
+    }
+    if (isset($form['actions']['submit']['#attributes']['class'])) {
+      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+    }
+  }
 }
 
 /**
