@@ -61,6 +61,86 @@
         }
       }
 
+      // Collection download button: move under metadata and restyle as a CTA.
+      var $downloadBlock = $download.length ? $download : $('fieldset.media-download', context);
+      if ($downloadBlock.length && !$downloadBlock.hasClass('collection-download-processed')) {
+        var $node = $downloadBlock.closest('.node');
+        if (!$node.length) {
+          $node = $('.node--type-islandora-object', context).first();
+        }
+
+        var $placementTarget = $node.find('.horizontal-tabs').first();
+        if (!$placementTarget.length) {
+          var $metadataRows = $node.find('.node__content .row.p-2.border-bottom');
+          $placementTarget = $metadataRows.length ? $metadataRows.last() : $node.find('.node__content').first();
+        }
+
+        if ($placementTarget.length) {
+          $downloadBlock.insertAfter($placementTarget);
+        }
+
+        $downloadBlock.find('legend').remove();
+        $downloadBlock.addClass('collection-download collection-download-processed');
+
+        var $downloadLink = $downloadBlock.find('a').first();
+        if ($downloadLink.length) {
+          var originalText = $.trim($downloadLink.text());
+          $downloadLink.text('Download');
+          var ariaLabel = originalText ? 'Download ' + originalText : 'Download';
+          $downloadLink.attr({
+            'aria-label': ariaLabel,
+            'title': ariaLabel
+          });
+          $downloadLink.addClass('btn btn-primary btn-lg d-inline-flex align-items-center gap-2 collection-download__link');
+          if ($downloadLink.find('.fa-download').length === 0) {
+            $downloadLink.prepend('<i class="fa-solid fa-download collection-download__icon" aria-hidden="true"></i>');
+          }
+
+          var $fieldContent = $downloadLink.closest('.field-content');
+          if ($fieldContent.length) {
+            $fieldContent.contents().filter(function () {
+              return this.nodeType === 3 && $.trim(this.nodeValue).length;
+            }).remove();
+          }
+
+          var $downloadParagraph = $downloadLink.closest('p');
+          if ($downloadParagraph.length) {
+            $downloadParagraph.contents().filter(function () {
+              return this !== $downloadLink[0];
+            }).remove();
+          }
+
+          $downloadLink.detach();
+
+          var $downloadMessage = $downloadBlock.find("p:contains('If a high resolution copy of the file is needed'), p:contains('If a high-resolution copy of the file is needed')");
+          var $inlineContainer = $('<div class="collection-download__inline d-flex flex-wrap align-items-center gap-3"></div>');
+          var $buttonWrapper = $('<div class="collection-download__button"></div>').append($downloadLink);
+          $inlineContainer.append($buttonWrapper);
+
+          if ($downloadMessage.length) {
+            $downloadMessage.each(function () {
+              var $msg = $(this);
+              $msg.find('br').remove();
+              var $msgSpan = $('<span class="collection-download__message"></span>').append($msg.contents());
+              $inlineContainer.append($msgSpan);
+              $msg.remove();
+            });
+          }
+
+          var $fieldsetWrapper = $downloadBlock.find('.fieldset-wrapper').first();
+          if ($fieldsetWrapper.length) {
+            $fieldsetWrapper.prepend($inlineContainer);
+          } else {
+            $downloadBlock.prepend($inlineContainer);
+          }
+
+          $downloadBlock.find('p').filter(function () {
+            var $p = $(this);
+            return $.trim($p.text()).length === 0 && $p.find('a').length === 0;
+          }).remove();
+        }
+      }
+
       // Hide .media-download if both contextual containers are visually empty.
       var $contextualContainers = $('.media-download .views-element-container.contextual-region', context);
       if ($contextualContainers.length === 2) {
