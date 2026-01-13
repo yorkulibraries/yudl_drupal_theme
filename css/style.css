@@ -108,6 +108,30 @@ td {
   box-shadow: 0 0 40px rgba(51, 51, 51, .1);
 }
 
+#header > .container nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+#header > .container nav > .me-auto {
+  margin-right: 0;
+}
+
+#header > .container nav > div:last-child {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#header .navbar-form {
+  width: min(1400px, 60%);
+}
+
+#header .navbar-form .search {
+  width: 100%;
+}
+
 .search input[type="text"] {
   text-indent: 25px;
   /* border: 2px solid #d6d4d4; */
@@ -541,6 +565,7 @@ div[property="dcterms:description"]:only-of-type {
 /* Wider main content containers on large displays. */
 @media only screen and (min-width: 1400px) {
   #main.container,
+  #header .container,
   .highlighted .container,
   .featured-bottom .container {
     max-width: 1600px;
@@ -549,6 +574,7 @@ div[property="dcterms:description"]:only-of-type {
 
 @media only screen and (min-width: 1600px) {
   #main.container,
+  #header .container,
   .highlighted .container,
   .featured-bottom .container {
     max-width: 1760px;
@@ -557,6 +583,7 @@ div[property="dcterms:description"]:only-of-type {
 
 @media only screen and (min-width: 1900px) {
   #main.container,
+  #header .container,
   .highlighted .container,
   .featured-bottom .container {
     max-width: 1840px;
