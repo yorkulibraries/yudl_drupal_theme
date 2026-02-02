@@ -89,6 +89,29 @@ function york_drupal_theme_preprocess_field(&$variables) {
       }
     }
   }
+
+  $view_mode = $variables['element']['#view_mode'] ?? NULL;
+  if ($view_mode !== 'oembed') {
+    return;
+  }
+
+  $field_name = $variables['element']['#field_name'] ?? '';
+  $is_download = is_string($field_name) && stripos($field_name, 'download') !== FALSE;
+  if ($is_download) {
+    $variables['attributes']->addClass('oembed-download');
+    foreach ($variables['items'] as &$item) {
+      if (isset($item['content']['#type']) && $item['content']['#type'] === 'link') {
+        $item['content']['#options']['attributes']['class'] = $item['content']['#options']['attributes']['class'] ?? [];
+        $item['content']['#options']['attributes']['class'][] = 'btn';
+        $item['content']['#options']['attributes']['class'][] = 'btn-primary';
+      }
+      elseif (isset($item['content']['#attributes']) && is_array($item['content']['#attributes'])) {
+        $item['content']['#attributes']['class'] = $item['content']['#attributes']['class'] ?? [];
+        $item['content']['#attributes']['class'][] = 'btn';
+        $item['content']['#attributes']['class'][] = 'btn-primary';
+      }
+    }
+  }
 }
 
 /**
@@ -104,5 +127,27 @@ function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
     $image_url = $term->get('field_image_url_')->uri;
     $image = '<img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="'. $alt_text.'">';
     $variables['content'][0] = ['#markup' => $image];
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function york_drupal_theme_preprocess_node(&$variables) {
+  if (!empty($variables['view_mode']) && $variables['view_mode'] === 'oembed') {
+    $variables['#attached']['library'][] = 'york_drupal_theme/oembed';
+  }
+  if (!empty($variables['page']) && !empty($variables['view_mode']) && $variables['view_mode'] === 'full') {
+    $variables['#attached']['library'][] = 'york_drupal_theme/embed_button';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_page_alter().
+ */
+function york_drupal_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'yudl_oembed.embed') {
+    $suggestions[] = 'page__oembed';
   }
 }
