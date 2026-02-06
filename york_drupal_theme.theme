@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -140,6 +141,59 @@ function york_drupal_theme_preprocess_node(&$variables) {
 }
 
 /**
+ * Returns TRUE when the embed button should be shown for a node.
+ */
+function york_drupal_theme_should_show_embed_button(NodeInterface $node) {
+  if (!$node->hasField('field_model') || $node->get('field_model')->isEmpty()) {
+    return FALSE;
+  }
+
+  $model_term = $node->get('field_model')->entity;
+  if (!$model_term) {
+    return FALSE;
+  }
+
+  $model_uri = '';
+  if ($model_term->hasField('field_external_uri') && !$model_term->get('field_external_uri')->isEmpty()) {
+    $model_uri = $model_term->get('field_external_uri')->first()->getUrl()->getUri();
+  }
+
+  $allowed_model_uris = [
+    'http://purl.org/dc/dcmitype/Sound',
+    'http://purl.org/dc/dcmitype/MovingImage',
+    'http://purl.org/dc/dcmitype/StillImage',
+    'https://schema.org/AudioObject',
+    'https://schema.org/VideoObject',
+    'https://schema.org/ImageObject',
+  ];
+
+  if ($model_uri !== '' && in_array($model_uri, $allowed_model_uris, TRUE)) {
+    return TRUE;
+  }
+
+  $label = $model_term->label();
+  if (!is_string($label) || $label === '') {
+    return FALSE;
+  }
+
+  $allowed_label_fragments = [
+    'audio',
+    'video',
+    'image',
+    'still image',
+    'moving image',
+    'sound',
+  ];
+  foreach ($allowed_label_fragments as $fragment) {
+    if (stripos($label, $fragment) !== FALSE) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/**
  * Implements hook_theme_suggestions_page_alter().
  */
 function york_drupal_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
@@ -154,7 +208,18 @@ function york_drupal_theme_theme_suggestions_page_alter(array &$suggestions, arr
  */
 function york_drupal_theme_preprocess_page(&$variables) {
   $route_name = \Drupal::routeMatch()->getRouteName();
-  if ($route_name === 'entity.node.canonical') {
-    $variables['#attached']['library'][] = 'york_drupal_theme/embed_button';
+  if ($route_name !== 'entity.node.canonical') {
+    return;
   }
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node instanceof NodeInterface) {
+    return;
+  }
+
+  if (!york_drupal_theme_should_show_embed_button($node)) {
+    return;
+  }
+
+  $variables['#attached']['library'][] = 'york_drupal_theme/embed_button';
 }
