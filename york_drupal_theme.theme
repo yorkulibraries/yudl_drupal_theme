@@ -6,6 +6,31 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function york_drupal_theme_views_pre_render(ViewExecutable $view) {
+  // Only target the Solr search view/page display.
+  if ($view->id() === 'solr_search_content' && $view->current_display === 'page_1') {
+    foreach ($view->header as $plugin) {
+      // Check plugin ID properly.
+      if ($plugin->getPluginId() === 'result') {
+        $total = $view->total_rows;
+        $start = $view->pager ? $view->pager->getCurrentPage() * $view->pager->getItemsPerPage() + 1 : 1;
+        $end = $view->pager ? min($start + $view->pager->getItemsPerPage() - 1, $total) : $total;
+
+        // Replace header content with formatted numbers.
+        $plugin->options['content'] = t('Displaying results @start - @end of @total', [
+          '@start' => number_format($start),
+          '@end'   => number_format($end),
+          '@total' => number_format($total),
+        ]);
+      }
+    }
+  }
+}
 
 /**
  * Implements hook_form_system_theme_settings_alter() for settings form.
@@ -106,3 +131,43 @@ function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
     $variables['content'][0] = ['#markup' => $image];
   }
 }
+
+/**
+ * Preprocess function for Views unformatted summary rows.
+ *
+ * This function formats numeric counts in A–Z or similar unformatted
+ * summary Views (like a glossary or taxonomy summary) by adding
+ * comma separators for thousands.
+ *
+ * Example:
+ *   N (19244) -> N (19,244)
+ *
+ * @param array $vars
+ *   An associative array of variables passed to the template, containing:
+ *   - rows: An array of Views result objects, each potentially containing a 'count' property.
+ */
+function york_drupal_theme_preprocess_views_view_summary_unformatted(array &$vars) {
+  foreach ($vars['rows'] as $row) {
+    if (isset($row->count)) {
+      $row->count = number_format($row->count);
+    }
+  }
+}
+
+/**
+ * Preprocess function for Facets result items.
+ *
+ * This function formats numeric counts for Facet items by adding
+ * comma separators for thousands, e.g.:
+ *   Toronto Telegram fonds (18267)  -> Toronto Telegram fonds (18,267)
+ *
+ * @param array $vars
+ *   An associative array of variables passed to the template, containing:
+ *   - count: The numeric count of items for this facet.
+ */
+function york_drupal_theme_preprocess_facets_result_item(array &$vars) {
+  if (isset($vars['count']) && is_numeric($vars['count'])) {
+    $vars['count'] = number_format((int) $vars['count']);
+  }
+}
+
