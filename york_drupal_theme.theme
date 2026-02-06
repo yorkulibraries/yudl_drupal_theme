@@ -157,22 +157,6 @@ function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_taxonomy_term().
- */
-
-function york_drupal_theme_preprocess_taxonomy_term(&$variables) {
-
-  $term = $variables['term'];
-  $taxonomy_term = $variables["elements"]["#taxonomy_term"];
-  if ($term->hasField('field_image_url_')){
-    $alt_text = $taxonomy_term->hasField('name') ? $taxonomy_term->get('name')->value : "";
-    $image_url = $term->get('field_image_url_')->uri;
-    $image = '<img class="p-1 bg-black copy_right" src="' . $image_url . '" alt="'. $alt_text.'">';
-    $variables['content'][0] = ['#markup' => $image];
-  }
-}
-
-/**
  * Implements hook_preprocess_node().
  */
 function york_drupal_theme_preprocess_node(&$variables) {
