@@ -30,3 +30,22 @@ color.preview:
     color/preview.js: {}
   dependencies:
     - color/drupal.color
+
+oembed:
+  css:
+    theme:
+      css/oembed.css: {}
+  dependencies:
+    - york_drupal_theme/bootstrap_cdn
+    - york_drupal_theme/global-styling
+
+embed_button:
+  js:
+    js/embed-button.js: {}
+  css:
+    theme:
+      css/embed-button.css: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - york_drupal_theme/bootstrap_cdn

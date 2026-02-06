@@ -1,0 +1,73 @@
+.oembed-node {
+  max-width: 960px;
+  margin: 16px auto;
+  padding: 0 12px;
+}
+
+.oembed-node .node__title {
+  margin: 0 0 6px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+
+.oembed-node .node__meta {
+  margin-bottom: 10px;
+  color: #666;
+  font-size: 12px;
+}
+
+.oembed-node .oembed-media {
+  margin: 8px 0 12px;
+}
+
+.oembed-node .oembed-media iframe,
+.oembed-node .oembed-media video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.oembed-node table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.oembed-node th,
+.oembed-node td {
+  border: 1px solid #e0e0e0;
+  padding: 6px 8px;
+  vertical-align: top;
+}
+
+.oembed-node th {
+  background: #f2f2f2;
+  font-weight: 600;
+}
+
+.oembed-node a {
+  color: #c00;
+}
+
+/* Match site button contrast inside embeds. */
+.oembed-node .btn-primary,
+.oembed-node .btn-primary:link,
+.oembed-node .btn-primary:visited {
+  color: #fff;
+}
+
+.oembed-node .oembed-download a {
+  display: inline-block;
+  background: #dc3545;
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.oembed-node .oembed-download a:hover,
+.oembed-node .oembed-download a:focus {
+  background: #b02a37;
+  color: #fff;
+}

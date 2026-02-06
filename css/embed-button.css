@@ -1,0 +1,42 @@
+.oembed-embed-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0 10px;
+}
+
+.oembed-embed-row .addtoany_list,
+.oembed-embed-row .a2a_kit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.oembed-embed-row .a2a_kit a,
+.oembed-embed-row .addtoany_list a,
+.oembed-embed-button {
+  vertical-align: middle;
+}
+
+.oembed-embed-button {
+  margin-left: 6px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border-radius: 4px;
+  transform: translateY(2px);
+}
+
+.oembed-embed-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.oembed-embed-modal textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
