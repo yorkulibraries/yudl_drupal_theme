@@ -18,31 +18,86 @@
     return data.html;
   }
 
+  function wireEmbedModal(modal) {
+    const textarea = modal.querySelector('#oembed-embed-code');
+    const copyBtn = modal.querySelector('#oembed-copy-btn');
+    const feedback = modal.querySelector('#oembed-copy-feedback');
+
+    textarea.addEventListener('focus', () => {
+      textarea.select();
+    });
+
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(textarea.value);
+        feedback.classList.remove('d-none');
+
+        setTimeout(() => {
+          feedback.classList.add('d-none');
+        }, 1500);
+      } catch (e) {
+        textarea.select();
+        document.execCommand('copy');
+      }
+    });
+  }
+
   function ensureModal() {
     let modal = document.querySelector('.oembed-embed-modal');
-    if (modal) {
-      return modal;
-    }
+    if (modal) return modal;
 
     modal = document.createElement('div');
     modal.className = 'modal fade oembed-embed-modal';
     modal.tabIndex = -1;
     modal.setAttribute('aria-hidden', 'true');
+
     modal.innerHTML = `
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Embed</h5>
+            <h5 class="modal-title">Embed this item</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+
           <div class="modal-body">
-            <label class="form-label" for="oembed-embed-code">Embed code</label>
-            <textarea id="oembed-embed-code" class="form-control" rows="3" readonly></textarea>
+            <p class="text-muted mb-2">
+              Copy and paste this code into your website.
+            </p>
+
+            <div class="position-relative">
+              <textarea
+                id="oembed-embed-code"
+                class="form-control font-monospace"
+                rows="4"
+                readonly
+              ></textarea>
+
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2"
+                id="oembed-copy-btn"
+              >
+                Copy
+              </button>
+            </div>
+
+            <div class="small text-success mt-2 d-none" id="oembed-copy-feedback">
+              Copied to clipboard
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
           </div>
         </div>
       </div>
     `;
+
     document.body.appendChild(modal);
+
+    wireEmbedModal(modal);
     return modal;
   }
 
