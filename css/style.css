@@ -599,3 +599,29 @@ div[property="dcterms:description"]:only-of-type {
   display: block;
   margin: 0 auto;
 }
+
+.view-collection-search
+.node--view-mode-collection-search {
+  text-align: center;
+}
+
+.view-collection-search
+.field--name-field-media-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  margin-bottom: .75rem;
+}
+
+.view-collection-search
+.field--name-field-media-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.view-collection-search .views-col {
+  padding-bottom: 1.5rem;
+}
