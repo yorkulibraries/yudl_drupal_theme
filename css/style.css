@@ -660,3 +660,54 @@ div[property="dcterms:description"]:only-of-type {
 .taxonomy-data {
   text-align: left;
 }
+
+.explore-dogs,
+.explore-cats {
+  text-align: center;
+}
+
+.explore-dogs .views-view-grid > .views-row,
+.explore-cats .views-view-grid > .views-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.explore-dogs .views-col,
+.explore-cats .views-col {
+  flex: 1 1 calc(33.333% - 16px);
+  width: auto !important;
+  box-sizing: border-box;
+  padding: 8px 8px 1.5rem 8px;
+}
+
+.explore-dogs .field--name-field-media-image,
+.explore-cats .field--name-field-media-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 180px;
+  margin-bottom: .75rem;
+}
+
+.explore-dogs .field--name-field-media-image img,
+.explore-cats .field--name-field-media-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .explore-dogs .views-col,
+  .explore-cats .views-col {
+    flex: 1 1 calc(50% - 16px);
+  }
+}
+
+@media (max-width: 480px) {
+  .explore-dogs .views-col,
+  .explore-cats .views-col {
+    flex: 1 1 100%;
+  }
+}
