@@ -652,3 +652,11 @@ div[property="dcterms:description"]:only-of-type {
 .view-members .views-col {
   padding-bottom: 1.5rem;
 }
+
+.field__label:empty {
+  display: none;
+}
+
+.taxonomy-data {
+  text-align: left;
+}
