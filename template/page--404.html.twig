@@ -1,0 +1,42 @@
+{% extends "page.html.twig" %}
+
+{% block content %}
+  <div id="main" class="{{ container }}">
+    <div class="york-404-page">
+      {% if page.breadcrumb %}
+        {{ page.breadcrumb }}
+      {% endif %}
+
+      <section class="york-404-hero" aria-labelledby="york-404-title">
+        <div class="york-404-copy">
+          <p class="york-404-eyebrow">{{ '404 error'|t }}</p>
+          <h1 id="york-404-title" class="york-404-title">{{ 'This page has wandered off.'|t }}</h1>
+          <p class="york-404-lede">{{ "What's it like out? Apparently not this URL."|t }}</p>
+          <p class="york-404-body">{{ 'The page you requested could not be found, but this Toronto Telegram cat from the archives is still exactly where it should be.'|t }}</p>
+
+          <div class="york-404-actions">
+            <a class="btn btn-primary" href="{{ path('<front>') }}">{{ 'Back to home'|t }}</a>
+            <a class="btn btn-outline-secondary" href="/solr-search/content">{{ 'Search the library'|t }}</a>
+            <a class="btn btn-link" href="{{ cat_item_url }}">{{ 'View the cat record'|t }}</a>
+          </div>
+        </div>
+
+        <figure class="york-404-figure">
+          <a href="{{ cat_item_url }}" class="york-404-image-link">
+            <img
+              src="/{{ directory }}/images/404-cat-harry-shearer.jpg"
+              alt="{{ cat_description }}"
+              class="img-fluid york-404-image"
+              loading="eager"
+            />
+          </a>
+          <figcaption class="york-404-caption">
+            <span class="york-404-caption-title">{{ cat_title }}</span>
+            <span>{{ 'Toronto Telegram staff, %date.'|t({'%date': cat_date}) }}</span>
+            <a href="{{ cat_credit_url }}">{{ 'Toronto Telegram fonds'|t }}</a>
+          </figcaption>
+        </figure>
+      </section>
+    </div>
+  </div>
+{% endblock %}
