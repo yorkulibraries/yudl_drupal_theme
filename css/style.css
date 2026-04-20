@@ -343,6 +343,141 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   }
 }
 
+.york-404-page {
+  padding: 1.5rem 0 3.5rem;
+}
+
+.york-404-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+  gap: 2rem;
+  align-items: center;
+  background:
+    radial-gradient(circle at top right, rgba(227, 24, 55, 0.12), transparent 36%),
+    linear-gradient(135deg, #fff7f2 0%, #ffffff 58%, #f4f1eb 100%);
+  border: 1px solid rgba(33, 37, 41, 0.08);
+  border-radius: 1.5rem;
+  box-shadow: 0 1.5rem 3rem rgba(48, 48, 48, 0.1);
+  overflow: hidden;
+}
+
+.york-404-copy {
+  padding: 2.5rem;
+}
+
+.york-404-eyebrow {
+  margin-bottom: 0.75rem;
+  color: #8c1d18;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.york-404-title {
+  margin-bottom: 1rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.york-404-lede {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5f0f16;
+}
+
+.york-404-body {
+  max-width: 38rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.york-404-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.york-404-actions .btn {
+  border-radius: 999px;
+  padding: 0.7rem 1.25rem;
+  font-weight: 600;
+}
+
+.york-404-actions .btn-link {
+  padding-left: 0;
+  padding-right: 0;
+  color: #8c0000;
+  text-decoration: none;
+}
+
+.york-404-actions .btn-link:hover,
+.york-404-actions .btn-link:focus {
+  color: #5f0f16;
+  text-decoration: underline;
+}
+
+.york-404-figure {
+  margin: 0;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+}
+
+.york-404-image-link {
+  display: block;
+}
+
+.york-404-image {
+  display: block;
+  width: 100%;
+  border: 0.6rem solid #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 1.25rem 2.5rem rgba(48, 48, 48, 0.18);
+  transform: rotate(2deg);
+}
+
+.york-404-caption {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #4f4a45;
+}
+
+.york-404-caption-title {
+  font-weight: 700;
+  color: #212529;
+}
+
+.york-404-caption a {
+  color: #8c0000;
+}
+
+@media only screen and (max-width: 991px) {
+  .york-404-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .york-404-copy {
+    padding-bottom: 1rem;
+  }
+
+  .york-404-figure {
+    padding: 0 1.5rem 1.5rem;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .york-404-copy {
+    padding: 1.5rem;
+  }
+
+  .york-404-title {
+    font-size: 2.4rem;
+  }
+}
+
 /* Collections Stats box */
 #block-yudl-collection-info-block {
   margin-top: 2%;
