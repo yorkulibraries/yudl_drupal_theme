@@ -115,17 +115,36 @@
           var $downloadMessage = $downloadBlock.find("p:contains('If a high resolution copy of the file is needed'), p:contains('If a high-resolution copy of the file is needed')");
           var $inlineContainer = $('<div class="collection-download__inline d-flex flex-wrap align-items-center gap-3"></div>');
           var $buttonWrapper = $('<div class="collection-download__button"></div>').append($downloadLink);
-          $inlineContainer.append($buttonWrapper);
 
           if ($downloadMessage.length) {
             $downloadMessage.each(function () {
               var $msg = $(this);
               $msg.find('br').remove();
-              var $msgSpan = $('<span class="collection-download__message"></span>').append($msg.contents());
-              $inlineContainer.append($msgSpan);
+
+              var $contactLink = $msg.find('a').first();
+              if ($contactLink.length) {
+                var $requestLink = $('<a class="collection-download__request">Request high resolution</a>');
+                $requestLink.attr({
+                  'href': $contactLink.attr('href'),
+                  'title': 'Request a high resolution copy',
+                  'aria-label': 'Request a high resolution copy'
+                });
+                if ($contactLink.attr('target')) {
+                  $requestLink.attr('target', $contactLink.attr('target'));
+                }
+                if ($contactLink.attr('rel')) {
+                  $requestLink.attr('rel', $contactLink.attr('rel'));
+                }
+                $inlineContainer.append($requestLink);
+              } else {
+                var $msgSpan = $('<span class="collection-download__message"></span>').append($msg.contents());
+                $inlineContainer.append($msgSpan);
+              }
               $msg.remove();
             });
           }
+
+          $inlineContainer.append($buttonWrapper);
 
           var $fieldsetWrapper = $downloadBlock.find('.fieldset-wrapper').first();
           if ($fieldsetWrapper.length) {
