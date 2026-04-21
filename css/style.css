@@ -222,16 +222,40 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.85rem;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
 }
 
 .collection-download__message {
+  flex: 1 1 auto;
+  min-width: 0;
   font-size: 0.95rem;
   color: #212529;
 }
 
+.collection-download__button {
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
 .collection-download__message .btn {
   margin: 0 0.35rem;
+}
+
+.collection-download__request {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #c5122f;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+}
+
+.collection-download__request:hover,
+.collection-download__request:focus {
+  color: #8c0000;
 }
 
 .media-download {
@@ -298,6 +322,16 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 
 .collection-download__icon {
   font-size: 1.1rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .collection-download__inline {
+    align-items: flex-start;
+  }
+
+  .collection-download__button {
+    margin-left: 0;
+  }
 }
 
 /* For mobile: */
