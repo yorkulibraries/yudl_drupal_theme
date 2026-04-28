@@ -1,8 +1,7 @@
-name: York drupal theme
+name: YUDL Drupal Theme
 type: theme
 description: 'Basic structure for a Bootstrap Barrio SubTheme.'
-core: 8.x
-core_version_requirement: ^8 || ^9 || ^10
+core_version_requirement: ^10.3 || ^11
 base theme: bootstrap_barrio
 
 libraries:
@@ -32,8 +31,3 @@ regions:
   footer_third: 'Footer third'
   footer_fourth: 'Footer fourth'
   footer_fifth: 'Footer fifth'
-
-# Information added by Drupal.org packaging script on 2022-08-17
-version: '5.5.6'
-project: 'bootstrap_barrio'
-datestamp: 1660747465
