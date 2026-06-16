@@ -99,6 +99,77 @@ function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterf
 }
 
 /**
+ * Implements hook_form_alter().
+ */
+function york_drupal_theme_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  
+  if (strpos($form_id, 'contact_message_') !== 0 || $form_state->isSubmitted()) {
+    return;
+  }
+
+  $query = \Drupal::request()->query;
+  $subject = trim((string) $query->get('subject', ''));
+  $category = trim((string) $query->get('category', ''));
+  $message = trim((string) $query->get('message', ''));
+
+  if ($subject === '' && $category === '' && $message === '') {
+    return;
+  }
+
+  if ($subject !== '') {
+    york_drupal_theme_prefill_contact_element($form, 'subject', york_drupal_theme_truncate_contact_subject($subject));
+  }
+  if ($message !== '') {
+    york_drupal_theme_prefill_contact_element($form, 'message', $message);
+  }
+  if ($category !== '') {
+    york_drupal_theme_prefill_contact_element($form, 'category', $category);
+  }
+}
+
+/**
+ * Limits generated contact subjects to the agreed 150-character maximum.
+ */
+function york_drupal_theme_truncate_contact_subject($subject) {
+  if (mb_strlen($subject) <= 150) {
+    return $subject;
+  }
+
+  return rtrim(mb_substr($subject, 0, 147)) . '...';
+}
+
+/**
+ * Prefills a contact form element by machine name, title, or matching option.
+ */
+function york_drupal_theme_prefill_contact_element(array &$element, $field_hint, $value) {
+  foreach ($element as $key => &$child) {
+    if (!is_array($child) || (is_string($key) && strpos($key, '#') === 0)) {
+      continue;
+    }
+
+    $key_text = strtolower((string) $key);
+    $title_text = isset($child['#title']) ? strtolower((string) $child['#title']) : '';
+    $matches_field = strpos($key_text, $field_hint) !== FALSE || $title_text === $field_hint;
+
+    if ($matches_field) {
+      if (isset($child['#options']) && is_array($child['#options'])) {
+        foreach ($child['#options'] as $option_key => $option_label) {
+          if ((string) $option_key === $value || (string) $option_label === $value) {
+            $child['#default_value'] = $option_key;
+            break;
+          }
+        }
+      }
+      else {
+        $child['#default_value'] = $value;
+      }
+    }
+
+    york_drupal_theme_prefill_contact_element($child, $field_hint, $value);
+  }
+}
+
+/**
  * Implements hook_preprocess_field().
  */
 function york_drupal_theme_preprocess_field(&$variables) {
