@@ -40,6 +40,47 @@
         return $meaningful.length === 0;
       }
 
+      function truncateSubject(subject) {
+        var maxLength = 150;
+        if (subject.length <= maxLength) {
+          return subject;
+        }
+        return subject.substring(0, maxLength - 3).trim() + '...';
+      }
+
+      function getObjectTitle($node) {
+        var $title = $node.find("span[property='dcterms:title']").first();
+        if (!$title.length) {
+          $title = $('h1, .node__title, .page-title').first();
+        }
+        var title = $.trim($title.text());
+        if (!title) {
+          title = $.trim(document.title.split('|')[0]);
+        }
+        return title;
+      }
+
+      function buildHighResolutionRequestUrl(originalHref, $node) {
+        var title = getObjectTitle($node);
+        var pageUrl = window.location.origin + window.location.pathname;
+        var message = [
+          title,
+          pageUrl,
+          '"Please provide any additional details or information you feel is necessary."'
+        ].join('\n');
+        var baseHref = originalHref || '/contact';
+        var url = new URL(baseHref, window.location.origin);
+        if (url.pathname === '/contact') {
+          url = new URL('/contact', window.location.origin);
+        }
+
+        url.searchParams.set('subject', truncateSubject('[High resolution] - ' + title));
+        url.searchParams.set('category', 'High Resolution Copy');
+        url.searchParams.set('message', message);
+
+        return url.toString();
+      }
+
       // Hide Download section on a specific edge case.
       var $download = $('#download', context);
       if ($download.length) {
@@ -125,7 +166,7 @@
               if ($contactLink.length) {
                 var $requestLink = $('<a class="collection-download__request">Request high resolution</a>');
                 $requestLink.attr({
-                  'href': $contactLink.attr('href'),
+                  'href': buildHighResolutionRequestUrl($contactLink.attr('href'), $node),
                   'title': 'Request a high resolution copy',
                   'aria-label': 'Request a high resolution copy'
                 });
