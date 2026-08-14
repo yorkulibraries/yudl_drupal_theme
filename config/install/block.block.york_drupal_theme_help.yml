@@ -5,6 +5,8 @@ dependencies:
     - help
   theme:
     - york_drupal_theme
+_core:
+  default_config_hash: KOqtsnjRK_sK8l0cje8XAsZ3viT3NUKUT4pZoa-qYXI
 id: york_drupal_theme_help
 theme: york_drupal_theme
 region: content

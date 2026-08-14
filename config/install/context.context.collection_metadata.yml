@@ -3,12 +3,13 @@ status: true
 dependencies:
   module:
     - islandora
-    - views
   enforced:
     module:
       - islandora_defaults
-label: 'Collection metadata'
+_core:
+  default_config_hash: mpoP8J7uhn1O5Slza0WLzRCQ4DKa9AkgzfvGxT5L1F0
 name: collection_metadata
+label: 'Collection metadata'
 group: Display
 description: 'Collection metadata display'
 requireAllConditions: false
@@ -24,6 +25,7 @@ conditions:
     tids:
       -
         target_id: 5
+    naive_references: false
 reactions:
   view_mode_alter:
     id: view_mode_alter

@@ -6,9 +6,10 @@ dependencies:
   module:
     - context
     - facets
-    - islandora
   theme:
     - york_drupal_theme
+_core:
+  default_config_hash: sfhCupL-2osG8SQQakM_fPHkmeRl4wJE5Q6zmNf5DQE
 id: contributor
 theme: york_drupal_theme
 region: sidebar_first
@@ -23,10 +24,6 @@ settings:
   context_mapping: {  }
   block_id: contributor
 visibility:
-  context_all:
-    id: context_all
-    negate: null
-    values: ''
   user_status:
     id: user_status
     negate: false
@@ -38,12 +35,3 @@ visibility:
       own_page_true: '0'
       field_value: '0'
     user_fields: uid
-  context:
-    id: context
-    negate: null
-    values: ''
-  media_source_mimetype:
-    id: media_source_mimetype
-    negate: false
-    context_mapping: {  }
-    mimetype: ''

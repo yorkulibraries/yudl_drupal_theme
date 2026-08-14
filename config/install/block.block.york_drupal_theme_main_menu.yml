@@ -7,6 +7,8 @@ dependencies:
     - system
   theme:
     - york_drupal_theme
+_core:
+  default_config_hash: 5-CaRUCAc5IVfJra073peVtDXEupk_MCFk1JzB4u79I
 id: york_drupal_theme_main_menu
 theme: york_drupal_theme
 region: primary_menu

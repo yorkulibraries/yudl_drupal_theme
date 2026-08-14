@@ -4,8 +4,10 @@ dependencies:
   module:
     - islandora
     - islandora_mirador
-label: 'Mirador Block - Single image items'
+_core:
+  default_config_hash: 4zcFXPXyZKhbEObENwJ4a0IpeDVgfCelu5G6WX8s-DQ
 name: mirador_block_single_image_items
+label: 'Mirador Block - Single image items'
 group: Display
 description: 'Display an image in the Mirador viewer.'
 requireAllConditions: false
@@ -19,17 +21,16 @@ conditions:
       node: '@node.node_route_context:node'
     uri: 'https://projectmirador.org'
     logic: or
+    naive_references: false
 reactions:
   blocks:
-    id: blocks
-    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
     blocks:
       2a0c10e7-ccfe-497e-8bb3-f7bd71aa4895:
-        uuid: 2a0c10e7-ccfe-497e-8bb3-f7bd71aa4895
         id: mirador_block
         label: 'Mirador block'
-        provider: islandora_mirador
         label_display: '0'
+        provider: islandora_mirador
+        uuid: 2a0c10e7-ccfe-497e-8bb3-f7bd71aa4895
         region: content
         weight: '0'
         custom_id: mirador_block
@@ -37,9 +38,11 @@ reactions:
         css_class: yudl-mirador
         unique: 0
         context_id: mirador_block_single_image_items
-        context_mapping: {}
+        context_mapping: {  }
         iiif_manifest_url: 'http://localhost:8000/node/[node:nid]/manifest'
-        third_party_settings: {}
+        third_party_settings: {  }
+    id: blocks
+    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
     include_default_blocks: 1
     saved: false
 weight: -8

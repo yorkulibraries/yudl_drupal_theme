@@ -4,8 +4,10 @@ dependencies:
   module:
     - islandora
     - openseadragon
-label: 'Paged Content - Openseadragon'
+_core:
+  default_config_hash: G_LQNtyMrVQwL-cTX6ZdlouLbCHuJpfI2Sacc_I-0WE
 name: openseadragon_block
+label: 'Paged Content - Openseadragon'
 group: Display
 description: 'Display a block for Paged Content'
 requireAllConditions: false
@@ -19,17 +21,16 @@ conditions:
       node: '@node.node_route_context:node'
     uri: 'https://schema.org/Book,https://schema.org/PublicationIssue'
     logic: or
+    naive_references: false
 reactions:
   blocks:
-    id: blocks
-    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
     blocks:
       d19bb20b-6aa3-477a-b717-a282ac57918c:
-        uuid: d19bb20b-6aa3-477a-b717-a282ac57918c
         id: openseadragon_block
         label: 'Openseadragon block'
-        provider: openseadragon
         label_display: '0'
+        provider: openseadragon
+        uuid: d19bb20b-6aa3-477a-b717-a282ac57918c
         region: content
         weight: '-2'
         custom_id: openseadragon_block
@@ -40,6 +41,8 @@ reactions:
         context_mapping: {  }
         iiif_manifest_url: 'node/[node:nid]/book-manifest'
         third_party_settings: {  }
+    id: blocks
+    uuid: 50b9b25e-0836-4531-8a78-9698d71d81de
     include_default_blocks: 1
     saved: false
 weight: -1

@@ -5,6 +5,8 @@ dependencies:
     - system
   theme:
     - york_drupal_theme
+_core:
+  default_config_hash: XJO9eFG46Bcy5KBx3M5Qhf_dMgNF7aus6wCNcSnSfcQ
 id: york_drupal_theme_site_branding
 theme: york_drupal_theme
 region: header
