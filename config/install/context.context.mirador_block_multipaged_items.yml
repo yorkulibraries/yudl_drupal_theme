@@ -4,8 +4,6 @@ dependencies:
   module:
     - islandora
     - islandora_mirador
-_core:
-  default_config_hash: 5CNaHfsXlOqAqYr5yx_9O7gtt4-HRcGgwZ0TTnFDBeY
 name: mirador_block_multipaged_items
 label: 'Mirador Block - Multipaged items'
 group: Display

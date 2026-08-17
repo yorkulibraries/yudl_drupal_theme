@@ -9,8 +9,6 @@ dependencies:
     - views
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: Z7XfWDmFBpha8hhRYmUpc6MyAF2NXbhHCiS4D7fFL1w
 id: exposedformsolr_search_contentpage_1_2
 theme: york_drupal_theme
 region: top_header_form

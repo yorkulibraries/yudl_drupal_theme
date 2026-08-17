@@ -3,8 +3,6 @@ status: true
 dependencies:
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: DWYwv8Z7ety6Fuo9fKQL_CWkBMs22VUgZ-TDrsCj8Es
 id: york_drupal_theme_local_tasks
 theme: york_drupal_theme
 region: content

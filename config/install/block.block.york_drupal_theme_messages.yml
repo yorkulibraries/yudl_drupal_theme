@@ -5,8 +5,6 @@ dependencies:
     - system
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: r9lrvBUUTSISmmSyUw-DFhk9A0Vf5-vrb7ki5Ym7N88
 id: york_drupal_theme_messages
 theme: york_drupal_theme
 region: highlighted

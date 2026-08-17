@@ -4,8 +4,6 @@ dependencies:
   module:
     - islandora
     - openseadragon
-_core:
-  default_config_hash: G_LQNtyMrVQwL-cTX6ZdlouLbCHuJpfI2Sacc_I-0WE
 name: openseadragon_block
 label: 'Paged Content - Openseadragon'
 group: Display

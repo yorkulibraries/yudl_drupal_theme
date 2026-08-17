@@ -4,8 +4,6 @@ dependencies:
   module:
     - islandora
     - islandora_mirador
-_core:
-  default_config_hash: 4zcFXPXyZKhbEObENwJ4a0IpeDVgfCelu5G6WX8s-DQ
 name: mirador_block_single_image_items
 label: 'Mirador Block - Single image items'
 group: Display
