@@ -8,8 +8,6 @@ dependencies:
     - facets
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: LsglqVxifAnRL2YbkOo3v6_u4vIkT6HrFy628KprtaY
 id: rights
 theme: york_drupal_theme
 region: sidebar_first

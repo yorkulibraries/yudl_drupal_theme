@@ -9,8 +9,6 @@ dependencies:
     - views
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: xG5SDD6GyCYD6miNpjfVNyqzuOf8akHYn6N0_UWTCq8
 id: views_block__map_block_1
 theme: york_drupal_theme
 region: content

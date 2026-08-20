@@ -6,8 +6,6 @@ dependencies:
   enforced:
     module:
       - islandora_defaults
-_core:
-  default_config_hash: mpoP8J7uhn1O5Slza0WLzRCQ4DKa9AkgzfvGxT5L1F0
 name: collection_metadata
 label: 'Collection metadata'
 group: Display

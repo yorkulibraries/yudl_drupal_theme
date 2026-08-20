@@ -9,8 +9,6 @@ dependencies:
     - views
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: isGBkEdubhO3fyw7tIEhu7QTd-UaMzQRHIBZK7Q_biA
 id: york_drupal_theme_exposedformsolr_search_contentpage_1
 theme: york_drupal_theme
 region: highlighted

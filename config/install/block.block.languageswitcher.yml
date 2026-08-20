@@ -6,8 +6,6 @@ dependencies:
     - language
   theme:
     - york_drupal_theme
-_core:
-  default_config_hash: Y_xSVf_D5RIEMThhx1CF5gc--QUuuIGPiWVClH__9NA
 id: languageswitcher
 theme: york_drupal_theme
 region: top_header_form
