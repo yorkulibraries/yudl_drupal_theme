@@ -98,63 +98,6 @@ function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterf
   }
 }
 
-/**
- * Implements hook_preprocess_menu().
- *
- * Several bootstrap_barrio menu templates (menu--account.html.twig,
- * menu--footer.html.twig, menu--main.html.twig, etc.) pass
- * $variables['items'] straight into a 'bootstrap_barrio:menu_*' Single
- * Directory Component (menu_columns, menu_main, ...), e.g.:
- *
- *   {{ include('bootstrap_barrio:menu_columns', {
- *       items: items
- *     })
- *   }}
- *
- * Drupal's menu items array is keyed by menu-link plugin ID
- * (e.g. 'user.logout'), not sequential integers. When PHP json_encode()'s
- * an array with non-sequential/string keys, it produces a JSON object
- * ({...}) rather than a JSON array ([...]). Each menu_* component's
- * schema declares 'items' as type: array, so SDC's validator rejects it
- * with, e.g.:
- *
- *   InvalidComponentException: "[bootstrap_barrio:menu_main/items]
- *   Object value found, but an array is required."
- *
- * This isn't limited to any one menu: Drupal filters menu links by
- * access before theming, so ANY menu can end up with non-sequential
- * keys for a user who can't see every link (most visibly anonymous
- * users). That's why this passed for an admin viewing the full menu
- * but failed for anonymous visitors on the main menu.
- *
- * Fix: recursively reindex 'items' (and each item's nested 'below'
- * children) with array_values() so every level serializes as a JSON
- * array, for every menu, regardless of who's viewing it.
- */
-function york_drupal_theme_preprocess_menu(&$variables) {
-  $variables['items'] = _york_drupal_theme_reindex_menu_items($variables['items']);
-}
-
-/**
- * Recursively reindexes a menu items array and its nested 'below' items.
- *
- * @param array $items
- *   A menu items array as built by Drupal for theming (menu_name-keyed
- *   at the top, each item optionally containing a 'below' array of the
- *   same shape).
- *
- * @return array
- *   The same items, sequentially reindexed at every level.
- */
-function _york_drupal_theme_reindex_menu_items(array $items) {
-  $items = array_values($items);
-  foreach ($items as &$item) {
-    if (!empty($item['below']) && is_array($item['below'])) {
-      $item['below'] = _york_drupal_theme_reindex_menu_items($item['below']);
-    }
-  }
-  return $items;
-}
 
 /**
  * Implements hook_form_alter().
