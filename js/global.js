@@ -53,9 +53,9 @@
         if (!$title.length) {
           $title = $('h1, .node__title, .page-title').first();
         }
-        var title = $.trim($title.text());
+        var title = String($title.text() || '').trim();
         if (!title) {
-          title = $.trim(document.title.split('|')[0]);
+          title = String(document.title.split('|')[0] || '').trim();
         }
         return title;
       }
@@ -125,7 +125,7 @@
 
         var $downloadLink = $downloadBlock.find('a').first();
         if ($downloadLink.length) {
-          var originalText = $.trim($downloadLink.text());
+          var originalText = String($downloadLink.text() || '').trim();
           $downloadLink.text('Download');
           var ariaLabel = originalText ? 'Download ' + originalText : 'Download';
           $downloadLink.attr({
@@ -140,7 +140,7 @@
           var $fieldContent = $downloadLink.closest('.field-content');
           if ($fieldContent.length) {
             $fieldContent.contents().filter(function () {
-              return this.nodeType === 3 && $.trim(this.nodeValue).length;
+              return this.nodeType === 3 && String(this.nodeValue || '').trim().length;
             }).remove();
           }
 
@@ -196,7 +196,7 @@
 
           $downloadBlock.find('p').filter(function () {
             var $p = $(this);
-            return $.trim($p.text()).length === 0 && $p.find('a').length === 0;
+            return String($p.text() || '').trim().length === 0 && $p.find('a').length === 0;
           }).remove();
         }
       }
