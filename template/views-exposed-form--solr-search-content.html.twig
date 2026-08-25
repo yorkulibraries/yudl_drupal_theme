@@ -22,6 +22,67 @@
       <i class="fa-solid fa-magnifying-glass"></i>
       {{ form.search_api_fulltext }}
       {{ form|without('search_api_fulltext')}}
+      <button type="button"
+          class="search-help-trigger"
+          data-bs-toggle="modal"
+          data-bs-target="#searchHelpModal"
+          aria-label="{{ 'Search tips'|t }}">?</button>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="searchHelpModal" tabindex="-1" aria-labelledby="searchHelpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <span class="modal-title-eyebrow">{{ 'Search · Quick Reference'|t }}</span>
+          <h2 class="modal-title" id="searchHelpModalLabel">{{ 'Searching York University Digital Library'|t }}</h2>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{{ 'Close'|t }}"></button>
+      </div>
+      <div class="modal-body">
+        <p class="search-help-intro">
+          {{ 'One search box searches across titles, descriptions, notes, subjects, places, text, and dates in every record. Titles and name fields count for more, so a match there tends to rank higher.'|t }}
+        </p>
+
+        <ul class="search-help-list">
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Everyday search'|t }}</p>
+            <span class="search-help-query">hurricane Toronto</span>
+            <p class="search-help-desc">{{ 'Returns anything matching flood OR Toronto. More matching words rank higher, but a record only needs one.'|t }}</p>
+          </li>
+
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Exact phrase'|t }}</p>
+            <span class="search-help-query">&quot;don valley brick works&quot;</span>
+            <p class="search-help-desc">{{ 'Quotation marks search for the words in that exact order, rather than each word separately.'|t }}</p>
+          </li>
+
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Leave a word out'|t }}</p>
+            <span class="search-help-query">hurricane -damage</span>
+            <p class="search-help-desc">{{ 'A minus sign right before a word excludes records that contain it.'|t }}</p>
+          </li>
+
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Uncertain spelling'|t }}</p>
+            <span class="search-help-query">colour~</span>
+            <p class="search-help-desc">{{ 'A tilde after a word catches close variants and typos. Handy for older spellings or transcribed names.'|t }}</p>
+          </li>
+
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Word endings'|t }}</p>
+            <span class="search-help-query">archiv*</span>
+            <p class="search-help-desc">{{ 'An asterisk matches anything starting with those letters; archive, archival, archivist.'|t }}</p>
+          </li>
+
+          <li class="search-help-item">
+            <p class="search-help-label">{{ 'Narrow your results'|t }}</p>
+            <span class="search-help-query">{{ 'Contributor · Genre · Location · Type · Subject'|t }}</span>
+            <p class="search-help-desc">{{ 'Run a search first, then use the filters beside your results to narrow by place, subject, date, language, and more.'|t }}</p>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

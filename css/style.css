@@ -33,16 +33,16 @@ body {
 }
 
 #default_york_red {
-  background-color: #E31837;
+  background-color: #e31837;
 }
 
 table tr th a {
-  color: #E31837;
+  color: #e31837;
   font-weight: bolder;
 }
 
 table tr th a:hover {
-  color: #8C0000;
+  color: #8c0000;
 }
 
 thead {
@@ -82,7 +82,7 @@ td {
 }
 
 .sidebar h2 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 /** BOOTSTRAP 5 OVERRIDE & CUSTOM STYLES **/
@@ -103,9 +103,9 @@ td {
   margin-top: 0.5rem;
 }
 
-.search{
+.search {
   position: relative;
-  box-shadow: 0 0 40px rgba(51, 51, 51, .1);
+  box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
 }
 
 #header > .container nav {
@@ -145,7 +145,8 @@ td {
   border: 2px solid #b7aea9;
 }
 
-.search .fa-search, .search .fa-magnifying-glass {
+.search .fa-search,
+.search .fa-magnifying-glass {
   position: absolute;
   top: 18px;
   left: 16px;
@@ -157,6 +158,130 @@ td {
   right: 5px;
   height: 40px;
   width: 110px;
+}
+
+/* Search help modal */
+.search .search-help-trigger {
+  position: absolute;
+  top: 5px;
+  right: 120px; /* sits just left of the existing submit button */
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid #d6cfca;
+  background: #fff;
+  color: #686260;
+  font-weight: 700;
+  padding: 0;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.search .search-help-trigger:hover,
+.search .search-help-trigger:focus {
+  background: #e31837;
+  border-color: #e31837;
+  color: #fff;
+}
+
+.search .search-help-trigger:focus-visible {
+  outline: 2px solid #e31837;
+  outline-offset: 2px;
+}
+
+/* Search help - modal content */
+#searchHelpModal .modal-content {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 3rem rgba(48, 48, 48, 0.15);
+}
+
+#searchHelpModal .modal-header {
+  border-bottom: 1px solid #e1dfdc;
+  padding: 1.4rem 1.5rem 1rem;
+}
+
+#searchHelpModal .modal-title-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8c1d18;
+  margin-bottom: 0.35rem;
+}
+
+#searchHelpModal .modal-title {
+  font-weight: 700;
+  color: #212529;
+}
+
+#searchHelpModal .modal-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+#searchHelpModal .search-help-intro {
+  font-size: 0.95rem;
+  color: #4f4a45;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+#searchHelpModal .search-help-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#searchHelpModal .search-help-item {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #efefef;
+}
+
+#searchHelpModal .search-help-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0.1rem;
+}
+
+#searchHelpModal .search-help-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8c857f;
+  margin: 0 0 0.3rem;
+}
+
+#searchHelpModal .search-help-query {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #8c1d18;
+  background: #fbeceb;
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+  margin: 0 0.1rem 0.3rem 0;
+}
+
+#searchHelpModal .search-help-desc {
+  font-size: 0.88rem;
+  color: #212529;
+  margin: 0.15rem 0 0;
+  line-height: 1.45;
+}
+
+#searchHelpModal .search-help-footnote {
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #8c857f;
+  margin-top: 1.1rem;
+  line-height: 1.5;
 }
 
 /* For mobile: */
@@ -184,7 +309,7 @@ td {
 /* Mobile collapse styles of grouping/tabs */
 .horizontal-tabs details summary {
   padding: 10px;
-  font-weight:bolder;
+  font-weight: bolder;
   color: #fff;
   border-bottom: 2px solid #666;
   background-color: #e31837;
@@ -196,12 +321,13 @@ td {
 
 /* Zebra background for detail rows */
 details.horizontal-tabs-pane .row:nth-child(2n),
-.node--view-mode-collection .node__content .row:nth-child(2n+1) {
+.node--view-mode-collection .node__content .row:nth-child(2n + 1) {
   background: #fafafa;
 }
 
 /* Search Results node details */
-#block-york-drupal-theme-content .node--type-islandora-object.node--view-mode-search-index {
+#block-york-drupal-theme-content
+  .node--type-islandora-object.node--view-mode-search-index {
   padding: 1rem;
 }
 
@@ -280,14 +406,18 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 1.3rem;
-  background-color: #E31837;
-  border: 2px solid #E31837;
+  background-color: #e31837;
+  border: 2px solid #e31837;
   border-radius: 12px;
   color: #fff;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 14px 26px rgba(227, 24, 55, 0.22);
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .media-download .field-content a:hover,
@@ -301,13 +431,17 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 .collection-download__link {
-  background-color: #E31837;
-  border-color: #E31837;
+  background-color: #e31837;
+  border-color: #e31837;
   color: #fff;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 14px 26px rgba(227, 24, 55, 0.22);
-  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.15s ease, border-color 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .collection-download__link:hover,
@@ -387,7 +521,11 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   gap: 2rem;
   align-items: center;
   background:
-    radial-gradient(circle at top right, rgba(227, 24, 55, 0.12), transparent 36%),
+    radial-gradient(
+      circle at top right,
+      rgba(227, 24, 55, 0.12),
+      transparent 36%
+    ),
     linear-gradient(135deg, #fff7f2 0%, #ffffff 58%, #f4f1eb 100%);
   border: 1px solid rgba(33, 37, 41, 0.08);
   border-radius: 1.5rem;
@@ -519,7 +657,9 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 #block-yudl-collection-info-block > h2:first-child,
-#block-yudl-collection-info-block #block-views-block-collection-search-block-1 > h2:first-child {
+#block-yudl-collection-info-block
+  #block-views-block-collection-search-block-1
+  > h2:first-child {
   background: #e1dfdc; /* Light Warm Grey */
   color: #686260;
   padding: 10px;
@@ -550,7 +690,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   align-items: center;
   justify-content: center;
   background: #e1dfdc;
-  color: #686260; 
+  color: #686260;
 }
 
 .card-stats .icon-shape i {
@@ -644,16 +784,16 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   padding: 12px 24px;
   min-width: 120px;
   height: 52px;
-  border: 1px solid #E31837;
+  border: 1px solid #e31837;
 }
 
 #views-exposed-form-collection-search-block-1 input:focus {
-  border-color: #E31837;
-  box-shadow: 0 0 .25rem rgba(227,24,25,.25);
+  border-color: #e31837;
+  box-shadow: 0 0 0.25rem rgba(227, 24, 25, 0.25);
 }
 
 .form-item-collection-search input:focus {
-  box-shadow: 0 0 .25rem rgba(227,24,25,.2);
+  box-shadow: 0 0 0.25rem rgba(227, 24, 25, 0.2);
   border: 1px solid #b7aea9;
 }
 
@@ -677,7 +817,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   }
 }
 
-.copy_right{
+.copy_right {
   height: 46px;
 }
 
@@ -737,11 +877,13 @@ div[property="dcterms:description"]:only-of-type {
 
 .description-text {
   padding-top: 20px;
-  font-size: 1.25rem
+  font-size: 1.25rem;
 }
 
 /* Hide the label in Taxonomy List. See twig template taxonomy-term.html.twig */
-.taxonomy-data .field__label { display: none; }
+.taxonomy-data .field__label {
+  display: none;
+}
 
 /* Explore-* Pages Styling */
 [class*="view-explore"] {
@@ -856,23 +998,20 @@ div[property="dcterms:description"]:only-of-type {
   margin: 0 auto;
 }
 
-.view-collection-search
-.node--view-mode-collection-search {
+.view-collection-search .node--view-mode-collection-search {
   text-align: center;
 }
 
-.view-collection-search
-.field--name-field-media-image {
+.view-collection-search .field--name-field-media-image {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 180px;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
-.view-collection-search
-.field--name-field-media-image img {
+.view-collection-search .field--name-field-media-image img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -894,7 +1033,7 @@ div[property="dcterms:description"]:only-of-type {
   align-items: center;
   justify-content: center;
   min-height: 180px;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .view-collection-search .field--name-field-media-image img,
@@ -944,7 +1083,7 @@ div[property="dcterms:description"]:only-of-type {
   align-items: center;
   justify-content: center;
   min-height: 180px;
-  margin-bottom: .75rem;
+  margin-bottom: 0.75rem;
 }
 
 .explore-dogs .field--name-field-media-image img,
