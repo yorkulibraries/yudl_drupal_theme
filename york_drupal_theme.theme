@@ -292,6 +292,79 @@ function york_drupal_theme_preprocess_node(&$variables) {
   if (!empty($variables['view_mode']) && $variables['view_mode'] === 'oembed') {
     $variables['#attached']['library'][] = 'york_drupal_theme/oembed';
   }
+
+  york_drupal_theme_build_item_summary($variables);
+}
+
+/**
+ * Groups an object's description, permalink and share/embed actions.
+ *
+ * On islandora_object displays that include AddToAny (the full object page
+ * view modes), field_description, field_hdl and addtoany are replaced by a
+ * single 'item_summary' element at the position of the first of them:
+ * the description, then an action bar with the permalink (plus a copy
+ * button) on the left and the share/embed buttons on the right.
+ */
+function york_drupal_theme_build_item_summary(array &$variables) {
+  $node = $variables['node'];
+  $content = &$variables['content'];
+  if (!$node instanceof NodeInterface || $node->bundle() !== 'islandora_object' || empty($content['addtoany'])) {
+    return;
+  }
+
+  $keys = ['field_description', 'field_hdl', 'addtoany'];
+  $weights = [];
+  foreach ($keys as $key) {
+    if (isset($content[$key]['#weight'])) {
+      $weights[] = $content[$key]['#weight'];
+    }
+  }
+
+  $summary = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['item-summary']],
+    '#weight' => $weights ? min($weights) : 0,
+    '#attached' => ['library' => ['york_drupal_theme/item_summary']],
+  ];
+
+  if (!empty($content['field_description'][0])) {
+    $summary['description'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['item-description']],
+      'field' => $content['field_description'],
+    ];
+  }
+
+  $summary['actions'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['item-actions']],
+  ];
+
+  // field_hdl is only top level when it isn't placed in a field group.
+  if (!empty($content['field_hdl'][0]) && !$node->get('field_hdl')->isEmpty()) {
+    $summary['actions']['permalink'] = [
+      '#type' => 'inline_template',
+      '#template' => '<div class="item-permalink"><span class="item-permalink__label">{{ "Permalink"|t }}</span><a href="{{ url }}" property="dcterms:hdl" target="_blank" rel="noopener">{{ url }}</a><button type="button" class="item-copy" data-copy="{{ url }}" title="{{ "Copy permalink"|t }}" aria-label="{{ "Copy permalink"|t }}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg></button></div>',
+      '#context' => ['url' => $node->get('field_hdl')->value],
+    ];
+  }
+
+  $summary['actions']['share'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['item-share']],
+    'label' => [
+      '#type' => 'html_tag',
+      '#tag' => 'span',
+      '#value' => t('Share'),
+      '#attributes' => ['class' => ['item-share__label']],
+    ],
+    'addtoany' => $content['addtoany'],
+  ];
+
+  foreach ($keys as $key) {
+    unset($content[$key]);
+  }
+  $content['item_summary'] = $summary;
 }
 
 /**

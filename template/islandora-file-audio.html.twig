@@ -15,6 +15,7 @@
 * @ingroup themeable
 */
 #}
+<div class="media-stage media-stage--audio">
   <div class="audioTrack"></div>
   <div style="text-align: center;">
   <audio {{ attributes }}>
@@ -27,5 +28,6 @@
       {% endif %}
     {% endfor %}
   </audio>
+  </div>
 </div>
 {{ attach_library('islandora_audio/audio') }}

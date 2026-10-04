@@ -164,7 +164,7 @@
 
               var $contactLink = $msg.find('a').first();
               if ($contactLink.length) {
-                var $requestLink = $('<a class="collection-download__request">Request high resolution</a>');
+                var $requestLink = $('<a class="collection-download__request"><i class="fa-solid fa-envelope collection-download__icon" aria-hidden="true"></i>Request high resolution</a>');
                 $requestLink.attr({
                   'href': buildHighResolutionRequestUrl($contactLink.attr('href'), $node),
                   'title': 'Request a high resolution copy',
@@ -242,6 +242,102 @@
           $fieldset.hide();
         }
       }
+    }
+  };
+
+  // On narrow screens field_group leaves its tab list visually hidden and
+  // shows every pane as an open <details>. Open only the first section there
+  // so the page isn't one long scroll. If the window grows into the tabbed
+  // layout, re-open them all, since field_group shows panes but doesn't
+  // reopen <details>.
+  Drupal.behaviors.york_drupal_theme_collapse_tabs = {
+    attach: function (context) {
+      once('york-collapse-tabs', '.horizontal-tabs', context).forEach(function (tabs) {
+        var list = tabs.querySelector('.horizontal-tabs-list');
+        // Only tabbed panes get .horizontal-tabs-pane, so match plain details.
+        var panes = tabs.querySelectorAll('[data-horizontal-tabs-panes] > details');
+        if (!list || panes.length < 2) {
+          return;
+        }
+        var isStacked = function () {
+          return list.classList.contains('visually-hidden');
+        };
+
+        // Wait for field_group's own behavior to set up the tabs first.
+        setTimeout(function () {
+          if (isStacked()) {
+            panes.forEach(function (pane, i) {
+              pane.open = i === 0;
+            });
+          }
+        }, 0);
+
+        var resizeTimer;
+        window.addEventListener('resize', function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            if (!isStacked()) {
+              panes.forEach(function (pane) {
+                pane.open = true;
+              });
+            }
+          }, 150);
+        });
+      });
+    }
+  };
+
+  // Video players start as a 16:9 box (style.css). Once the file's metadata
+  // loads, use its real aspect ratio so 4:3 or vertical video fits exactly
+  // (still capped in height and letterboxed on black).
+  Drupal.behaviors.york_drupal_theme_video_aspect = {
+    attach: function (context) {
+      once('york-video-aspect', '.media-stage--video video', context).forEach(function (video) {
+        function apply() {
+          if (video.videoWidth && video.videoHeight) {
+            video.style.aspectRatio = video.videoWidth + ' / ' + video.videoHeight;
+          }
+        }
+        if (video.readyState >= 1) {
+          apply();
+        }
+        else {
+          video.addEventListener('loadedmetadata', apply, { once: true });
+        }
+      });
+    }
+  };
+
+  // Leaflet maps (e.g. field_coordinates in the Geographic tab) are drawn
+  // while their tab or <details> is hidden, so they measure 0px wide and
+  // render as a blank grey box until the window is resized. Leaflet redraws
+  // on window resize, so fire one whenever a tab or section is revealed.
+  Drupal.behaviors.york_drupal_theme_leaflet_reveal = {
+    attach: function (context) {
+      once('york-leaflet-reveal', 'body', context).forEach(function (body) {
+        function refreshIfMap(container) {
+          if (container && container.querySelector('.leaflet-container')) {
+            window.requestAnimationFrame(function () {
+              window.dispatchEvent(new Event('resize'));
+            });
+          }
+        }
+
+        // Desktop horizontal tabs.
+        body.addEventListener('click', function (event) {
+          var tab = event.target.closest('.horizontal-tab-button a');
+          if (tab) {
+            refreshIfMap(tab.closest('.horizontal-tabs'));
+          }
+        });
+
+        // Mobile: tabs collapse to <details>. 'toggle' doesn't bubble.
+        body.addEventListener('toggle', function (event) {
+          if (event.target.open) {
+            refreshIfMap(event.target);
+          }
+        }, true);
+      });
     }
   };
 

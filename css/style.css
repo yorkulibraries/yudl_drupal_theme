@@ -306,17 +306,85 @@ td {
   margin-bottom: 1rem;
 }
 
-/* Mobile collapse styles of grouping/tabs */
-.horizontal-tabs details summary {
-  padding: 10px;
-  font-weight: bolder;
-  color: #fff;
-  border-bottom: 2px solid #666;
-  background-color: #e31837;
+/* Tab strip: plain white, grey labels, red underline on the active tab. */
+.horizontal-tabs .horizontal-tabs-list {
+  background: #fff;
+  border-bottom: 1px solid #dee2e6;
 }
 
-.horizontal-tabs details summary::marker {
-  font-size: 1.1rem;
+.horizontal-tabs .horizontal-tabs-list li,
+.horizontal-tabs .horizontal-tabs-list li.selected {
+  background: transparent;
+  border: 0;
+  margin: 0 0 -1px;
+}
+
+.horizontal-tabs .horizontal-tabs-list li a {
+  display: block;
+  padding: 0.6rem 1rem;
+  color: #686260;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+}
+
+.horizontal-tabs .horizontal-tabs-list li a strong {
+  font-weight: 600;
+}
+
+.horizontal-tabs .horizontal-tabs-list li a:hover,
+.horizontal-tabs .horizontal-tabs-list li a:focus {
+  color: #e31837;
+  background: transparent;
+}
+
+.horizontal-tabs .horizontal-tabs-list li.selected a {
+  color: #e31837;
+  border-bottom-color: #e31837;
+}
+
+/* Metadata rows: zebra stripes only, no dividing lines. */
+.horizontal-tabs details .row.border-bottom {
+  border-bottom: 0 !important;
+}
+
+/* Mobile: field_group leaves the panes as plain <details> (it only adds
+ * .horizontal-tabs-pane, which hides the summary, when it builds tabs).
+ * Light headers with a chevron; global.js opens only the first section. */
+.horizontal-tabs details:not(.horizontal-tabs-pane) > summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  font-weight: 600;
+  color: #212529;
+  background: #fff;
+  border-bottom: 1px solid #dee2e6;
+  list-style: none;
+  cursor: pointer;
+}
+
+.horizontal-tabs details summary::-webkit-details-marker {
+  display: none;
+}
+
+.horizontal-tabs details summary::after {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.35rem;
+  border-right: 2px solid #686260;
+  border-bottom: 2px solid #686260;
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+}
+
+.horizontal-tabs details[open] > summary {
+  color: #e31837;
+}
+
+.horizontal-tabs details[open] > summary::after {
+  border-color: #e31837;
+  transform: rotate(-135deg);
 }
 
 /* Zebra background for detail rows */
@@ -349,7 +417,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   width: 100%;
 }
 
@@ -361,6 +429,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 .collection-download__button {
+  /* Stay on the right even without a request link beside it. */
   margin-left: auto;
   flex: 0 0 auto;
 }
@@ -369,19 +438,38 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   margin: 0 0.35rem;
 }
 
+/* Secondary button beside Download: same size as .btn-lg, outlined. */
 .collection-download__request {
-  flex: 1 1 auto;
-  min-width: 0;
-  color: #c5122f;
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 0.14em;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #e31837;
+  background-color: #fff;
+  border: 1px solid #e31837;
+  border-radius: 4px;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .collection-download__request:hover,
 .collection-download__request:focus {
-  color: #8c0000;
+  color: #af0d1a;
+  background-color: #fbeceb;
+  border-color: #af0d1a;
+  text-decoration: none;
+}
+
+.collection-download__request:focus-visible {
+  outline: 2px solid #e31837;
+  outline-offset: 2px;
 }
 
 .media-download {
@@ -406,65 +494,76 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   align-items: center;
   gap: 0.6rem;
   padding: 0.85rem 1.3rem;
-  background-color: #e31837;
-  border: 2px solid #e31837;
-  border-radius: 12px;
-  color: #fff;
+  background-color: #fff;
+  border: 1px solid #e31837;
+  border-radius: 4px;
+  color: #e31837;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 14px 26px rgba(227, 24, 55, 0.22);
   transition:
-    transform 0.15s ease,
-    box-shadow 0.2s ease,
     background-color 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
 .media-download .field-content a:hover,
 .media-download .field-content a:focus {
-  background-color: #c5122f;
-  border-color: #c5122f;
-  color: #fff;
+  background-color: #fbeceb;
+  border-color: #af0d1a;
+  color: #af0d1a;
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 0 18px 32px rgba(227, 24, 55, 0.28);
 }
 
-.collection-download__link {
-  background-color: #e31837;
+/* Outlined like .collection-download__request beside it. Paired with
+ * .btn-primary so it beats colors.css's later .btn-primary background, and
+ * Bootstrap's pressed state uses the same colours as hover. */
+.btn-primary.collection-download__link {
+  --bs-btn-active-bg: #fbeceb;
+  --bs-btn-active-border-color: #af0d1a;
+  --bs-btn-active-color: #af0d1a;
+  background-color: #fff;
   border-color: #e31837;
-  color: #fff;
+  border-radius: 4px;
+  color: #e31837;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 14px 26px rgba(227, 24, 55, 0.22);
+  box-shadow: none;
   transition:
-    transform 0.15s ease,
-    box-shadow 0.2s ease,
     background-color 0.15s ease,
-    border-color 0.15s ease;
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.collection-download__link:hover,
-.collection-download__link:focus {
-  background-color: #c5122f;
-  border-color: #c5122f;
-  color: #fff;
+.btn-primary.collection-download__link:hover,
+.btn-primary.collection-download__link:focus {
+  background-color: #fbeceb;
+  border-color: #af0d1a;
+  color: #af0d1a;
   text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 0 18px 32px rgba(227, 24, 55, 0.28);
+}
+
+.media-download .field-content a:focus-visible,
+.collection-download__link:focus-visible {
+  outline: 2px solid #e31837;
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
 .collection-download__icon {
   font-size: 1.1rem;
 }
 
-@media only screen and (max-width: 700px) {
-  .collection-download__inline {
-    align-items: flex-start;
+/* Phones: stack the two buttons full width. */
+@media only screen and (max-width: 575.98px) {
+  .collection-download__request,
+  .collection-download__button {
+    flex: 1 1 100%;
   }
 
-  .collection-download__button {
-    margin-left: 0;
+  .collection-download__request,
+  .collection-download__link {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -993,9 +1092,57 @@ div[property="dcterms:description"]:only-of-type {
 .node--type-islandora-object video {
   width: 100%;
   max-width: 100%;
-  height: auto;
   display: block;
   margin: 0 auto;
+}
+
+.node--type-islandora-object video {
+  height: auto;
+}
+
+/* Chrome renders <audio> with height: auto as 0px tall (no player). */
+.node--type-islandora-object audio {
+  height: 54px;
+}
+
+/* Object pages (not embeds): black stage like the OpenSeadragon viewer.
+ * Video starts 16:9; global.js swaps in the file's real aspect ratio. Its
+ * height is capped like the 640px image viewer, letterboxed on black. */
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--video video {
+  aspect-ratio: 16 / 9;
+  max-height: min(640px, 80vh);
+  background: #000;
+  object-fit: contain;
+}
+
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--audio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2rem 1.5rem 1.5rem;
+  background: #000;
+  color: #fff;
+}
+
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--audio::before {
+  content: "";
+  width: 72px;
+  height: 72px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23686260' d='M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--audio > div {
+  width: 100%;
+  max-width: 720px;
+}
+
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--audio > .audioTrack:empty {
+  display: none;
+}
+
+.node--type-islandora-object:not(.node--view-mode-oembed) .media-stage--audio audio {
+  color-scheme: dark;
 }
 
 .view-collection-search .node--view-mode-collection-search {

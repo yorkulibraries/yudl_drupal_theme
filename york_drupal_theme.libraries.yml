@@ -33,6 +33,16 @@ oembed:
     - york_drupal_theme/bootstrap_cdn
     - york_drupal_theme/global-styling
 
+item_summary:
+  js:
+    js/item-summary.js: {}
+  css:
+    theme:
+      css/item-summary.css: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 embed_button:
   js:
     js/embed-button.js: {}

@@ -1,0 +1,119 @@
+/* Description, permalink and share/embed actions shown under the viewer
+ * on islandora_object pages. Built in york_drupal_theme_preprocess_node(). */
+
+.item-summary {
+  margin: 1rem 0 1.5rem;
+  /* Size from the container, not the content: otherwise the unwrapped
+   * permalink widens Bootstrap's main .col past the viewport on phones
+   * instead of being truncated with an ellipsis. */
+  contain: inline-size;
+}
+
+/* style.css pads the standalone description; the summary spaces it. */
+.item-summary .item-description [property="dcterms:description"] {
+  padding-top: 0;
+}
+
+.item-summary .item-description p:last-child {
+  margin-bottom: 0;
+}
+
+.item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.item-permalink {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex: 1 1 24rem;
+  min-width: 0;
+}
+
+.item-permalink__label,
+.item-share__label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.item-permalink a {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item-copy {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: #686260;
+  cursor: pointer;
+}
+
+.item-copy:hover,
+.item-copy:focus-visible {
+  background: #f1f3f5;
+  color: #e31837;
+}
+
+.item-copy.is-copied {
+  color: #198754;
+}
+
+.item-copy svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.item-share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  /* Stay on the right even when there's no permalink beside it. */
+  margin-left: auto;
+}
+
+/* Revealed by item-summary.js once AddToAny has loaded. */
+.item-share:not(.is-a2a-ready) .item-share__label,
+.item-share:not(.is-a2a-ready) .a2a_kit {
+  display: none;
+}
+
+.item-share .oembed-embed-row {
+  margin: 0;
+}
+
+/* Phones: stack permalink above share, both left aligned. */
+@media (max-width: 575.98px) {
+  .item-actions {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+
+  .item-permalink {
+    flex-basis: auto;
+  }
+
+  .item-share {
+    margin-left: 0;
+  }
+}

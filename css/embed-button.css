@@ -19,7 +19,6 @@
 }
 
 .oembed-embed-button {
-  margin-left: 6px;
   width: 32px;
   height: 32px;
   padding: 0;
@@ -28,7 +27,6 @@
   justify-content: center;
   line-height: 1;
   border-radius: 4px;
-  transform: translateY(2px);
 }
 
 .oembed-embed-button svg {
