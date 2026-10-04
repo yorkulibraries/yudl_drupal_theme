@@ -125,7 +125,7 @@
 	{% endblock %}
 </header>
 {% if page.highlighted %}
-	<div class="highlighted p-3">
+	<div class="highlighted pt-3 pb-2">
 		<aside class="{{ container }} section clearfix" role="complementary">
 			{{ page.highlighted }}
 		</aside>
@@ -161,102 +161,102 @@
 					<section class="section">
 						<a id="main-content" tabindex="-1"></a>
 					</section>
-					<section class="section featured-collections my-4 bg-light p-3 rounded">
+					<section class="section featured-collections mb-4 bg-light p-3 rounded">
 						<h2 class="display-6 border-bottom border-danger mb-4">{{ 'Featured Collections'|t }}</h2>
 						<div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 59}) }}"><img src="/{{ directory }}/images/featured-collection-jean.jpg" class="card-img-top" alt="Jean Augustine fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-jean.jpg" class="card-img-top" alt="Jean Augustine fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Jean Augustine</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 59}) }}">Jean Augustine</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 57}) }}"><img src="/{{ directory }}/images/featured-collection-mariposa-folk-foundation.jpg" class="card-img-top" alt="Mariposa Folk Foundation fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-mariposa-folk-foundation.jpg" class="card-img-top" alt="Mariposa Folk Foundation fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Mariposa Folk Foundation</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 57}) }}">Mariposa Folk Foundation</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 46}) }}"><img src="/{{ directory }}/images/featured-collection-toronto-telegram.jpg" class="card-img-top" alt="Toronto Telegram fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-toronto-telegram.jpg" class="card-img-top" alt="Toronto Telegram fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Toronto Telegram</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 46}) }}">Toronto Telegram</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 10}) }}"><img src="/{{ directory }}/images/featured-collection-east-asian-resource-centre.jpg" class="card-img-top" alt="East Asian Resource Centre collection"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-east-asian-resource-centre.jpg" class="card-img-top" alt="East Asian Resource Centre collection"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">East Asian Resource Centre Collection</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 10}) }}">East Asian Resource Centre Collection</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 13}) }}"><img src="/{{ directory }}/images/featured-collection-yolton.jpg" class="card-img-top" alt="Yolton Library Rare Book Collection"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-yolton.jpg" class="card-img-top" alt="Yolton Library Rare Book Collection"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Yolton Library Rare Book Collection</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 13}) }}">Yolton Library Rare Book Collection</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 117}) }}"><img src="/{{ directory }}/images/featured-collection-kenneth-shah.jpg" class="card-img-top" alt="Kenneth Shah fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-kenneth-shah.jpg" class="card-img-top" alt="Kenneth Shah fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Kenneth Shah</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 117}) }}">Kenneth Shah</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 26}) }}"><img src="/{{ directory }}/images/featured-collection-york-photographs.jpg" class="card-img-top" alt="York University Photograph collection fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-york-photographs.jpg" class="card-img-top" alt="York University Photograph collection fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">York University Photograph Collection</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 26}) }}">York University Photograph Collection</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 86}) }}"><img src="/{{ directory }}/images/featured-collection-historical-maps.jpg" class="card-img-top" alt="Historical Map Collections"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-historical-maps.jpg" class="card-img-top" alt="Historical Map Collections"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Historical Map Collection</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 86}) }}">Historical Map Collection</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 99}) }}"><img src="/{{ directory }}/images/featured-collection-ntree.jpg" class="card-img-top" alt="National Round Table for the Environment and the Economy"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-ntree.jpg" class="card-img-top" alt="National Round Table for the Environment and the Economy"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">National Round Table for the Environment and the Economy</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 99}) }}">National Round Table for the Environment and the Economy</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 104}) }}"><img src="/{{ directory }}/images/featured-collection-golha.jpg" class="card-img-top" alt="The Golha Programmes"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-golha.jpg" class="card-img-top" alt="The Golha Programmes"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">The Golha Programmes</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 104}) }}">The Golha Programmes</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 81}) }}"><img src="/{{ directory }}/images/featured-collection-george-papadatos.jpg" class="card-img-top" alt="George Papadatos fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-george-papadatos.jpg" class="card-img-top" alt="George Papadatos fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">George Papadatos</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 81}) }}">George Papadatos</a></h3>
 									</div>
 								</div>
 							</div>
 							<div class="col">
 								<div class="card h-100">
-									<a href="{{ path('entity.node.canonical', {'node': 65}) }}"><img src="/{{ directory }}/images/featured-collection-lou-wise.jpg" class="card-img-top" alt="Lou Wise fonds"></a>
+									<div class="card-img-wrap"><img src="/{{ directory }}/images/featured-collection-lou-wise.jpg" class="card-img-top" alt="Lou Wise fonds"></div>
 									<div class="card-body">
-										<h4 class="card-title text-center">Lou Wise</h4>
+										<h3 class="card-title"><a class="stretched-link" href="{{ path('entity.node.canonical', {'node': 65}) }}">Lou Wise</a></h3>
 									</div>
 								</div>
 							</div>

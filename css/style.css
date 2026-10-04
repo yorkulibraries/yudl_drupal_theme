@@ -7,6 +7,16 @@
   src: url(/themes/custom/york_drupal_theme/css/IBMPlexSans-Regular.ttf);
 }
 
+/* York brand secondary face (IBM Plex Sans Condensed, OFL-1.1), used for
+ * accents such as the featured collection card titles. */
+@font-face {
+  font-family: yorkFontCondensed;
+  src: url(/themes/custom/york_drupal_theme/css/IBMPlexSansCondensed-SemiBold.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: yorkFont;
   font-size: 1rem;
@@ -86,14 +96,67 @@ td {
 }
 
 /** BOOTSTRAP 5 OVERRIDE & CUSTOM STYLES **/
+/* Featured collection cards: the title link is stretched over the whole
+ * card (page--node--1.html.twig), consistent 3:2 crops, soft shadow. */
+.featured-collections .card {
+  border: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease;
+}
+
+.featured-collections .card:hover,
+.featured-collections .card:focus-within {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+}
+
+.featured-collections .card-img-wrap {
+  overflow: hidden;
+}
+
 .featured-collections .card-img-top {
+  display: block;
   width: 100%;
-  height: 20vh;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.featured-collections .card:hover .card-img-top {
+  transform: scale(1.04);
+}
+
+.featured-collections .card-body {
+  padding: 0.75rem 1rem 1rem;
 }
 
 .featured-collections .card-title {
-  font-weight: 500;
+  margin: 0;
+  font-family: yorkFontCondensed, yorkFont, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.featured-collections .card-title a {
+  color: #212529;
+  text-decoration: none;
+}
+
+.featured-collections .card:hover .card-title a {
+  color: #e31837;
+}
+
+.featured-collections .card-title a:focus-visible {
+  outline: 2px solid #e31837;
+  outline-offset: 2px;
+}
+
+/* Front page: same 24px above and below the search box. */
+.path-frontpage #main {
+  padding-top: 0;
 }
 
 .highlighted #views-exposed-form-solr-search-content-page-1 {
@@ -101,6 +164,18 @@ td {
   align-items: center;
   justify-content: center;
   margin-top: 0.5rem;
+}
+
+/* Search box spans the full content width, flush with Featured Collections. */
+.highlighted #views-exposed-form-solr-search-content-page-1 > .row {
+  flex: 1 1 auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.highlighted #views-exposed-form-solr-search-content-page-1 > .row > .col {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .search {
