@@ -153,6 +153,14 @@
 
           $downloadLink.detach();
 
+          // Documents (PDFs) are rendered by Drupal's file formatter as
+          // <span class="file file--mime-…"><a>…</a></span>, with the file-type
+          // icon as the span's background. With the link moved into the
+          // button, drop the empty span so a stray icon isn't left behind.
+          $downloadBlock.find('.file').filter(function () {
+            return $(this).find('a').length === 0;
+          }).remove();
+
           var $downloadMessage = $downloadBlock.find("p:contains('If a high resolution copy of the file is needed'), p:contains('If a high-resolution copy of the file is needed')");
           var $inlineContainer = $('<div class="collection-download__inline d-flex flex-wrap align-items-center gap-3"></div>');
           var $buttonWrapper = $('<div class="collection-download__button"></div>').append($downloadLink);
