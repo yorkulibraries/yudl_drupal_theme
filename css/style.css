@@ -1328,3 +1328,30 @@ div[property="dcterms:description"]:only-of-type {
     flex: 1 1 100%;
   }
 }
+
+
+/* Sticky Footer Fix - RM-Ticket Support - 4536 */
+#page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#page > footer {
+  margin-top: auto;
+}
+
+/* The front / homepage does not have #page as the wrapper.
+Therefore, need to go via parent .path-frontpage.  */
+
+body.path-frontpage > .dialog-off-canvas-main-canvas {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+body.path-frontpage > .dialog-off-canvas-main-canvas > footer {
+  margin-top: auto;
+}
