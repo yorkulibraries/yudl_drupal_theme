@@ -1330,7 +1330,7 @@ div[property="dcterms:description"]:only-of-type {
 }
 
 
-/* Sticky Footer Fix - RM-Ticket Feature - 4290 */
+/* Sticky Footer Fix - RM-Ticket Support - 4536 */
 #page {
   min-height: 100vh;
   min-height: 100dvh;
