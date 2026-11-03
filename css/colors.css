@@ -107,8 +107,9 @@ a:active,
   color: #E31837;
 }
 
+/* Same grey as the yorku.ca navigation dropdowns and the collection band. */
 .sidebar .block {
-  background-color: #f6f6f2;
+  background-color: #f5f5f5;
   border-color: #f9f9f9;
 }
 

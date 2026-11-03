@@ -84,8 +84,21 @@ function york_drupal_theme_form_views_exposed_form_alter(&$form, FormStateInterf
 
   if ($form['#id'] == 'views-exposed-form-collection-search-block-1') {
     if (isset($form['collection_search']) && is_array($form['collection_search'])) {
-      $form['collection_search']['#attributes']['placeholder'] = t('Search collection');
-      $form['collection_search']['#placeholder'] = t('Search collection');
+      $placeholder = t('Search this collection');
+      $short = t('Search');
+      $node = \Drupal::routeMatch()->getParameter('node');
+      if ($node instanceof NodeInterface && function_exists('yudl_blocks_collection_summary')) {
+        $members = yudl_blocks_collection_summary($node->id())['members'];
+        if ($members) {
+          $placeholder = \Drupal::translation()->formatPlural($members, 'Search 1 item in this collection', 'Search @n items in this collection', ['@n' => number_format($members)]);
+          $short = \Drupal::translation()->formatPlural($members, 'Search 1 item', 'Search @n items', ['@n' => number_format($members)]);
+        }
+        $form['#cache']['tags'][] = 'search_api_list:default_solr_index';
+      }
+      $form['collection_search']['#attributes']['placeholder'] = $placeholder;
+      // collection.js uses this on phones, where the full text gets cut off.
+      $form['collection_search']['#attributes']['data-short-placeholder'] = $short;
+      $form['collection_search']['#placeholder'] = $placeholder;
       $form['collection_search']['#attributes']['class'][] = 'form-control';
       $form['collection_search']['#attributes']['class'][] = 'form-control-lg';
       $form['collection_search']['#attributes']['class'][] = 'rounded-0';
@@ -293,7 +306,186 @@ function york_drupal_theme_preprocess_node(&$variables) {
     $variables['#attached']['library'][] = 'york_drupal_theme/oembed';
   }
 
+  if (!empty($variables['view_mode']) && $variables['view_mode'] === 'collection') {
+    york_drupal_theme_build_collection_header($variables);
+  }
+
+  if (!empty($variables['view_mode']) && $variables['view_mode'] === 'collection_search') {
+    $variables['is_collection'] = york_drupal_theme_is_collection_node($variables['node']);
+  }
+
+  york_drupal_theme_build_paged_viewer($variables);
   york_drupal_theme_build_item_summary($variables);
+}
+
+/**
+ * Puts the paged content viewer at the top of a book or issue's own display.
+ *
+ * Books and publication issues are shown in OpenSeadragon from their IIIF
+ * book manifest. This used to be a block placed above the node by the
+ * openseadragon_block context, which put the node's header ("Submitted by")
+ * under the viewer; inside the node it sits where single objects have theirs.
+ */
+function york_drupal_theme_build_paged_viewer(array &$variables) {
+  $node = $variables['node'];
+  if (empty($variables['page']) || !$node instanceof NodeInterface || !$node->hasField('field_model') || $node->get('field_model')->isEmpty()) {
+    return;
+  }
+  $model = $node->get('field_model')->entity;
+  if (!$model || !$model->hasField('field_external_uri') || $model->get('field_external_uri')->isEmpty()) {
+    return;
+  }
+  $paged_models = ['https://schema.org/Book', 'https://schema.org/PublicationIssue'];
+  if (!in_array($model->get('field_external_uri')->first()->getUrl()->getUri(), $paged_models, TRUE)) {
+    return;
+  }
+
+  $block = \Drupal::service('plugin.manager.block')->createInstance('openseadragon_block', [
+    'iiif_manifest_url' => '/node/[node:nid]/book-manifest',
+  ]);
+  $variables['content']['paged_viewer'] = $block->build() + ['#weight' => -100];
+}
+
+/**
+ * Returns TRUE when a node is a collection (same test as the Collection context).
+ */
+function york_drupal_theme_is_collection_node($node) {
+  if (!$node instanceof NodeInterface || !$node->hasField('field_model') || $node->get('field_model')->isEmpty()) {
+    return FALSE;
+  }
+  $model = $node->get('field_model')->entity;
+  if (!$model) {
+    return FALSE;
+  }
+  if ($model->hasField('field_external_uri') && !$model->get('field_external_uri')->isEmpty()) {
+    return $model->get('field_external_uri')->first()->getUrl()->getUri() === 'http://purl.org/dc/dcmitype/Collection';
+  }
+  return $model->label() === 'Collection';
+}
+
+/**
+ * Returns the collection node for the current page, if it is one.
+ */
+function york_drupal_theme_current_collection() {
+  if (\Drupal::routeMatch()->getRouteName() !== 'entity.node.canonical') {
+    return NULL;
+  }
+  $node = \Drupal::routeMatch()->getParameter('node');
+  return york_drupal_theme_is_collection_node($node) ? $node : NULL;
+}
+
+/**
+ * Lays out the collection view mode beside the collection image.
+ *
+ * The description, the created/updated badges and the notes go in one
+ * column next to the image. The permalink and relation (finding aid) move
+ * to buttons beside the page title (york_drupal_theme_preprocess_page_title()),
+ * and the "Submitted by" line is hidden.
+ */
+function york_drupal_theme_build_collection_header(array &$variables) {
+  $node = $variables['node'];
+  $content = &$variables['content'];
+  $variables['display_submitted'] = FALSE;
+  $variables['#attached']['library'][] = 'york_drupal_theme/collection';
+
+  $body = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['collection-header-body']],
+    '#weight' => 1,
+  ];
+
+  if (!empty($content['field_description'][0])) {
+    $body['description'] = $content['field_description'];
+    $body['description']['#weight'] = 0;
+  }
+
+  if (function_exists('yudl_blocks_collection_summary') && function_exists('yudl_blocks_format_time')) {
+    $summary = yudl_blocks_collection_summary($node->id());
+    $badges = [];
+    if ($summary['first_added']) {
+      $badges[] = ['icon' => 'created', 'label' => t('Created'), 'value' => yudl_blocks_format_time($summary['first_added'])];
+    }
+    if ($summary['last_added']) {
+      $badges[] = ['icon' => 'updated', 'label' => t('Updated'), 'value' => yudl_blocks_format_time($summary['last_added'])];
+    }
+    if ($badges) {
+      $body['badges'] = [
+        '#type' => 'inline_template',
+        '#template' => '<ul class="collection-badges">{% for badge in badges %}<li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{% if badge.icon == "created" %}<path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm12 8v10H5V10h14z"/>{% else %}<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 10.4 3.2 3.2-1.4 1.4L11 13.2V6h2v6.4z"/>{% endif %}</svg><span>{{ badge.label }} <strong>{{ badge.value }}</strong></span></li>{% endfor %}</ul>',
+        '#context' => ['badges' => $badges],
+        '#cache' => ['tags' => ['search_api_list:default_solr_index']],
+        '#weight' => 1,
+      ];
+    }
+  }
+
+  if (!empty($content['field_note'][0])) {
+    $note = $content['field_note'];
+    $note['#label_display'] = 'hidden';
+    $body['note'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['collection-note'], 'role' => 'note'],
+      '#weight' => 2,
+      'field' => $note,
+    ];
+  }
+
+  unset($content['field_description'], $content['field_note'], $content['field_hdl'], $content['field_relation']);
+  $content['collection_header_body'] = $body;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page_title.
+ *
+ * Puts the finding aid (field_relation) and permalink (field_hdl) buttons
+ * beside the title on collection pages.
+ */
+function york_drupal_theme_preprocess_page_title(&$variables) {
+  $node = york_drupal_theme_current_collection();
+  if (!$node) {
+    return;
+  }
+
+  $relation = '';
+  if ($node->hasField('field_relation') && !$node->get('field_relation')->isEmpty()) {
+    $value = trim((string) $node->get('field_relation')->value);
+    if (preg_match('#^https?://#i', $value)) {
+      $relation = $value;
+    }
+  }
+  $hdl = ($node->hasField('field_hdl') && !$node->get('field_hdl')->isEmpty()) ? $node->get('field_hdl')->value : '';
+  if (!$relation && !$hdl) {
+    return;
+  }
+
+  $variables['title_suffix']['collection_actions'] = [
+    '#type' => 'inline_template',
+    '#template' => '<div class="collection-actions">{% if relation %}<a class="collection-btn" href="{{ relation }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3v2h3.6l-9.8 9.8 1.4 1.4L19 6.4V10h2V3h-7zM5 5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6h-2v6H5V7h6V5H5z"/></svg>{{ "Finding aid"|t }}</a>{% endif %}{% if hdl %}<button type="button" class="collection-btn" data-copy="{{ hdl }}" title="{{ hdl }}" aria-label="{{ "Copy permalink"|t }}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 1H4a2 2 0 0 0-2 2v14h2V3h12V1zm3 4H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2zm0 16H8V7h11v14z"/></svg><span>{{ "Permalink"|t }}</span></button>{% endif %}</div>',
+    '#context' => ['relation' => $relation, 'hdl' => $hdl],
+    '#attached' => ['library' => ['york_drupal_theme/collection']],
+    '#cache' => ['tags' => $node->getCacheTags(), 'contexts' => ['route']],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.
+ */
+function york_drupal_theme_preprocess_block(&$variables) {
+  if (($variables['plugin_id'] ?? '') === 'page_title_block') {
+    $variables['#cache']['contexts'][] = 'route';
+    if (york_drupal_theme_current_collection()) {
+      $variables['attributes']['class'][] = 'collection-title-row';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for views_view.
+ */
+function york_drupal_theme_preprocess_views_view(&$variables) {
+  if ($variables['view']->id() === 'collection_search') {
+    $variables['#attached']['library'][] = 'york_drupal_theme/collection';
+  }
 }
 
 /**

@@ -43,6 +43,16 @@ item_summary:
     - core/drupal
     - core/once
 
+collection:
+  js:
+    js/collection.js: {}
+  css:
+    theme:
+      css/collection.css: {}
+  dependencies:
+    - core/drupal
+    - core/once
+
 embed_button:
   js:
     js/embed-button.js: {}

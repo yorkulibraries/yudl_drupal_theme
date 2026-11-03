@@ -1,0 +1,674 @@
+/* Collection pages: header (title buttons, image, description, badges,
+ * notes) and the collection search band (search bar, filters, sort,
+ * card grid). Markup comes from york_drupal_theme_build_collection_header(),
+ * york_drupal_theme_preprocess_page_title(), yudl-collection-filters.html.twig
+ * and node--islandora-object--collection-search.html.twig. */
+
+/* ---- Title row: title on the left, finding aid + permalink on the right.
+ * The page title block wraps both in div.content. */
+.collection-title-row > .content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+/* A long title wraps within its own column; the buttons keep their size
+ * and stay level with its first line. */
+.collection-title-row h1 {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.collection-actions {
+  display: flex;
+  flex: none;
+  gap: 0.6rem;
+  margin-left: auto;
+  padding-top: 0.35rem;
+}
+
+.collection-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e31837;
+  border-radius: 4px;
+  background: #fff;
+  color: #e31837;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.collection-btn:hover,
+.collection-btn:focus-visible {
+  background: #e31837;
+  color: #fff;
+}
+
+.collection-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
+.collection-btn.is-copied {
+  border-color: #198754;
+  background: #fff;
+  color: #198754;
+}
+
+/* ---- Header: image beside one column of description, badges, notes. */
+.node--view-mode-collection .field--name-field-media-image img {
+  display: block;
+  border-radius: 8px;
+}
+
+.collection-header-body {
+  display: flow-root;
+}
+
+.collection-header-body > div:first-child,
+.collection-header-body [property="dcterms:description"] {
+  padding-top: 0;
+}
+
+.collection-header-body p:last-child {
+  margin-bottom: 0;
+}
+
+.collection-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.collection-badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #f1efec;
+  color: #4a4542;
+  font-size: 0.875rem;
+  line-height: 1.2;
+}
+
+.collection-badges svg {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: #8c857f;
+}
+
+.collection-badges strong {
+  color: #1d1d1f;
+  font-weight: 600;
+}
+
+.collection-note {
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #e1dfdc;
+  border-radius: 0 6px 6px 0;
+  background: #fafafa;
+  color: #4a4542;
+  font-size: 0.9rem;
+}
+
+.collection-note [property="skos:note"] + [property="skos:note"],
+.collection-note .field__item + .field__item {
+  margin-top: 0.5rem;
+}
+
+/* ---- Collection search band: full width, runs into the footer. */
+#block-views-block-collection-search-block-1 {
+  position: relative;
+  margin-top: 2.5rem;
+  margin-bottom: 0;
+  padding: 2rem 0 2.5rem;
+  /* Same grey as the yorku.ca navigation dropdowns and the search facets. */
+  background: #f5f5f5;
+  box-shadow: 0 0 0 100vmax #f5f5f5;
+  clip-path: inset(0 -100vmax);
+}
+
+/* The block heading stays for screen readers; the band marks the section. */
+#block-views-block-collection-search-block-1 > h2:first-child {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+/* ---- Search bar: field and button joined (collection.js adds the class
+ * after moving the sort controls into the toolbar). */
+#views-exposed-form-collection-search-block-1.collection-search--enhanced {
+  padding: 0;
+  margin-bottom: 0.85rem;
+}
+
+.collection-search--enhanced .form--inline,
+.collection-search--enhanced.form--inline,
+.collection-search--enhanced .d-flex.flex-wrap {
+  flex-wrap: nowrap !important;
+  gap: 0 !important;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.collection-search--enhanced .form-item-sort-by,
+.collection-search--enhanced .form-item-sort-order {
+  display: none !important;
+}
+
+.collection-search--enhanced #edit-collection-search {
+  height: 48px;
+  border-color: #e1dfdc;
+  border-right: 0;
+  border-radius: 12px 0 0 12px;
+  box-shadow: none;
+}
+
+.collection-search--enhanced .js-form-item,
+.collection-search--enhanced .form-actions {
+  margin: 0 !important;
+}
+
+/* The theme gives the field a 520px basis, which wraps the button under it
+ * on phones. */
+.collection-search--enhanced .form-item-collection-search {
+  flex: 1 1 auto !important;
+  min-width: 0;
+}
+
+.collection-search--enhanced .form-actions {
+  flex: none;
+  width: auto !important;
+}
+
+.collection-search--enhanced #edit-submit-collection-search {
+  width: auto !important;
+  height: 48px;
+  margin: 0;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ---- Toolbar: filters on the left, sort on the right. */
+.collection-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.collection-toolbar .collection-results-count {
+  margin: 0;
+}
+
+.collection-refine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.collection-refine__label,
+.collection-sort__label {
+  margin-right: 0.25rem;
+  color: #8c857f;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.collection-refine__group {
+  position: relative;
+}
+
+.collection-refine summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 40px;
+  padding: 0 0.9rem;
+  border: 1px solid #e1dfdc;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d1d1f;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  list-style: none;
+  cursor: pointer;
+}
+
+.collection-refine summary::-webkit-details-marker {
+  display: none;
+}
+
+.collection-refine summary::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid #686260;
+  border-bottom: 2px solid #686260;
+  transform: rotate(45deg) translateY(-2px);
+}
+
+.collection-refine summary:hover,
+.collection-refine details[open] > summary {
+  border-color: #e31837;
+  color: #e31837;
+}
+
+.collection-refine details.is-active > summary {
+  border-color: #e31837;
+  background: #fdecef;
+  color: #e31837;
+}
+
+.collection-refine__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 999px;
+  background: #e31837;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.collection-refine__panel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 6px);
+  left: 0;
+  width: max-content;
+  min-width: 260px;
+  max-width: min(420px, 85vw);
+  text-align: left;
+  padding: 0.5rem 0;
+  border: 1px solid #e1dfdc;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.collection-refine__panel ul {
+  max-height: 320px;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+/* Opened near the right edge of the page (collection.js). */
+.collection-refine__group.is-flipped .collection-refine__panel {
+  right: 0;
+  left: auto;
+}
+
+.collection-refine__panel li a {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.45rem 1rem;
+  color: #1d1d1f;
+  font-size: 0.92rem;
+  line-height: 1.35;
+  text-align: left;
+  text-decoration: none;
+}
+
+.collection-refine__panel li a > span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.collection-refine__panel li + li a {
+  border-top: 1px solid #f1efec;
+}
+
+.collection-refine__panel li a:hover,
+.collection-refine__panel li a:focus-visible {
+  background: #f6f5f3;
+  color: #e31837;
+}
+
+.collection-refine__n {
+  flex: none;
+  color: #8c857f;
+  font-variant-numeric: tabular-nums;
+}
+
+.collection-refine__more {
+  margin: 0.35rem 0 0;
+  padding: 0.5rem 1rem 0;
+  border-top: 1px solid #eee;
+  color: #8c857f;
+  font-size: 0.8rem;
+}
+
+.collection-refine__year {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.collection-refine__year label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  color: #686260;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.collection-refine__year input {
+  width: 100%;
+  height: 40px;
+  padding: 0 0.6rem;
+  border: 1px solid #e1dfdc;
+  border-radius: 8px;
+  color: #1d1d1f;
+  font-size: 0.95rem;
+}
+
+.collection-refine__year button {
+  grid-column: 1 / -1;
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: #e31837;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.collection-refine__year p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: #8c857f;
+  font-size: 0.8rem;
+}
+
+.collection-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.collection-sort:empty {
+  display: none;
+}
+
+.collection-sort select {
+  height: 40px;
+  padding: 0 2rem 0 0.8rem;
+  border: 1px solid #e1dfdc;
+  border-radius: 12px;
+  background-color: #fff;
+  font-size: 0.92rem;
+}
+
+.collection-sort select:hover,
+.collection-sort select:focus {
+  border-color: #e31837;
+}
+
+/* ---- Active filters and count. */
+.collection-active {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.collection-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid #e31837;
+  border-radius: 999px;
+  background: #fdecef;
+  color: #1d1d1f;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.collection-chip__label {
+  color: #686260;
+}
+
+.collection-chip:hover,
+.collection-chip:focus-visible {
+  background: #e31837;
+  color: #fff;
+}
+
+.collection-chip:hover .collection-chip__label,
+.collection-chip:focus-visible .collection-chip__label {
+  color: #fff;
+}
+
+.collection-clear {
+  color: #e31837;
+  font-size: 0.875rem;
+}
+
+.collection-results-count {
+  margin: 0 0 1rem;
+  color: #686260;
+  font-size: 0.92rem;
+  text-align: left;
+}
+
+/* ---- Card grid. Views' grid style renders rows of columns; flatten them
+ * into one responsive CSS grid. */
+.view-collection-search .view-content {
+  margin: 0;
+}
+
+.view-collection-search .views-view-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.5rem 1.25rem;
+  width: 100%;
+  padding: 0;
+  float: none;
+}
+
+.view-collection-search .views-view-grid > .views-row {
+  display: contents;
+}
+
+.view-collection-search .views-view-grid::before,
+.view-collection-search .views-view-grid::after,
+.view-collection-search .views-view-grid > .views-row::before,
+.view-collection-search .views-view-grid > .views-row::after {
+  display: none;
+}
+
+.view-collection-search .views-col {
+  width: auto !important;
+  max-width: none;
+  padding: 0;
+  float: none;
+}
+
+.collection-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  text-align: left;
+}
+
+.collection-card__thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid #e1dfdc;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.collection-card__thumb * {
+  margin: 0;
+  padding: 0;
+}
+
+.collection-card__thumb .contextual,
+.collection-card__thumb .visually-hidden,
+.collection-card__thumb .field__label {
+  display: none !important;
+}
+
+.collection-card__thumb div,
+.collection-card__thumb a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.collection-card__thumb img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.collection-card.is-collection .collection-card__thumb > * {
+  display: none;
+}
+
+.collection-card.is-collection .collection-card__thumb::before {
+  content: "";
+  width: 44px;
+  height: 44px;
+  background: #b9b3ad;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8l-2-2z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.collection-card__title {
+  margin: 0.55rem 0 0;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.collection-card__title a {
+  display: -webkit-box;
+  overflow: hidden;
+  color: #1d1d1f;
+  text-decoration: none;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Make the whole card the link. */
+.collection-card__title a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.collection-card:hover .collection-card__title a,
+.collection-card__title a:focus-visible {
+  color: #e31837;
+  text-decoration: underline;
+}
+
+.collection-card:hover .collection-card__thumb {
+  border-color: #e31837;
+}
+
+.collection-card__type {
+  margin-top: 0.2rem;
+  text-align: center;
+  color: #686260;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.view-collection-search nav[aria-label="pagination-heading"] {
+  margin-top: 2rem;
+}
+
+@media (max-width: 1199.98px) {
+  .view-collection-search .views-view-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* style.css stops floating the collection image at this width, so the
+ * description stacks under it. */
+@media only screen and (max-width: 1081px) {
+  .node--view-mode-collection .node__content:has(.field--name-field-media-image img) > .collection-header-body {
+    margin-top: 1rem;
+  }
+}
+
+/* ---- Phones. */
+@media (max-width: 767.98px) {
+  .collection-title-row > .content {
+    flex-direction: column;
+  }
+
+  .collection-actions {
+    padding-top: 0;
+  }
+
+  .collection-search--enhanced #edit-submit-collection-search {
+    min-width: 0;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .collection-actions,
+  .collection-sort {
+    margin-left: 0;
+  }
+
+  .view-collection-search .views-view-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -694,16 +694,9 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
   gap: 2rem;
   align-items: center;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(227, 24, 55, 0.12),
-      transparent 36%
-    ),
-    linear-gradient(135deg, #fff7f2 0%, #ffffff 58%, #f4f1eb 100%);
-  border: 1px solid rgba(33, 37, 41, 0.08);
-  border-radius: 1.5rem;
-  box-shadow: 0 1.5rem 3rem rgba(48, 48, 48, 0.1);
+  /* Same grey as the search facets, collection band and explore pages. */
+  background: #f5f5f5;
+  border-radius: 8px;
   overflow: hidden;
 }
 
@@ -713,10 +706,10 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 
 .york-404-eyebrow {
   margin-bottom: 0.75rem;
-  color: #8c1d18;
-  font-size: 0.85rem;
+  color: #e31837;
+  font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -730,7 +723,7 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   margin-bottom: 1rem;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #5f0f16;
+  color: #810001;
 }
 
 .york-404-body {
@@ -746,22 +739,60 @@ details.horizontal-tabs-pane .row:nth-child(2n),
   align-items: center;
 }
 
+/* The site's square buttons (see .collection-download__request): York Red,
+ * 4px corners, York Red Medium on hover. */
 .york-404-actions .btn {
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 0.7rem 1.25rem;
-  font-weight: 600;
+  font-weight: 700;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.york-404-actions .btn-primary {
+  background-color: #e31837;
+  border-color: #e31837;
+  color: #fff;
+}
+
+.york-404-actions .btn-primary:hover,
+.york-404-actions .btn-primary:focus {
+  background-color: #af0d1a;
+  border-color: #af0d1a;
+  color: #fff;
+}
+
+.york-404-actions .btn-outline-secondary {
+  background-color: #fff;
+  border-color: #e31837;
+  color: #e31837;
+}
+
+.york-404-actions .btn-outline-secondary:hover,
+.york-404-actions .btn-outline-secondary:focus {
+  background-color: #fbeceb;
+  border-color: #af0d1a;
+  color: #af0d1a;
+}
+
+.york-404-actions .btn:focus-visible {
+  outline: 2px solid #e31837;
+  outline-offset: 2px;
+  box-shadow: none;
 }
 
 .york-404-actions .btn-link {
   padding-left: 0;
   padding-right: 0;
-  color: #8c0000;
+  color: #e31837;
   text-decoration: none;
 }
 
 .york-404-actions .btn-link:hover,
 .york-404-actions .btn-link:focus {
-  color: #5f0f16;
+  color: #af0d1a;
   text-decoration: underline;
 }
 
@@ -797,7 +828,12 @@ details.horizontal-tabs-pane .row:nth-child(2n),
 }
 
 .york-404-caption a {
-  color: #8c0000;
+  color: #e31837;
+}
+
+.york-404-caption a:hover,
+.york-404-caption a:focus {
+  color: #af0d1a;
 }
 
 @media only screen and (max-width: 991px) {
@@ -1086,14 +1122,16 @@ div[property="dcterms:description"]:only-of-type {
 [class*="view-explore"] .views-summary.views-summary-unformatted:focus,
 [class*="view-explore"] .item-list li:hover,
 [class*="view-explore"] .item-list li:focus {
-  background: #efefef;
-  border: 1px solid #efefef;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
   padding: 5px;
 }
+/* Same grey as the yorku.ca navigation dropdowns, the search facets and the
+ * collection band. */
 [class*="view-explore"] .views-view-grid .views-col,
 [class*="view-explore"] .item-list li {
-  background: #efefef;
-  border: 1px solid #efefef;
+  background: #f5f5f5;
+  border: 1px solid #f5f5f5;
   padding: 10px;
   /* margin-bottom: 10px; */
 }
@@ -1102,7 +1140,7 @@ div[property="dcterms:description"]:only-of-type {
 [class*="view-explore"] .item-list li:hover,
 [class*="view-explore"] .item-list li:focus {
   background: #e5e5e5;
-  border: 1px solid #efefef;
+  border: 1px solid #f5f5f5;
   padding: 10px;
   /* margin-bottom: 10px; */
 }

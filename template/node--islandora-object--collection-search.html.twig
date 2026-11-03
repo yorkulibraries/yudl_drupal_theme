@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * A card in the collection search grid: thumbnail, then title.
+ *
+ * The title link is stretched over the whole card (collection.css).
+ * Sub-collections, which have no thumbnail, get a folder placeholder and
+ * a "Collection" label.
+ *
+ * Extra variables:
+ * - is_collection: TRUE when the node is a collection
+ *   (york_drupal_theme_preprocess_node()).
+ */
+#}
+<article{{ attributes.addClass('collection-card', is_collection ? 'is-collection') }}>
+  {{ title_prefix }}
+  {{ title_suffix }}
+  <div class="collection-card__thumb">
+    {{ content.display_media_thumbnail }}
+  </div>
+  <h3 class="collection-card__title"><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
+  {% if is_collection %}
+    <span class="collection-card__type">{{ 'Collection'|t }}</span>
+  {% endif %}
+</article>
