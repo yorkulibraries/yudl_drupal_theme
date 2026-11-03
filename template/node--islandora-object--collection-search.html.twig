@@ -4,19 +4,20 @@
  * A card in the collection search grid: thumbnail, then title.
  *
  * The title link is stretched over the whole card (collection.css).
- * Sub-collections, which have no thumbnail, get a folder placeholder and
- * a "Collection" label.
+ * Sub-collections get a "Collection" label. Those without a thumbnail
+ * get a folder placeholder instead (.no-thumb).
  *
  * Extra variables:
  * - is_collection: TRUE when the node is a collection
  *   (york_drupal_theme_preprocess_node()).
  */
 #}
-<article{{ attributes.addClass('collection-card', is_collection ? 'is-collection') }}>
+{% set thumb = content.display_media_thumbnail|render %}
+<article{{ attributes.addClass('collection-card', is_collection ? 'is-collection', is_collection and '<img' not in (thumb ~ '') ? 'no-thumb') }}>
   {{ title_prefix }}
   {{ title_suffix }}
   <div class="collection-card__thumb">
-    {{ content.display_media_thumbnail }}
+    {{ thumb }}
   </div>
   <h3 class="collection-card__title"><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
   {% if is_collection %}

@@ -573,11 +573,11 @@
   object-fit: contain;
 }
 
-.collection-card.is-collection .collection-card__thumb > * {
+.collection-card.is-collection.no-thumb .collection-card__thumb > * {
   display: none;
 }
 
-.collection-card.is-collection .collection-card__thumb::before {
+.collection-card.is-collection.no-thumb .collection-card__thumb::before {
   content: "";
   width: 44px;
   height: 44px;
