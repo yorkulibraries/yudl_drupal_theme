@@ -620,15 +620,6 @@
   border-color: #e31837;
 }
 
-.collection-card__type {
-  margin-top: 0.2rem;
-  text-align: center;
-  color: #686260;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .view-collection-search nav[aria-label="pagination-heading"] {
   margin-top: 2rem;
 }

@@ -4,8 +4,7 @@
  * A card in the collection search grid: thumbnail, then title.
  *
  * The title link is stretched over the whole card (collection.css).
- * Sub-collections get a "Collection" label. Those without a thumbnail
- * get a folder placeholder instead (.no-thumb).
+ * Sub-collections without a thumbnail get a folder placeholder (.no-thumb).
  *
  * Extra variables:
  * - is_collection: TRUE when the node is a collection
@@ -20,7 +19,4 @@
     {{ thumb }}
   </div>
   <h3 class="collection-card__title"><a href="{{ url }}" rel="bookmark">{{ label }}</a></h3>
-  {% if is_collection %}
-    <span class="collection-card__type">{{ 'Collection'|t }}</span>
-  {% endif %}
 </article>
